@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbar-enter {
+    transform: translateX(1500px);
+}
+.navbar-enter-active {
+    transform: translateX(0);
+    transition: 1s;
+}
+.navbar-exit {
+    transform: translateX(0);
+    transition: 2s;
+}
+.navbar-exit-active {
+    transform: translateX(500px);
+    transition: 1s;
+}
