@@ -1,18 +1,22 @@
-import './globals.css'
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
-      <body>{children}</body>
-    </html>
-  )
+import {FC} from "react";
+import "./global.css"
+import Navbar from "@/app/components/Navbar";
+import AppWrapper from "@/app/components/AppWrapper";
+interface IProps {
+    children: React.ReactNode
 }
+const Layout:FC<IProps> = ({children}) => {
+    return (
+        <html lang="en">
+            <head />
+            <body>
+                <AppWrapper>
+                    <Navbar />
+                    {children}
+                </AppWrapper>
+            </body>
+        </html>
+    )
+}
+
+export default Layout
