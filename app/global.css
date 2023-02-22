@@ -3,17 +3,16 @@
 @tailwind utilities;
 
 .navbar-enter {
-    transform: translateX(1500px);
+    transform: translateX(calc(100% - 12rem));
 }
 .navbar-enter-active {
     transform: translateX(0);
-    transition: 1s;
+    transition: 1.5s;
 }
 .navbar-exit {
-    transform: translateX(0);
-    transition: 2s;
+    transition: 1.5s;
 }
 .navbar-exit-active {
-    transform: translateX(500px);
     transition: 1s;
+    transform: translateX(0);
 }

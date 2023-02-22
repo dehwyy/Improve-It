@@ -9,9 +9,16 @@ const Navbar = () => {
     const [isExpanded, setExpanded] = useState(false)
     const nodeRef = useRef(null)
     return (
-        <aside className="fixed right-0 top-0 select-none h-[100px]">
+        <nav className="fixed right-0 top-0 select-none h-[100px]">
             <div className="absolute right-0 flex justify-center z-50">
-                    <div className="flex gap-x-3 bg-custom-blue p-[32.5px]">
+            </div>
+            <CSSTransition
+                in={isExpanded}
+                nodeRef={nodeRef}
+                timeout={1500}
+                classNames="navbar">
+                <div ref={nodeRef} className={(isExpanded? "w-screen visible border-none " : "w-48 rounded-bl-3xl") + " h-[100px] bg-custom-blue flex items-center "}>
+                    <div className={(isExpanded? "gap-x-1 " : " ") + "flex pl-10 transition-all"}>
                         <Link href="/">
                             <Home sx={{cursor: "pointer"}} fontSize="large" />
                         </Link>
@@ -19,16 +26,10 @@ const Navbar = () => {
                             <PermIdentityIcon sx={{cursor: "pointer"}} fontSize="large"/>
                         </Link>
                         <DehazeIcon sx={{cursor: "pointer"}} fontSize="large" onClick={() => setExpanded(p => !p)}/>
+                        </div>
                     </div>
-            </div>
-            <CSSTransition
-                in={isExpanded}
-                nodeRef={nodeRef}
-                timeout={1000}
-                classNames="navbar">
-                <div ref={nodeRef} className={(isExpanded? "w-screen visible" : "w-0") + " h-[100px] bg-custom-blue"}>123</div>
             </CSSTransition>
-        </aside>
+        </nav>
     );
 };
 

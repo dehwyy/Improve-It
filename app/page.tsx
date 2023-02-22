@@ -1,9 +1,13 @@
+import Link from "next/link";
+
 const Page = () => {
     return (
-        <div className="text-4xl">
-          HELLO!123
+        <div className="">
+            <Link href="speed" >
+                REDIRECT
+            </Link>
         </div>
-    );
+    )
 };
 
 export default Page;
