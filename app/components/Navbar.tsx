@@ -9,7 +9,7 @@ const Navbar = () => {
     const [isExpanded, setExpanded] = useState(false)
     const nodeRef = useRef(null)
     return (
-        <div className="fixed right-0 top-0 select-none h-[100px]">
+        <aside className="fixed right-0 top-0 select-none h-[100px]">
             <div className="absolute right-0 flex justify-center z-50">
                     <div className="flex gap-x-3 bg-custom-blue p-[32.5px]">
                         <Link href="/">
@@ -28,7 +28,7 @@ const Navbar = () => {
                 classNames="navbar">
                 <div ref={nodeRef} className={(isExpanded? "w-screen visible" : "w-0") + " h-[100px] bg-custom-blue"}>123</div>
             </CSSTransition>
-        </div>
+        </aside>
     );
 };
 
