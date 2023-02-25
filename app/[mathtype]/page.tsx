@@ -13,10 +13,12 @@ interface IProps {
 
 const Page:FC<IProps> = ({params}) => {
     return (
-        <div className="pt-10 bg-sky-800 w-[80%] mx-auto">
-            <ModeSelector currentPage={params.mathtype} />
-            <ModeEditor  />
-            <div>
+        <div className="pt-10 w-[80%] mx-auto">
+            <div className="bg-custom-blue py-5 rounded-2xl">
+                <ModeSelector currentPage={params.mathtype} />
+                <ModeEditor  />
+            </div>
+            <div className="bg-custom-blue mt-5 rounded-2xl p-5">
                 {params.mathtype === "hard"
                     ? <HardMode  />
                     : <SpeedMode  />
