@@ -6,7 +6,7 @@ interface IProps {
 
 const ContentWrapper:FC<IProps> = ({children}) => {
     return (
-        <main className="w-[1000px] max-w-full bg-red-300 mx-auto pt-[100px] min-h-screen h-full">
+        <main className="w-[1000px] max-w-full mx-auto pt-[100px] min-h-screen h-full">
             {children}
         </main>
     );
