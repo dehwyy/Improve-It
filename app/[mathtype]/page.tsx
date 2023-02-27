@@ -1,3 +1,4 @@
+'use client'
 import ModeSelector from "@/app/components/UI/Items/ModeSelector";
 import HardMode from "../components/modes/HardMode";
 import SpeedMode from "../components/modes/SpeedMode";
