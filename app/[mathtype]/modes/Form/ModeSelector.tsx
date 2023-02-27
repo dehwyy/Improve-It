@@ -1,9 +1,10 @@
 //@ts-nocheck
 import { FC } from "react";
 import Link from "next/link";
+import {Modes} from "@/types/export";
 
 interface IProps {
-    currentPage: string
+    currentPage: Modes
 }
 
 const chooseOptions = [

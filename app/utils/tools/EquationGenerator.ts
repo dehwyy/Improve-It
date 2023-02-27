@@ -1,21 +1,22 @@
 import RandomSimple from "@/app/utils/tools/RandomSimple";
+import {Diffs, Modes} from "@/types/export";
 
-type EquationT = [string, number]
 
 enum Signs {
     plus = "+",
     minus = "-"
 }
+
 class EquationGenerator {
-    private rand(...args: Parameters<typeof RandomSimple.getRandomInRange>): ReturnType<typeof RandomSimple.getRandomInRange> {
+    protected rand(...args: Parameters<typeof RandomSimple.getRandomInRange>): ReturnType<typeof RandomSimple.getRandomInRange> {
         return RandomSimple.getRandomInRange(...args)
     }
 
-    private getRandomSign(): Signs {
+    protected getRandomSign(): Signs {
        return RandomSimple.getRandomFromArray<Signs>([Signs.plus, Signs.minus])
     }
 
-    private signMaker<T = number, R = T>(minusCb: () => T, plusCb: () => R): {sign: string, res: T | R} {
+    protected signMaker<T = number, R = T>(minusCb: () => T, plusCb: () => R): {sign: string, res: T | R} {
         const sign = this.getRandomSign()
         let equalsNumber: T | R
         if (sign === Signs.minus) {
@@ -29,7 +30,31 @@ class EquationGenerator {
         }
     }
 
+}
 
+class EquationHard extends EquationGenerator implements EquationDiffs{
+    EasyEquation(): EquationT {
+        return ["", 1]
+    }
+    MediumEquation(): EquationT {
+        const x = this.rand(1, 10)
+        const randomK = this.rand(3, 10)
+        const randomConstant = this.rand(1, 100, randomK)
+        const {res: equalsNumber, sign} = this.signMaker(
+            () => x * randomK - randomConstant,
+            () => x * randomK + randomConstant
+        )
+        return [`${randomK}x ${sign} ${randomConstant} = ${equalsNumber} `, x]
+    }
+    HardEquation(): EquationT {
+        return ["", 1]
+    }
+    ImpossibleEquation(): EquationT {
+        return ["", 1]
+    }
+}
+
+class EquationSpeed extends EquationGenerator implements EquationDiffs{
     EasyEquation(): EquationT {
         const rFirst = this.rand(20, 1000)
         const rSecond = this.rand(20, 1000)
@@ -41,23 +66,42 @@ class EquationGenerator {
     }
 
     MediumEquation(): EquationT {
-        const x = this.rand(1, 10)
-        const randomK = this.rand(3, 10)
-        const randomConstant = this.rand(1, 100, randomK)
-        const {res: equalsNumber, sign} = this.signMaker(
-            () => x * randomK - randomConstant,
-            () => x * randomK + randomConstant
-        )
-        return [`${randomK}x ${sign} ${randomConstant} = ${equalsNumber} `, x]
+        return ["", 1]
+    }
+    HardEquation(): EquationT {
+        return ["", 1]
+    }
+    ImpossibleEquation(): EquationT {
+        return ["", 1]
     }
 }
 
-const Eqs = new EquationGenerator()
+class EquationInjection implements EquationDiffs{
+    constructor(
+        private EqGenerator: EquationDiffs
+    ) {}
 
-// well it works well, nice job!
+    EasyEquation() {
+        return this.EqGenerator.EasyEquation()
+    }
 
-export default function* getEquations(diff: Diffs = 0, count = 1): Generator<EquationT, void> {
+    MediumEquation() {
+        return this.EqGenerator.MediumEquation()
+    }
+    HardEquation() {
+        return this.EqGenerator.HardEquation()
+    }
+    ImpossibleEquation() {
+        return this.EqGenerator.ImpossibleEquation()
+    }
+
+}
+
+export default function* getEquations(mode: Modes, diff: Diffs = 0, count = 1): Generator<EquationT, void> {
     let localCount = 0
+    const Eqs = mode == Modes.speed
+        ? new EquationInjection(new EquationSpeed())
+        : new EquationInjection(new EquationHard())
     while (localCount < count) {
         localCount++
         switch (diff) {

@@ -1,13 +1,13 @@
 'use client'
-import ModeSelector from "@/app/components/UI/Items/ModeSelector";
-import HardMode from "../components/modes/HardMode";
-import SpeedMode from "../components/modes/SpeedMode";
-import {FC} from "react";
-import ModeEditor from "../components/UI/Items/ModeEditor";
-
+import ModeSelector from "@/app/[mathtype]/modes/Form/ModeSelector";
+import HardMode from "@/app/[mathtype]/modes/HardMode";
+import SpeedMode from "@/app/[mathtype]/modes/SpeedMode";
+import type {FC} from "react";
+import ModeEditor from "@/app/[mathtype]/modes/Form/ModeEditor";
+import {Modes} from "@/types/export"
 interface IProps {
     params: {
-        mathtype: "hard" | "speed"
+        mathtype: Modes
     }
 }
 
@@ -20,12 +20,12 @@ const Page:FC<IProps> = ({params}) => {
                 <ModeEditor  />
             </div>
             <div className="bg-custom-blue mt-5 rounded-2xl p-5">
-                {params.mathtype === "hard"
-                    ? <HardMode  />
-                    : <SpeedMode  />
+                {params.mathtype === Modes.hard
+                    ? <HardMode  currentPage={params.mathtype}/>
+                    : <SpeedMode  currentPage={params.mathtype}/>
                 }
             </div>
-            
+
         </div>
     );
 };

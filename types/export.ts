@@ -4,3 +4,8 @@ export enum Diffs {
     Hard,
     Impossible
 }
+
+export enum Modes {
+    hard = "hard",
+    speed = "speed",
+}

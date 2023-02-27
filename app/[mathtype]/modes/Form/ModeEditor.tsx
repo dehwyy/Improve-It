@@ -21,7 +21,6 @@ function ModeEditor() {
     const handleSubmit = useCallback(() => {
         setEquationsSettings(diff, equationsCount)
     }, [diff, equationsCount])
-
     return (  
         <div className="w-[80%] mx-auto pt-5 flex gap-x-5 items-center">
             <FormControl className="w-[33.33%]">

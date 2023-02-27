@@ -1,5 +1,6 @@
-import {describe, expect, expectTypeOf, test} from "vitest";
+import {describe, expect, expectTypeOf, test, it} from "vitest";
 import getEquations from "@/app/utils/tools/EquationGenerator";
+import {Modes} from "@/types/export";
 
 const equationTrueValidator = (next: IteratorResult<[string, number], void>) => {
     if (!next.done) {
@@ -17,20 +18,23 @@ const equationFalseValidator = (next: IteratorResult<[string, number], void>) =>
     expect(next.done).toBe(true)
 }
 
-describe("utils test", () => {
-    test("easy equation", () => {
-        const e = getEquations(0, 2)
-        const nextE1 = e.next()
-        equationTrueValidator(nextE1)
-        const nextE2 = e.next()
-        equationTrueValidator(nextE2)
 
-        const nextE3 = e.next()
-        equationFalseValidator(nextE3)
+describe("utils test", () => {
+    test("speed", () => {
+        it('easy equation ', () => {
+            const e = getEquations(Modes.speed, 0, 2)
+            const nextE1 = e.next()
+            equationTrueValidator(nextE1)
+            const nextE2 = e.next()
+            equationTrueValidator(nextE2)
+
+            const nextE3 = e.next()
+            equationFalseValidator(nextE3)
+        })
     })
 
-    test.skip("meduim equation", () => {
-        const a = getEquations(1, 2)
+    test("meduim equation", () => {
+        const a = getEquations(Modes.hard, 1, 2)
         const nextM1 = a.next()
         equationTrueValidator(nextM1)
         const nextM2 = a.next()
