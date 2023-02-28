@@ -1,5 +1,5 @@
 import {InputLabel, Select, MenuItem, FormControl, TextField, Button, SelectChangeEvent} from "@mui/material";
-import {useCallback, useLayoutEffect, useState} from 'react';
+import {useCallback} from 'react';
 import {useEquationStore} from "@/app/utils/store/equationFormStore";
 import {Diffs} from "@/types/export";
 import {shallow} from "zustand/shallow";

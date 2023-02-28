@@ -4,6 +4,7 @@ import {Button} from "@mui/material";
 import {useEquationStore} from "@/app/utils/store/equationFormStore";
 import {Modes} from "@/types/export";
 import {shallow} from "zustand/shallow";
+import {useEquationResults} from "@/app/utils/store/equationResults";
 
 interface IProps {
     equation: string
@@ -16,7 +17,10 @@ const Equation:FC<IProps> = ({equation, res, currentPage}) => {
     const [isTruthy, setTruthy] = useState<null | boolean>(null)
     const [bgColor, setBgColor] = useState<"bg-white" | "bg-red-400" | "bg-green-500">("bg-white")
     const [isShowButtons, setShowButtons] = useState(true)
+
+
     const [flag, count, diff] = useEquationStore(state => [state.flag, state.count, state.diff], shallow)
+    const [addAns, addCorrAns, remCorrAns] = useEquationResults(state => [state.addAnsweredCount, state.addCorrectlyAnsweredCount, state.removeCorrectlyAnsweredCount], shallow)
     useEffect(() => {
         setTruthy(null)
         setShowed(false)
@@ -28,9 +32,20 @@ const Equation:FC<IProps> = ({equation, res, currentPage}) => {
               setBgColor("bg-white")
               break
           case true:
+              if (bgColor === "bg-white") { // checks if bg was white => choice haven't been made
+                  addAns()
+                  addCorrAns()
+              } else {
+                  addCorrAns()
+              }
               setBgColor("bg-green-500")
               break
           case false:
+              if (bgColor == "bg-white") { // checks if bg was white => choice haven't been made
+                  addAns()
+              } else {
+                  remCorrAns()
+              }
               setBgColor("bg-red-400")
       }
     }, [isTruthy])
