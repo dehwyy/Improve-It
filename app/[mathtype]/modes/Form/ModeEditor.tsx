@@ -22,7 +22,7 @@ function ModeEditor() {
         setEquationsSettings(diff, equationsCount)
     }, [diff, equationsCount])
     return (  
-        <div className="w-[80%] mx-auto pt-5 flex gap-x-5 items-center">
+        <div className="w-[80%] mx-auto pt-5 flex gap-x-5 items-center select-none">
             <FormControl className="w-[33.33%]">
                 <InputLabel id="difficulty-label" >Difficulty</InputLabel>
                 <Select

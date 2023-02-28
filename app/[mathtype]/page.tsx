@@ -1,7 +1,6 @@
 'use client'
 import ModeSelector from "@/app/[mathtype]/modes/Form/ModeSelector";
-import HardMode from "@/app/[mathtype]/modes/HardMode";
-import SpeedMode from "@/app/[mathtype]/modes/SpeedMode";
+import Mode from "@/app/[mathtype]/modes/Mode";
 import type {FC} from "react";
 import ModeEditor from "@/app/[mathtype]/modes/Form/ModeEditor";
 import {Modes} from "@/types/export"
@@ -20,10 +19,7 @@ const Page:FC<IProps> = ({params}) => {
                 <ModeEditor  />
             </div>
             <div className="bg-custom-blue mt-5 rounded-2xl p-5">
-                {params.mathtype === Modes.hard
-                    ? <HardMode  currentPage={params.mathtype}/>
-                    : <SpeedMode  currentPage={params.mathtype}/>
-                }
+                <Mode  currentPage={params.mathtype}/>
             </div>
 
         </div>

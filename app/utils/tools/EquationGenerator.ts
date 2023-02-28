@@ -56,8 +56,8 @@ class EquationHard extends EquationGenerator implements EquationDiffs{
 
 class EquationSpeed extends EquationGenerator implements EquationDiffs{
     EasyEquation(): EquationT {
-        const rFirst = this.rand(20, 1000)
-        const rSecond = this.rand(20, 1000)
+        const rFirst = this.rand(20, 100)
+        const rSecond = this.rand(20, 100)
         const {sign, res} = this.signMaker(
             () => rFirst - rSecond,
             () => rFirst + rSecond
@@ -66,13 +66,31 @@ class EquationSpeed extends EquationGenerator implements EquationDiffs{
     }
 
     MediumEquation(): EquationT {
-        return ["", 1]
+        const rFirst = this.rand(20, 1000)
+        const rSecond = this.rand(20, 1000)
+        const {sign, res} = this.signMaker(
+            () => rFirst - rSecond,
+            () => rFirst + rSecond
+        )
+        return [`${rFirst} ${sign} ${rSecond} = `, res]
     }
     HardEquation(): EquationT {
-        return ["", 1]
+        const rFirst = this.rand(20, 10000)
+        const rSecond = this.rand(20, 10000)
+        const {sign, res} = this.signMaker(
+            () => rFirst - rSecond,
+            () => rFirst + rSecond
+        )
+        return [`${rFirst} ${sign} ${rSecond} = `, res]
     }
     ImpossibleEquation(): EquationT {
-        return ["", 1]
+        const rFirst = this.rand(20, 100000)
+        const rSecond = this.rand(20, 100000)
+        const {sign, res} = this.signMaker(
+            () => rFirst - rSecond,
+            () => rFirst + rSecond
+        )
+        return [`${rFirst} ${sign} ${rSecond} = `, res]
     }
 }
 
@@ -110,6 +128,12 @@ export default function* getEquations(mode: Modes, diff: Diffs = 0, count = 1): 
                 break
             case Diffs.Medium:
                 yield Eqs.MediumEquation()
+                break
+            case Diffs.Hard:
+                yield Eqs.HardEquation()
+                break
+            case Diffs.Impossible:
+                yield Eqs.ImpossibleEquation()
                 break
 
         }

@@ -10,7 +10,7 @@ const Layout:FC<IProps> = ({children}) => {
     return (
         <html lang="en">
             <head />
-            <body className="w-full h-full min-h-screen min-w-full">
+            <body className="w-full h-full min-h-screen min-w-full bg-[#444444]">
                 <AppWrapper>
                     <Navbar />
                     <ContentWrapper>
