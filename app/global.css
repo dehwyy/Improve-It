@@ -16,3 +16,16 @@
     transition: 1s;
     transform: translateX(0);
 }
+::-webkit-scrollbar {
+    width: 1vw;
+}
+::-webkit-scrollbar-track {
+    background: #222222;
+}
+::-webkit-scrollbar-thumb {
+    background: #797979;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #c1c1c1;
+}

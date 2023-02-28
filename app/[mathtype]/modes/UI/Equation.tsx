@@ -1,24 +1,26 @@
 import type {FC} from "react";
-import {useCallback, useEffect, useState} from "react";
+import {memo, useCallback, useEffect, useState} from "react";
 import {Button} from "@mui/material";
 import {useEquationStore} from "@/app/utils/store/equationFormStore";
+import {Modes} from "@/types/export";
+import {shallow} from "zustand/shallow";
 
 interface IProps {
     equation: string
     res: number
+    currentPage: Modes
 }
 
-const Equation:FC<IProps> = ({equation, res}) => {
+const Equation:FC<IProps> = ({equation, res, currentPage}) => {
     const [isShowed, setShowed] = useState(false)
     const [isTruthy, setTruthy] = useState<null | boolean>(null)
     const [bgColor, setBgColor] = useState<"bg-white" | "bg-red-400" | "bg-green-500">("bg-white")
     const [isShowButtons, setShowButtons] = useState(true)
-    const flag = useEquationStore(state => state.flag)
-
+    const [flag, count, diff] = useEquationStore(state => [state.flag, state.count, state.diff], shallow)
     useEffect(() => {
         setTruthy(null)
         setShowed(false)
-    }, [flag])
+    }, [flag, count, diff])
 
     useEffect(() => {
       switch (isTruthy) {
@@ -52,21 +54,25 @@ const Equation:FC<IProps> = ({equation, res}) => {
 
 
     return (
-        <div className="my-2 flex gap-x-1 items-center h-[50px]">
-            <div className="pr-1">
-                <div className={`border-2 border-black rounded-full w-[15px] h-[15px] ${bgColor}`}></div>
+        <div className="my-2 flex gap-1 items-center h-[50px] sm:flex-col sm:gap-2 sm:h-[65px]">
+            <div className="my-2 flex gap-1 items-center h-[50px]">
+                <div className="pr-1">
+                    <div className={`border-2 border-black rounded-full w-[15px] h-[15px] ${bgColor}`}></div>
+                </div>
+                <div className="select-none h-min cursor-pointer font-[600]" onClick={setShow}>{equation}</div>
+                {isShowed && <div className="cursor-pointer font-[700]" onClick={() => setShowButtons(true)}>{currentPage === "speed" ? res : `| x equals${res}`}</div>
+                }
             </div>
-            <div className="select-none h-min cursor-pointer font-[600]" onClick={setShow}>{equation}</div>
-            {isShowed &&
-                <div className="select-none flex items-center gap-x-3">
-                    <div className="cursor-pointer font-[700]" onClick={() => setShowButtons(true)}>{res}</div>
+            <div>
+                {isShowed && <div className="select-none flex items-center gap-x-3">
                     {isShowButtons && <>
                         <Button onClick={handleErrorButton} color="error" size="small" variant="contained">❌</Button>
                         <Button onClick={handleSuccessButton} color="success" size="small" variant="contained">✔️</Button>
                     </>}
-                    </div>}
+                </div>}
+            </div>
         </div>
     );
 };
 
-export default Equation
+export default memo(Equation)

@@ -18,8 +18,8 @@ const Page:FC<IProps> = ({params}) => {
                 <ModeSelector currentPage={params.mathtype} />
                 <ModeEditor  />
             </div>
-            <div className="bg-custom-blue mt-5 rounded-2xl p-5">
-                <Mode  currentPage={params.mathtype}/>
+            <div className="bg-custom-blue mt-5 rounded-2xl p-5 min-h-[300px]">
+                <Mode currentPage={params.mathtype}/>
             </div>
 
         </div>

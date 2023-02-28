@@ -5,12 +5,15 @@ interface IStore {
     diff: Diffs
     count: EquationsCountT
     flag: boolean
+    generate: () => void
     setEquation: (newDiff: Diffs, newCount: EquationsCountT) => void
+
 }
 
 export const useEquationStore = create<IStore>((set, get) => ({
     diff: Diffs.Easy,
     count: 10,
     flag: true,
-    setEquation: (newDiff: Diffs, newCount: EquationsCountT) => set({diff: newDiff, count: newCount, flag: !get().flag})
+    generate: () => set({flag: !get().flag}),
+    setEquation: (newDiff: Diffs, newCount: EquationsCountT) => set({diff: newDiff, count: newCount})
 }))

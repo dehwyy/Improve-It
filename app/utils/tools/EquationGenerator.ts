@@ -34,7 +34,14 @@ class EquationGenerator {
 
 class EquationHard extends EquationGenerator implements EquationDiffs{
     EasyEquation(): EquationT {
-        return ["", 1]
+        const x = this.rand(1, 5)
+        const randomK = this.rand(2, 5)
+        const randomConstant = this.rand(1, 50, randomK)
+        const {res: equalsNumber, sign} = this.signMaker(
+            () => x * randomK - randomConstant,
+            () => x * randomK + randomConstant
+        )
+        return [`${randomK}x ${sign} ${randomConstant} = ${equalsNumber} `, x]
     }
     MediumEquation(): EquationT {
         const x = this.rand(1, 10)
@@ -47,10 +54,10 @@ class EquationHard extends EquationGenerator implements EquationDiffs{
         return [`${randomK}x ${sign} ${randomConstant} = ${equalsNumber} `, x]
     }
     HardEquation(): EquationT {
-        return ["", 1]
+        return ["", 0]
     }
     ImpossibleEquation(): EquationT {
-        return ["", 1]
+        return ["", 0]
     }
 }
 
