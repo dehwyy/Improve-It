@@ -1,0 +1,1 @@
+export const btnWhiteTheme = {backgroundColor: "#444444!important"}

@@ -5,6 +5,8 @@ import getEquations from "@/app/utils/tools/EquationGenerator";
 import {Modes} from "@/types/export";
 import Equation from "@/app/[mathtype]/modes/UI/Equation";
 import EquationsWrapper from "@/app/[mathtype]/modes/UI/EquationsWrapper";
+import {Button} from "@mui/material";
+import {btnWhiteTheme} from "@/app/utils/consts/mui";
 
 interface IProps {
     currentPage: Modes
@@ -20,15 +22,20 @@ const Mode:FC<IProps> = ({currentPage}) => {
     }, [])
     const equations = useMemo(() => Array.from(getEquations(currentPage, diff, count)), [diff, count, trigger])
     if (!hasRendered) return <div></div>
-    return equations ? (
-        <EquationsWrapper>
-            {equations.map((eq, i) => {
-                const [equation, res] = eq
-                return (
-                    <Equation currentPage={currentPage} key={i} equation={equation} res={res} />
-                )
-            })}
-        </EquationsWrapper>
+    return equations && equations[0][0] ? (
+        <>
+            <EquationsWrapper>
+                {equations.map((eq, i) => {
+                    const [equation, res] = eq
+                    return (
+                        <Equation currentPage={currentPage} key={i} equation={equation} res={res} />
+                    )
+                })}
+            </EquationsWrapper>
+            <div className="text-end pr-5">
+                <Button variant="contained" sx={btnWhiteTheme}>Submit score</Button>
+            </div>
+        </>
     ) : (
         <div className="text-center" style={{wordSpacing: "7px"}}>
             <span className="text-xl">No implementation yet<br /></span>I would be UwU {`${'if'}`} you decide to help me with making hard equations or maybe something like derivative, integral calculation or trigonometry equations

@@ -3,6 +3,7 @@ import {useCallback} from 'react';
 import {useEquationStore} from "@/app/utils/store/equationFormStore";
 import {Diffs} from "@/types/export";
 import {shallow} from "zustand/shallow";
+import {btnWhiteTheme} from "@/app/utils/consts/mui";
 
 const nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
@@ -47,7 +48,7 @@ function ModeEditor() {
                  }
                 </Select>
             </FormControl>
-            <Button variant='contained' color="primary" sx={{color: "black", "&:hover": {background: "rgb(56 189 248)"}}} onClick={handleSubmit}>Regenerate</Button>
+            <Button variant='contained' color="primary" sx={btnWhiteTheme} size="large" onClick={handleSubmit}>Regenerate</Button>
         </div>
     );
 }

@@ -5,6 +5,7 @@ import {useEquationStore} from "@/app/utils/store/equationFormStore";
 import {Modes} from "@/types/export";
 import {shallow} from "zustand/shallow";
 import {useEquationResults} from "@/app/utils/store/equationResults";
+import {btnWhiteTheme} from "@/app/utils/consts/mui";
 
 interface IProps {
     equation: string
@@ -15,7 +16,7 @@ interface IProps {
 const Equation:FC<IProps> = ({equation, res, currentPage}) => {
     const [isShowed, setShowed] = useState(false)
     const [isTruthy, setTruthy] = useState<null | boolean>(null)
-    const [bgColor, setBgColor] = useState<"bg-white" | "bg-red-400" | "bg-green-500">("bg-white")
+    const [bgColor, setBgColor] = useState<"bg-white" | "bg-red-500" | "bg-green-500">("bg-white")
     const [isShowButtons, setShowButtons] = useState(true)
 
 
@@ -46,7 +47,7 @@ const Equation:FC<IProps> = ({equation, res, currentPage}) => {
               } else {
                   remCorrAns()
               }
-              setBgColor("bg-red-400")
+              setBgColor("bg-red-500")
       }
     }, [isTruthy])
 
@@ -82,7 +83,7 @@ const Equation:FC<IProps> = ({equation, res, currentPage}) => {
                 {isShowed && <div className="select-none flex items-center gap-x-3">
                     {isShowButtons && <>
                         <Button onClick={handleErrorButton} color="error" size="small" variant="contained">❌</Button>
-                        <Button onClick={handleSuccessButton} color="success" size="small" variant="contained">✔️</Button>
+                        <Button onClick={handleSuccessButton}  color="success" size="small" variant="contained">✔️</Button>
                     </>}
                 </div>}
             </div>

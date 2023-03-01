@@ -82,8 +82,8 @@ class EquationSpeed extends EquationGenerator implements EquationDiffs{
         return [`${rFirst} ${sign} ${rSecond} = `, res]
     }
     HardEquation(): EquationT {
-        const rFirst = this.rand(20, 10000)
-        const rSecond = this.rand(20, 10000)
+        const rFirst = this.rand(20, 100000)
+        const rSecond = this.rand(20, 100000)
         const {sign, res} = this.signMaker(
             () => rFirst - rSecond,
             () => rFirst + rSecond
@@ -91,8 +91,8 @@ class EquationSpeed extends EquationGenerator implements EquationDiffs{
         return [`${rFirst} ${sign} ${rSecond} = `, res]
     }
     ImpossibleEquation(): EquationT {
-        const rFirst = this.rand(20, 100000)
-        const rSecond = this.rand(20, 100000)
+        const rFirst = this.rand(2000, 10000000)
+        const rSecond = this.rand(2000, 10000000)
         const {sign, res} = this.signMaker(
             () => rFirst - rSecond,
             () => rFirst + rSecond

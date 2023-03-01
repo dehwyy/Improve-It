@@ -1,7 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+.block-neo-style {
+    box-shadow: 3px 3px 1px #222222;
+    border: 3px solid #222222;
+    @apply rounded-2xl
+}
 .navbar-enter {
     transform: translateX(calc(100% - 12rem));
 }

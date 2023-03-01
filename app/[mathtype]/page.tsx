@@ -22,15 +22,12 @@ const Page:FC<IProps> = ({params}) => {
     }, [])
     return (
         <div className="pt-10 w-[80%] mx-auto">
-            <div className="bg-custom-blue py-5 rounded-2xl">
+            <div className="bg-white block-neo-style py-5">
                 <ModeSelector currentPage={params.mathtype} />
                 <ModeEditor  />
             </div>
-            <div className="bg-custom-blue mt-5 rounded-2xl p-5 min-h-[300px]">
+            <div className="bg-white block-neo-style mt-5 p-5 min-h-[300px]">
                 <Mode currentPage={params.mathtype}/>
-                <div className="text-end pr-5">
-                    <Button variant="contained" color="primary" sx={{color: "black", "&:hover": {color: "white"}}}>{aC} {cAC} Submit score</Button>
-                </div>
             </div>
 
         </div>
