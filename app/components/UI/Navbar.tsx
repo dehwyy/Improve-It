@@ -35,15 +35,13 @@ const Navbar: FC<IProps> = ({ data }) => {
           ref={nodeRef}
           className={
             (isExpanded
-              ? 'w-screen visible pr-12 '
-              : 'w-48 rounded-bl-3xl border-l-4 pr-0 ') +
+              ? 'w-screen visible '
+              : 'w-96 rounded-bl-3xl border-l-4 pr-0 ') +
             ' h-[100px] bg-white border-b-4 border-black flex items-center'
           }>
           <div
             className={
-              (isExpanded
-                ? 'pl-12 gap-x-12 justify-evenly '
-                : 'justify-evenly ') +
+              (isExpanded ? 'gap-x-12 justify-evenly ' : 'justify-evenly ') +
               'gap-x-1 flex w-full transition-all duration-[1500ms]'
             }>
             <Link href="/">
