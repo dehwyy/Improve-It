@@ -1,6 +1,9 @@
 import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
 import { Varela_Round, Ubuntu } from '@next/font/google'
 import { getServerSession } from 'next-auth'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import prisma from '@/prisma/client'
+import { Modes } from '@/types/export'
 
 const h1Font = Ubuntu({
   subsets: ['latin'],
@@ -12,8 +15,23 @@ const h2Font = Varela_Round({
   weight: '400',
 })
 
-const Page = async () => {
-  const data = await getServerSession()
+interface IProps {
+  params: {
+    id: string
+  }
+}
+
+const getUserByName = async (name: string) => {
+  const user = await prisma.user.findFirst({
+    where: {
+      name,
+    },
+  })
+  return user
+}
+
+const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
+  const data = await getUserByName(params.id)
   return (
     <div className="pt-10 pb-10 bg-white block-neo-style min-w-[600px]">
       <div className="w-full h-full px-5">
@@ -21,8 +39,8 @@ const Page = async () => {
           <div className="block-neo-style min-w-[200px] bg-[#444444]">
             <img
               className="rounded-xl"
-              src={data?.user?.image as string}
-              alt={data?.user?.name as string}
+              src={data?.image as string}
+              alt={data?.name as string}
               width="200"
               height="200"
             />
@@ -32,14 +50,17 @@ const Page = async () => {
               <div>
                 <h2
                   className={`${h1Font.className} text-3xl underline underline-offset-4`}>
-                  {data?.user?.name as string}
+                  {data?.name as string}
                 </h2>
               </div>
               <div>
                 <h2 className={`${h2Font.className} text-2xl pb-2`}>
                   Correct Answers
                 </h2>
-                <ProgressBar correctCount={9.95} count={10} />
+                <ProgressBar
+                  correctCount={data?.correctAnswered as number}
+                  count={data?.answered as number}
+                />
               </div>
             </div>
           </div>

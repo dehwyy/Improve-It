@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Varela_Round } from '@next/font/google'
+import CustomButton from '@/app/components/UI/Global/CustomButton'
 
 const h1Font = Varela_Round({
   subsets: ['latin'],
@@ -8,7 +9,7 @@ const h1Font = Varela_Round({
 
 const Links = [
   { href: 'speed', content: 'Solve!' },
-  { href: 'user/1', content: 'Sign up!' },
+  { href: 'dehwyy', content: 'Sign up!' },
 ]
 
 const Page = () => {
@@ -21,9 +22,7 @@ const Page = () => {
       <div className="flex justify-evenly pt-16 text-3xl sm:flex-col sm:items-center sm:gap-y-5">
         {Links.map(link => (
           <Link href={link.href}>
-            <div className="active:top-[2px] relative top-0 bg-white block-neo-style py-5 w-[250px] text-center">
-              {link.content}
-            </div>
+            <CustomButton>{link.content}</CustomButton>
           </Link>
         ))}
       </div>

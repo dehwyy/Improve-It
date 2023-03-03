@@ -1,40 +1,23 @@
 'use client'
-import {
-  InputLabel,
-  Select,
-  MenuItem,
-  FormControl,
-  Button,
-  SelectChangeEvent,
-} from '@mui/material'
-import { useCallback } from 'react'
-import { useEquationStore } from '@/app/utils/store/equationFormStore'
+import { InputLabel, Select, MenuItem, FormControl, Button, SelectChangeEvent } from '@mui/material'
+import { useCallback, useEffect } from 'react'
+import { useEquationStore, useEquationResultsStore } from '@/app/utils/store/equationStore'
 import { Diffs } from '@/types/export'
 import { shallow } from 'zustand/shallow'
 import { btnWhiteTheme } from '@/app/utils/consts/mui'
-
+const nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 function ModeEditor() {
-  const nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-  const [setEquationsSettings, storeCount, storeDiff, generate] =
-    useEquationStore(
-      state => [state.setEquation, state.count, state.diff, state.generate],
-      shallow
-    )
-  const handleSelectDiff = useCallback(
-    (e: SelectChangeEvent<Diffs>) => {
-      setEquationsSettings(e.target.value as Diffs, storeCount)
-    },
-    [storeCount]
+  const [setEquationsSettings, storeCount, storeDiff, generate, trigger] = useEquationStore(
+    state => [state.setEquation, state.count, state.diff, state.generate, state.trigger],
+    shallow
   )
-  const handleSelectCount = useCallback(
-    (e: SelectChangeEvent<EquationsCountT>) => {
-      setEquationsSettings(storeDiff, e.target?.value as EquationsCountT)
-    },
-    [storeDiff]
-  )
-  const handleSubmit = useCallback(() => {
+  const reset = useEquationResultsStore(state => state.resetCount)
+  const generateHandler = useCallback(() => {
     generate()
   }, [])
+  useEffect(() => {
+    reset()
+  }, [trigger, storeDiff, storeCount])
   return (
     <div className="w-[80%] mx-auto pt-5 flex gap-x-5 items-center select-none">
       <FormControl className="w-[33.33%]">
@@ -43,7 +26,7 @@ function ModeEditor() {
           labelId="difficulty-label"
           label="Difficulty"
           value={storeDiff}
-          onChange={handleSelectDiff}>
+          onChange={e => setEquationsSettings(e.target.value as Diffs, storeCount)}>
           <MenuItem value={0}>Easy</MenuItem>
           <MenuItem value={1}>Medium</MenuItem>
           <MenuItem value={2}>Hard</MenuItem>
@@ -56,7 +39,7 @@ function ModeEditor() {
           labelId="count-label"
           label="Equation's count"
           value={storeCount}
-          onChange={handleSelectCount}>
+          onChange={e => setEquationsSettings(storeDiff, e.target?.value as EquationsCountT)}>
           {nums.map((num, i) => (
             <MenuItem key={i} value={num}>
               {num}
@@ -64,12 +47,7 @@ function ModeEditor() {
           ))}
         </Select>
       </FormControl>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={btnWhiteTheme}
-        size="large"
-        onClick={handleSubmit}>
+      <Button variant="contained" color="primary" sx={btnWhiteTheme} size="large" onClick={generateHandler}>
         Regenerate
       </Button>
     </div>

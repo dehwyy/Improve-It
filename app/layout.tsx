@@ -4,13 +4,16 @@ import AppWrapper from '@/app/components/UI/Wrappers/AppWrapper'
 import ContentWrapper from '@/app/components/UI/Wrappers/ContentWrapper'
 import Provider from '@/app/components/Provider'
 import { getServerSession, Session } from 'next-auth'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import prisma from '@/prisma/client'
 interface IProps {
   children: React.ReactNode
 }
+
 const Layout: (props: IProps) => Promise<JSX.Element> = async ({
   children,
 }) => {
-  const data = await getServerSession()
+  const data = await getServerSession(authOptions)
   return (
     <html lang="en">
       <head />
