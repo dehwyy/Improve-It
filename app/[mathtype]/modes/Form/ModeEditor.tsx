@@ -19,8 +19,8 @@ function ModeEditor() {
     reset()
   }, [trigger, storeDiff, storeCount])
   return (
-    <div className="w-[80%] mx-auto pt-5 flex gap-x-5 items-center select-none">
-      <FormControl className="w-[33.33%]">
+    <div className="w-[80%] mx-auto pt-5 flex sm:flex-col gap-5 items-center select-none">
+      <FormControl className="w-[33.33%] sm:w-full">
         <InputLabel id="difficulty-label">Difficulty</InputLabel>
         <Select
           labelId="difficulty-label"
@@ -33,7 +33,7 @@ function ModeEditor() {
           <MenuItem value={3}>Impossible</MenuItem>
         </Select>
       </FormControl>
-      <FormControl className="w-[33.33%]">
+      <FormControl className="w-[33.33%] sm:w-full">
         <InputLabel id="count-label">Equation's count</InputLabel>
         <Select
           labelId="count-label"

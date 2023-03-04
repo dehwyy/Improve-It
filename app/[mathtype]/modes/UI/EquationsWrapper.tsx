@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const EquationsWrapper: FC<IProps> = ({ children }) => {
-  return <div className={`p-1 grid grid-cols-2 lg:grid-cols-1 vsm:p-0`}>{children}</div>
+  return <div className={`p-1 grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 vsm:p-0 gap-5`}>{children}</div>
 }
 
 export default EquationsWrapper

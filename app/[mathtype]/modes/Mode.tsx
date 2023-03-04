@@ -69,21 +69,24 @@ const Mode: FC<IProps> = ({ currentPage }) => {
     <>
       <SolveError setTrigger={() => setError(false)} trigger={isError}>
         Please&nbsp;
-        <span className="cursor-pointer text-sky-400" onClick={() => signIn()}>
+        <span className="cursor-pointer text-sky-400 " onClick={() => signIn()}>
           authorize
         </span>
         &nbsp;to submit score!
       </SolveError>
       <SolveError setTrigger={() => setErrorOnActiveButton(false)} trigger={isErrorOnActiveButton}>
-        You can only submit when solve <span className="text-sky-400">all</span> the equations!
+        You can only submit when solve <span className="text-green-300">all</span> the equations!
       </SolveError>
+      <div className={`${isError || isErrorOnActiveButton ? 'h-[100px] vsm:h-[125px]' : 'h-12'} w-full transition-all duration-1000`} />
       <EquationsWrapper>
         {equations.map((eq, i) => {
           const [equation, res] = eq
           return <Equation isActiveEquation={i === activeEquation} currentPage={currentPage} key={i} index={i} equation={equation} res={res} />
         })}
       </EquationsWrapper>
-      <SubmitButton handleClick={handleSubmitButton} isActive={isActiveButton} />
+      <div className="pt-3">
+        <SubmitButton handleClick={handleSubmitButton} isActive={isActiveButton} />
+      </div>
     </>
   ) : (
     <NoImplementation />

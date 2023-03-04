@@ -62,53 +62,45 @@ const Equation: FC<IProps> = ({ equation, res, currentPage, index, isActiveEquat
     setActiveEquation(index)
   }
 
-  const handleErrorButton = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleErrorButton = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     setTruthy(false)
     setShowButtons(false)
   }, [])
 
-  const handleSuccessButton = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSuccessButton = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     setTruthy(true)
     setShowButtons(false)
   }, [])
 
   return (
-    <div className="my-2 flex gap-1 items-center h-[50px] sm:flex-col sm:gap-2 sm:h-[65px] text-[14px]">
-      <div className="my-2 flex gap-1 items-center h-[50px]">
+    <div
+      className="flex items-center flex-col md:text-[22px] vsm:text-[16px] uusm:text-[12px] text-[14px] lg:text-[16px] bg-[#777777] block-neo-style p-2 rounded-xl select-none"
+      onClick={() => {
+        setActiveEquation(index)
+        setShowButtons(true)
+      }}>
+      <div className="flex gap-1 items-center py-2">
         <div className="pr-1">
-          <div className={`border-2 border-black rounded-full w-[15px] h-[15px] ${bgColor}`}></div>
+          <div className={`border-2 border-black rounded-full w-[15px] h-[15px] ${bgColor}`} />
         </div>
         <div className="select-none h-min cursor-pointer font-[600]" onClick={setShow}>
           {equation}
         </div>
-        {isShowed && (
-          <div
-            className="cursor-pointer font-[700]"
-            onClick={() => {
-              setActiveEquation(index)
-              setShowButtons(true)
-            }}>
-            {currentPage === 'speed' ? res : `| x equals ${res}`}
-          </div>
-        )}
+        {isShowed && <div className="cursor-pointer font-[700]">{currentPage === 'speed' ? res : `| x equals ${res}`}</div>}
       </div>
       <div>
-        {isActiveEquation && isShowed && (
-          <div className="select-none flex items-center gap-x-3">
-            {isShowButtons && (
-              <>
-                <Button onClick={handleErrorButton} color="error" size="small" variant="contained">
-                  ❌
-                </Button>
-                <Button onClick={handleSuccessButton} color="success" size="small" variant="contained">
-                  ✔️
-                </Button>
-              </>
-            )}
+        <div className="select-none flex items-center gap-x-3">
+          <div className={(isActiveEquation && isShowed && isShowButtons ? 'visible' : 'invisible') + ' flex gap-x-5'}>
+            <div className="cursor-pointer" onClick={handleErrorButton}>
+              ❌
+            </div>
+            <div className="cursor-pointer" onClick={handleSuccessButton}>
+              ✔️
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   )

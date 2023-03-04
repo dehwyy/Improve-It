@@ -19,14 +19,8 @@ interface IProps {
 }
 
 const Navbar: FC<IProps> = ({ userId }) => {
-  const router = useRouter()
   const [isExpanded, setExpanded] = useNavbarStore(state => [state.isOpened, state.setIsOpen], shallow)
   const nodeRef = useRef(null)
-  useEffect(() => {
-    if (!userId) {
-      router.push('/')
-    }
-  }, [userId])
   return (
     <nav className="fixed right-0 top-0 select-none h-[100px] z-50">
       <div className="absolute right-0 flex justify-center"></div>
@@ -34,9 +28,13 @@ const Navbar: FC<IProps> = ({ userId }) => {
         <div
           ref={nodeRef}
           className={
-            (isExpanded ? 'w-screen ' : 'w-96 rounded-bl-3xl border-l-4 pr-0 ') + ' h-[100px] bg-white border-b-4 border-black flex items-center'
+            (isExpanded ? 'w-screen ' : 'w-96 rounded-bl-3xl border-l-4 pr-0 usm:w-screen uusm:min-w-[250px]') +
+            ' h-[100px] bg-white border-b-4 border-black flex items-center'
           }>
-          <div className={(isExpanded ? 'gap-x-12 justify-evenly ' : 'justify-evenly ') + 'gap-x-1 flex w-full transition-all duration-[1500ms]'}>
+          <div
+            className={
+              (isExpanded ? 'gap-x-12 justify-evenly ' : 'justify-evenly ') + 'gap-x-1 flex max-w-screen w-full transition-all duration-[1500ms]'
+            }>
             <Link href="/">
               <Home sx={{ cursor: 'pointer' }} fontSize="large" />
             </Link>
@@ -53,7 +51,7 @@ const Navbar: FC<IProps> = ({ userId }) => {
               />
             </Link>
             {userId && <SignOut onClick={() => signOut()} sx={{ cursor: 'pointer' }} fontSize="large" />}
-            <Options sx={{ cursor: 'pointer' }} fontSize="large" onClick={() => setExpanded()} />
+            <Options className="usm:hidden" sx={{ cursor: 'pointer' }} fontSize="large" onClick={() => setExpanded()} />
           </div>
         </div>
       </CSSTransition>

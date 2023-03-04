@@ -13,7 +13,7 @@ const Layout: (props: IProps) => Promise<JSX.Element> = async ({ children }) => 
   return (
     <html lang="en">
       <head />
-      <body className="w-full h-full min-h-screen min-w-full bg-[#444444] overflow-x-hidden">
+      <body className="uusm:min-w-[290px] w-full h-full min-h-screen min-w-full bg-[#444444] overflow-x-hidden">
         <Provider>
           <AppWrapper>
             <Navbar userId={user?.id as string} />

@@ -22,7 +22,7 @@ const Page: (props: IProps) => Promise<JSX.Element> = async ({ searchParams }) =
   ]
   return (
     <div className="pt-10 w-[90%] mx-auto">
-      <div className="bg-custom-pale-blue p-5 block-neo-style py-5 h-[400px] flex flex-col items-center justify-evenly">
+      <div className="bg-custom-pale-blue p-5 block-neo-style py-5 flex gap-5 flex-col items-center justify-evenly">
         <div className="w-full items-center justify-center flex bg-[#444444] min-w-[150px] w-11/12 block-neo-style min-h-[100px] py-5">
           <div className="min-w-[100px] w-9/12 text-center">
             <p className="text-4xl text-white pb-5">Results</p>
@@ -32,10 +32,10 @@ const Page: (props: IProps) => Promise<JSX.Element> = async ({ searchParams }) =
             </div>
           </div>
         </div>
-        <div className="text-xl w-full items-center justify-evenly flex bg-[#444444] min-w-[150px] w-11/12 block-neo-style min-h-[100px] py-5">
+        <div className="text-xl w-full items-center sm:items-stretch justify-evenly gap-5 sm:flex-col flex bg-[#444444] min-w-[150px] w-11/12 block-neo-style min-h-[100px] p-5">
           {links.map(link => (
-            <Link href={link.href}>
-              <CustomButton>{link.content}</CustomButton>
+            <Link href={link.href} className="flex-auto block">
+              <div className="active:top-[2px] relative top-0 bg-white block-neo-style py-5 text-center">{link.content}</div>
             </Link>
           ))}
         </div>

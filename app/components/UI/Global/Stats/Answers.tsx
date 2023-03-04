@@ -13,7 +13,7 @@ interface IProps {
 
 const Answers: FC<IProps> = ({ correctCount, count }) => {
   return (
-    <div className={`min-w-[200px] text-left w-full text-xl text-white w-min`}>
+    <div className={`min-w-[200px] text-left w-full text-xl text-white w-min pr-5`}>
       <p className={`${pFont.className}`}>
         Correct answers:&nbsp;<span className="text-green-400">{correctCount}</span>
       </p>
