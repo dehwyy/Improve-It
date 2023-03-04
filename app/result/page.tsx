@@ -6,14 +6,14 @@ import { getUser } from '@/app/utils/prismaQueries/getUserIdByImage'
 import Answers from '@/app/components/UI/Global/Stats/Answers'
 
 interface IProps {
-  searchParams: {
+  searchParams?: {
     c: string
     cc: string
   }
 }
 
 const Page: (props: IProps) => Promise<JSX.Element> = async ({ searchParams }) => {
-  const { c: count, cc: correctCount } = searchParams
+  const { c: count, cc: correctCount } = searchParams as any
   const user = await getUser()
   const links = [
     { href: '/', content: 'Main Page' },
