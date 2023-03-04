@@ -35,3 +35,14 @@ export const useEquationResultsStore = create<IResultsStore>((set, get) => ({
   removeCorrectlyAnsweredCount: () => set({ correctlyAnsweredCount: get().correctlyAnsweredCount - 1 }),
   resetCount: () => set({ correctlyAnsweredCount: 0, answeredCount: 0 }),
 }))
+
+interface ISingleStore {
+  activeEquation: number
+  setActiveEquation: (newState: number) => void
+}
+
+export const useSingleEquationStore = create<ISingleStore>((set, get) => ({
+  activeEquation: 0,
+
+  setActiveEquation: (newState: number) => set({ activeEquation: newState }),
+}))

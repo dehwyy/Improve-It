@@ -1,5 +1,5 @@
 'use client'
-import { useEquationResultsStore, useEquationStore } from '@/app/utils/store/equationStore'
+import { useEquationResultsStore, useEquationStore, useSingleEquationStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
 import { FC, useEffect, useMemo, useState } from 'react'
 import getEquations from '@/app/utils/tools/EquationGenerator'
@@ -52,13 +52,15 @@ const Mode: FC<IProps> = ({ currentPage }) => {
     }
   }
 
+  const [activeEquation, setActiveEquation] = useSingleEquationStore(state => [state.activeEquation, state.setActiveEquation], shallow)
+
   if (!hasRendered) return <div></div>
   return equations && equations[0][0] ? (
     <>
       <EquationsWrapper>
         {equations.map((eq, i) => {
           const [equation, res] = eq
-          return <Equation currentPage={currentPage} key={i} equation={equation} res={res} />
+          return <Equation isActiveEquation={i === activeEquation} currentPage={currentPage} key={i} index={i} equation={equation} res={res} />
         })}
       </EquationsWrapper>
       <SubmitButton handleClick={handleSubmitButton} isActive={isActiveButton} />
