@@ -76,7 +76,7 @@ const Equation: FC<IProps> = ({ equation, res, currentPage, index, isActiveEquat
 
   return (
     <div
-      className="flex items-center flex-col md:text-[22px] vsm:text-[16px] uusm:text-[12px] text-[14px] lg:text-[16px] bg-[#777777] block-neo-style p-2 rounded-xl select-none"
+      className="flex items-center flex-col md:text-[22px] vsm:text-[16px] uusm:text-[12px] text-[20px] lg:text-[16px] bg-[#777777] block-neo-style p-2 rounded-xl select-none"
       onClick={() => {
         setActiveEquation(index)
         setShowButtons(true)
