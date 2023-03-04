@@ -11,7 +11,7 @@ interface IProps {
 const SubmitButton: FC<IProps> = ({ handleClick, isActive }) => {
   const submitButtonRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
-    if (submitButtonRef.current) {
+    if (submitButtonRef.current && isActive) {
       submitButtonRef.current.style.color = 'white'
     }
   }, [isActive])

@@ -21,7 +21,7 @@
 }
 
 .error-enter {
-    transform: translateY(100px);
+    transform: translateY(50px);
     opacity: 0;
 }
 .error-enter-active {

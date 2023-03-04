@@ -9,7 +9,8 @@ import EquationsWrapper from '@/app/[mathtype]/modes/UI/EquationsWrapper'
 import NoImplementation from '@/app/[mathtype]/modes/UI/NoImplementation'
 import SubmitButton from '@/app/[mathtype]/modes/UI/SubmitButton'
 import { useRouter } from 'next/navigation'
-import AuthError from '@/app/components/UI/Global/Error/AuthError'
+import SolveError from '@/app/components/UI/Global/Error/SolveError'
+import { signIn } from 'next-auth/react'
 
 interface IProps {
   currentPage: Modes
@@ -26,10 +27,14 @@ const Mode: FC<IProps> = ({ currentPage }) => {
   const [hasRendered, setRendered] = useState(false)
   const [isError, setError] = useState(false)
   const [isActiveButton, setActiveButton] = useState(false)
-
+  const [isErrorOnActiveButton, setErrorOnActiveButton] = useState(false)
   useEffect(() => {
     setRendered(true)
   }, [])
+  useEffect(() => {
+    setError(false)
+    setErrorOnActiveButton(false)
+  }, [trigger, diff, count])
   useEffect(() => {
     if (answeredCount === count) {
       setActiveButton(true)
@@ -37,9 +42,10 @@ const Mode: FC<IProps> = ({ currentPage }) => {
   }, [answeredCount])
   const equations = useMemo(() => Array.from(getEquations(currentPage, diff, count)), [diff, count, trigger])
   const handleSubmitButton = async () => {
-    interface IData {
-      answeredCount: number
-      correctlyAnsweredCount: number
+    if (count !== answeredCount) {
+      window.scrollTo(0, 0)
+      setErrorOnActiveButton(true)
+      return
     }
     const response = await fetch('/api/update/count', {
       method: 'POST',
@@ -61,7 +67,16 @@ const Mode: FC<IProps> = ({ currentPage }) => {
   if (!hasRendered) return <div></div>
   return equations && equations[0][0] ? (
     <>
-      <AuthError setError={() => setError(false)} isError={isError} />
+      <SolveError setTrigger={() => setError(false)} trigger={isError}>
+        Please&nbsp;
+        <span className="cursor-pointer text-sky-400" onClick={() => signIn()}>
+          authorize
+        </span>
+        &nbsp;to submit score!
+      </SolveError>
+      <SolveError setTrigger={() => setErrorOnActiveButton(false)} trigger={isErrorOnActiveButton}>
+        You can only submit when solve <span className="text-sky-400">all</span> the equations!
+      </SolveError>
       <EquationsWrapper>
         {equations.map((eq, i) => {
           const [equation, res] = eq

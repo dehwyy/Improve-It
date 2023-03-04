@@ -4,22 +4,29 @@ import Options from '@mui/icons-material/Dehaze'
 import Link from 'next/link'
 import Home from '@mui/icons-material/HomeOutlined'
 import SignOut from '@mui/icons-material/ExitToApp'
-import { FC, memo, useRef } from 'react'
+import CalculateIcon from '@mui/icons-material/Calculate'
+import { FC, memo, useEffect, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { useNavbarStore } from '@/app/utils/store/componentsStore'
 import { shallow } from 'zustand/shallow'
 import { signIn, signOut } from 'next-auth/react'
-import { Session } from 'next-auth'
+import { useRouter } from 'next/navigation'
 
 // Timer on this navbar
 
 interface IProps {
-  data: Session
+  userId: string
 }
 
-const Navbar: FC<IProps> = ({ data }) => {
+const Navbar: FC<IProps> = ({ userId }) => {
+  const router = useRouter()
   const [isExpanded, setExpanded] = useNavbarStore(state => [state.isOpened, state.setIsOpen], shallow)
   const nodeRef = useRef(null)
+  useEffect(() => {
+    if (!userId) {
+      router.push('/')
+    }
+  }, [userId])
   return (
     <nav className="fixed right-0 top-0 select-none h-[100px] z-50">
       <div className="absolute right-0 flex justify-center"></div>
@@ -33,16 +40,19 @@ const Navbar: FC<IProps> = ({ data }) => {
             <Link href="/">
               <Home sx={{ cursor: 'pointer' }} fontSize="large" />
             </Link>
-            <Link href={data?.user ? `user/${data.user.name}` : ''}>
+            <Link href="/speed">
+              <CalculateIcon sx={{ cursor: 'pointer' }} fontSize="large" />
+            </Link>
+            <Link href={userId ? `user/${userId}` : ''}>
               <PermIdentityIcon
                 onClick={() => {
-                  !data?.user && signIn()
+                  !userId && signIn()
                 }}
                 sx={{ cursor: 'pointer' }}
                 fontSize="large"
               />
             </Link>
-            {data?.user && <SignOut onClick={() => signOut()} sx={{ cursor: 'pointer' }} fontSize="large" />}
+            {userId && <SignOut onClick={() => signOut()} sx={{ cursor: 'pointer' }} fontSize="large" />}
             <Options sx={{ cursor: 'pointer' }} fontSize="large" onClick={() => setExpanded()} />
           </div>
         </div>
