@@ -9,6 +9,7 @@ import EquationsWrapper from '@/app/[mathtype]/modes/UI/EquationsWrapper'
 import NoImplementation from '@/app/[mathtype]/modes/UI/NoImplementation'
 import SubmitButton from '@/app/[mathtype]/modes/UI/SubmitButton'
 import { useRouter } from 'next/navigation'
+import AuthError from '@/app/components/UI/Global/Error/AuthError'
 
 interface IProps {
   currentPage: Modes
@@ -23,6 +24,7 @@ const Mode: FC<IProps> = ({ currentPage }) => {
     shallow
   )
   const [hasRendered, setRendered] = useState(false)
+  const [isError, setError] = useState(false)
   const [isActiveButton, setActiveButton] = useState(false)
 
   useEffect(() => {
@@ -49,14 +51,17 @@ const Mode: FC<IProps> = ({ currentPage }) => {
     if (response.ok) {
       router.push(`/result?c=${answeredCount}&cc=${correctlyAnsweredCount}`)
       reset()
+    } else {
+      setError(true)
     }
   }
 
-  const [activeEquation, setActiveEquation] = useSingleEquationStore(state => [state.activeEquation, state.setActiveEquation], shallow)
+  const activeEquation = useSingleEquationStore(state => state.activeEquation)
 
   if (!hasRendered) return <div></div>
   return equations && equations[0][0] ? (
     <>
+      <AuthError setError={() => setError(false)} isError={isError} />
       <EquationsWrapper>
         {equations.map((eq, i) => {
           const [equation, res] = eq

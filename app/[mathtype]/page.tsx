@@ -12,7 +12,7 @@ interface IProps {
 const Page: FC<IProps> = ({ params }) => {
   return (
     <div className="pt-10 w-[80%] mx-auto">
-      <div className="bg-white block-neo-style py-5">
+      <div className="bg-white block-neo-style py-5 z-50">
         <ModeSelector currentPage={params.mathtype} />
         <ModeEditor />
       </div>

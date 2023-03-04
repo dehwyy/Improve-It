@@ -19,6 +19,16 @@
 .navbar-exit-active {
     transition: 1s;
 }
+
+.error-enter {
+    transform: translateY(100px);
+    opacity: 0;
+}
+.error-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: 1s;
+}
 ::-webkit-scrollbar {
     width: 1vw;
 }

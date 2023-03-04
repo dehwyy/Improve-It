@@ -14,10 +14,11 @@ interface IRes {
 }
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse<IRes>) {
-  try {
-    if (req.method === 'POST') {
+  if (req.method === 'POST') {
+    try {
       const { answeredCount, correctlyAnsweredCount } = JSON.parse(req.body) as IBody
       const data = await getServerSession(req, res, authOptions)
+      if (!data) throw Error()
       const user = await prisma.user.findFirst({
         where: {
           name: data?.user?.name,
@@ -28,7 +29,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse<I
           id: true,
         },
       })
-      if (!user) return
+      if (!user) throw Error()
 
       await prisma.user.update({
         data: {
@@ -40,8 +41,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse<I
         },
       })
       return res.status(201).json({ message: 'success' })
+    } catch (e) {
+      return res.status(400).json({ message: 'error', error: e })
     }
-  } catch (e) {
-    return res.status(400).json({ message: 'error', error: e })
   }
 }
