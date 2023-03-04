@@ -5,13 +5,13 @@ import { FC } from 'react'
 interface IProps {
   id: string
   name: string
-  svg: string
+  children: React.ReactNode
 }
 
-const AuthMethodWrapper: FC<IProps> = ({ id, name, svg }) => {
+const AuthMethodWrapper: FC<IProps> = ({ id, name, children }) => {
   return (
     <div className="flex justify-center gap-x-5 bg-[#333333] text-white p-3 rounded-2xl" onClick={() => signIn(id)}>
-      <Image src={svg} alt={'vk'} width={24} height={24} />
+      {children}
       <div>Sign in with {name}</div>
     </div>
   )
