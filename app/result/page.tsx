@@ -18,7 +18,7 @@ const Page: (props: IProps) => Promise<JSX.Element> = async ({ searchParams }) =
   const links = [
     { href: '/', content: 'Main Page' },
     { href: `/user/${user?.id}`, content: 'Profile' },
-    { href: '/speed', content: 'Solve more' },
+    { href: '/solve/plusminus', content: 'Solve more' },
   ]
   return (
     <div className="pt-10 w-[90%] mx-auto">
