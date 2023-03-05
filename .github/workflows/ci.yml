@@ -1,0 +1,23 @@
+name: github ci
+on:
+  push:
+    branches: [master]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 17.x ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: setting up ${{matrix.node-version}}
+        uses: actions/setup-node@v3
+        with:
+          node_version: ${{matrix.node-version}}
+
+      - name: installing dependencies
+        run: npm install
+
+      - name: run vitest tests
+        run: npm run test:e2e
