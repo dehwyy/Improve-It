@@ -1,7 +1,7 @@
-import ModeSelector from '@/app/[mathtype]/modes/Form/ModeSelector'
-import Mode from '@/app/[mathtype]/modes/Mode'
+import ModeSelector from '@/app/solve/[mathtype]/components/Form/ModeSelector'
+import Mode from '@/app/solve/[mathtype]/components/Mode'
 import type { FC } from 'react'
-import ModeEditor from '@/app/[mathtype]/modes/Form/ModeEditor'
+import ModeEditor from '@/app/solve/[mathtype]/components/Form/ModeEditor'
 import { Modes } from '@/types/export'
 interface IProps {
   params: {
