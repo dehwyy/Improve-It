@@ -2,7 +2,7 @@
 import { useEquationResultsStore, useEquationStore, useSingleEquationStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
 import { FC, useEffect, useMemo, useState } from 'react'
-import getEquations from '@/app/utils/tools/EquationGenerator'
+import getEquations from '@/app/utils/tools/equations/EquationModule'
 import { Modes } from '@/types/export'
 import Equation from '@/app/solve/[mathtype]/components/UI/Equation'
 import EquationsWrapper from '@/app/solve/[mathtype]/components/UI/EquationsWrapper'

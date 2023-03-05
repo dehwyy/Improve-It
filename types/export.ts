@@ -6,7 +6,7 @@ export enum Diffs {
 }
 
 export enum Modes {
-  equation = 'Equation',
+  variable = 'Variable',
   multiply = 'Multiply',
   plusminus = 'Plus/minus',
 }
