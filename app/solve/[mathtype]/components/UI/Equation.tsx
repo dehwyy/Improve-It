@@ -88,7 +88,7 @@ const Equation: FC<IProps> = ({ equation, res, currentPage, index, isActiveEquat
         <div className="select-none h-min cursor-pointer font-[600]" onClick={setShow}>
           {equation}
         </div>
-        {isShowed && <div className="cursor-pointer font-[700]">{currentPage === 'speed' ? res : `| x equals ${res}`}</div>}
+        {isShowed && <div className="cursor-pointer font-[700]">{currentPage.includes('equation') ? `| x equals ${res}` : res}</div>}
       </div>
       <div>
         <div className="select-none flex items-center gap-x-3">

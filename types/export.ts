@@ -1,11 +1,12 @@
 export enum Diffs {
-    Easy,
-    Medium,
-    Hard,
-    Impossible
+  Easy,
+  Medium,
+  Hard,
+  Impossible,
 }
 
 export enum Modes {
-    hard = "hard",
-    speed = "speed",
+  equation = 'Equation',
+  multiply = 'Multiply',
+  plusminus = 'Plus/minus',
 }
