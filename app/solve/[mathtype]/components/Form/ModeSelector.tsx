@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Modes } from '@/types/export'
 
 interface IProps {
-  currentPage: Modes
+  currentPage: keyof typeof Modes
 }
 
 const ModeSelector: FC<IProps> = ({ currentPage }) => {

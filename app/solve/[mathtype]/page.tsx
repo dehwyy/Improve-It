@@ -5,7 +5,7 @@ import ModeEditor from '@/app/solve/[mathtype]/components/Form/ModeEditor'
 import { Modes } from '@/types/export'
 interface IProps {
   params: {
-    mathtype: Modes
+    mathtype: keyof typeof Modes
   }
 }
 
