@@ -38,7 +38,7 @@ const Navbar: FC<IProps> = ({ userId }) => {
             <Link href="/">
               <Home sx={{ cursor: 'pointer' }} fontSize="large" />
             </Link>
-            <Link href="/speed">
+            <Link href="/solve/plusminus">
               <CalculateIcon sx={{ cursor: 'pointer' }} fontSize="large" />
             </Link>
             <Link href={userId ? `user/${userId}` : ''}>

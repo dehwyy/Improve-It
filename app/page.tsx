@@ -18,7 +18,7 @@ const Page = async () => {
         <div className="mt-1.5 w-[275px] max-w-screen  h-[5px] bg-gradient-to-r from-white to-custom-light-blue rounded-xl"></div>
       </div>
       <div className="flex justify-evenly pt-16 text-3xl sm:flex-col sm:items-center sm:gap-y-5">
-        <Link href={'speed'}>
+        <Link href={'/solve/plusminus'}>
           <CustomButton>Solve</CustomButton>
         </Link>
         {user ? (
