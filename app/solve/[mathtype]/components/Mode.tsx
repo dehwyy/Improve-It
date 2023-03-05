@@ -13,7 +13,7 @@ import SolveError from '@/app/components/UI/Global/Error/SolveError'
 import { signIn } from 'next-auth/react'
 
 interface IProps {
-  currentPage: Modes
+  currentPage: keyof typeof Modes
 }
 
 const Mode: FC<IProps> = ({ currentPage }) => {

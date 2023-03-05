@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import { memo, useCallback, useEffect, useState } from 'react'
-import { Button } from '@mui/material'
 import { useEquationStore, useSingleEquationStore } from '@/app/utils/store/equationStore'
 import { Modes } from '@/types/export'
 import { shallow } from 'zustand/shallow'
@@ -10,7 +9,7 @@ interface IProps {
   equation: string
   res: number
   index: number
-  currentPage: Modes
+  currentPage: keyof typeof Modes
   isActiveEquation: boolean
 }
 
