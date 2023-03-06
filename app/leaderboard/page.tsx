@@ -12,8 +12,8 @@ const Page = async () => {
   const users = await selectByCorrectAnswered()
   const currentUser = await getServerSession(authOptions)
   return (
-    <div className="mx-auto md:w-[600px] w-[800px] flex flex-col mt-5 p-5 bg-[#555555] block-neo-style pb-10">
-      <h1 className={`${h1Font.className} text-center text-7xl uusm:text-6xl text-white`}>Leaderboard</h1>
+    <div className="mx-auto md:w-full w-[800px] flex flex-col mt-5 p-5 bg-[#555555] block-neo-style pb-10">
+      <h1 className={`${h1Font.className} text-center text-7xl uusm:text-6xl text-white vsm:text-[2.85rem] uusm:text-4xl`}>Leaderboard</h1>
       <div className="flex-auto flex flex-col gap-y-5 mt-5">
         {users &&
           users.map(user => (
