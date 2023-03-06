@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import prisma from '@/prisma/client'
 import { Modes } from '@/types/export'
-import { getUserById } from '@/app/utils/prismaQueries/getUserById'
+import { getUserById } from '@/app/utils/prismaQueries/user/getUserById'
 import Answers from '@/app/components/UI/Global/Stats/Answers'
 
 const h1Font = Ubuntu({

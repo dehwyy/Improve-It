@@ -5,7 +5,6 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import '../../app/global.css'
 import AuthMethodWrapper from '@/app/components/UI/Wrappers/AuthMethodWrapper'
 export default function SignIn({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log(providers)
   const { github, vk, google } = providers as Record<'github' | 'vk' | 'google', any>
   return (
     <div className="w-screen h-screen bg-[#444444] flex items-center justify-center cursor-pointer">

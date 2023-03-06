@@ -1,8 +1,6 @@
 import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
-import { FC, useMemo } from 'react'
-import CustomButton from '@/app/components/UI/Global/CustomButton'
 import Link from 'next/link'
-import { getUser } from '@/app/utils/prismaQueries/getUserIdByImage'
+import { getUser } from '@/app/utils/prismaQueries/user/getUserIdByImage'
 import Answers from '@/app/components/UI/Global/Stats/Answers'
 
 interface IProps {

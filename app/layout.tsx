@@ -3,7 +3,7 @@ import Navbar from '@/app/components/UI/Navbar'
 import AppWrapper from '@/app/components/UI/Wrappers/AppWrapper'
 import ContentWrapper from '@/app/components/UI/Wrappers/ContentWrapper'
 import Provider from '@/app/components/Provider'
-import { getUser } from '@/app/utils/prismaQueries/getUserIdByImage'
+import { getUser } from '@/app/utils/prismaQueries/user/getUserIdByImage'
 interface IProps {
   children: React.ReactNode
 }
