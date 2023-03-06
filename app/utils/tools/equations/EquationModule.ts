@@ -11,22 +11,22 @@ import EquationBaseHelper from '@/app/utils/tools/equations/helpers/EquationBase
 const Variable = () => new VariableEquation(new PlusMinusHelper(RandomModule))
 const PlusMinus = () => new PlusMinusEquation(new PlusMinusHelper(RandomModule))
 const Multiply = () => new MultiplyEquation(new EquationBaseHelper(RandomModule))
+
 function getEquationKindFromMode(mode: keyof typeof Modes) {
   if (mode === 'variable') {
-    return new EquationFactory(Variable())
+    return Variable()
   } else if (mode === 'plusminus') {
-    return new EquationFactory(PlusMinus())
+    return PlusMinus()
   } else if (mode === 'multiply') {
-    return new EquationFactory(Multiply())
+    return Multiply()
   } else {
-    return new EquationFactory(PlusMinus())
+    return PlusMinus()
   }
 }
 
 export default function* getEquations(mode: keyof typeof Modes, diff: Diffs = 0, count = 1): Generator<ReturnEquationT, void> {
   let localCount = 0
-  const Equation = getEquationKindFromMode(mode)
-  console.log(Equation.EasyEquation(), mode)
+  const Equation = new EquationFactory(getEquationKindFromMode(mode))
   while (localCount < count) {
     localCount++
     switch (diff) {

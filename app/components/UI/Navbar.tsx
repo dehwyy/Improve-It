@@ -4,15 +4,13 @@ import Options from '@mui/icons-material/Dehaze'
 import Link from 'next/link'
 import Home from '@mui/icons-material/HomeOutlined'
 import SignOut from '@mui/icons-material/ExitToApp'
-import CalculateIcon from '@mui/icons-material/Calculate'
-import { FC, memo, useEffect, useRef } from 'react'
+import LeaderboardIcon from '@mui/icons-material/LeaderboardOutlined'
+import CalculateIcon from '@mui/icons-material/CalculateOutlined'
+import { FC, memo, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { useNavbarStore } from '@/app/utils/store/componentsStore'
 import { shallow } from 'zustand/shallow'
 import { signIn, signOut } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-
-// Timer on this navbar
 
 interface IProps {
   userId: string
@@ -40,6 +38,9 @@ const Navbar: FC<IProps> = ({ userId }) => {
             </Link>
             <Link href="/solve/plusminus">
               <CalculateIcon sx={{ cursor: 'pointer' }} fontSize="large" />
+            </Link>
+            <Link href="/leaderboard">
+              <LeaderboardIcon sx={{ cursor: 'pointer' }} fontSize="large" />
             </Link>
             <Link href={userId ? `user/${userId}` : ''}>
               <PermIdentityIcon
