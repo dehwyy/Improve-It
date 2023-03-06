@@ -8,7 +8,7 @@ interface IProps {
 
 const ModeSelector: FC<IProps> = ({ currentPage }) => {
   return (
-    <div className="min-w-screen mx-auto flex-auto usm:flex-col usm:gap-y-2 usm:border-b-4 usm:pb-2 usm:border-[#444444] flex gap-x-5 px-5 select-none">
+    <div className="min-w-screen mx-auto flex-auto sm:flex-col sm:gap-y-2 sm:border-b-4 sm:pb-2 sm:border-[#444444] flex gap-x-5 px-5 select-none">
       {Object.keys(Modes).map((option, i) => (
         <Link href={`/solve/${option}`} key={i} className="flex-auto ">
           <div
