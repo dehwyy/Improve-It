@@ -4,6 +4,7 @@ import AppWrapper from '@/app/components/UI/Wrappers/AppWrapper'
 import ContentWrapper from '@/app/components/UI/Wrappers/ContentWrapper'
 import Provider from '@/app/components/Provider'
 import { getUser } from '@/app/utils/prismaQueries/user/getUserIdByImage'
+import NextTopLoader from 'nextjs-toploader'
 interface IProps {
   children: React.ReactNode
 }
@@ -14,6 +15,7 @@ const Layout: (props: IProps) => Promise<JSX.Element> = async ({ children }) => 
     <html lang="en">
       <head />
       <body className="uusm:min-w-[290px] w-full h-full min-h-screen min-w-full bg-[#444444] overflow-x-hidden">
+        <NextTopLoader showSpinner={false} />
         <Provider>
           <AppWrapper>
             <Navbar userId={user?.id as string} />
