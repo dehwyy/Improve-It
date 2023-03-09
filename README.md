@@ -10,3 +10,6 @@ I intend to make app to practice math skills like fast-solving equations with di
 - NextAuth
 - TailwindCSS
 - Vitest
+
+## For developers:
+### You can find more information on [deployment](https://solve-it-one.vercel.app/develop)
