@@ -1,6 +1,7 @@
 'use client'
 import { useEquationResultsStore, useEquationStore, useSingleEquationStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
+import { start as startProgressbar, done as finishProgressbar } from 'nprogress'
 import { FC, useEffect, useMemo, useState } from 'react'
 import getEquations from '@/app/utils/tools/equations/EquationModule'
 import { Modes } from '@/types/export'
@@ -42,9 +43,11 @@ const Mode: FC<IProps> = ({ currentPage }) => {
   }, [answeredCount])
   const equations = useMemo(() => Array.from(getEquations(currentPage, diff, count)), [diff, count, trigger])
   const handleSubmitButton = async () => {
+    startProgressbar()
     if (count !== answeredCount) {
       window.scrollTo(0, 0)
       setErrorOnActiveButton(true)
+      finishProgressbar()
       return
     }
     const response = await fetch('/api/update/count', {
@@ -60,6 +63,7 @@ const Mode: FC<IProps> = ({ currentPage }) => {
     } else {
       setError(true)
     }
+    finishProgressbar()
   }
 
   const activeEquation = useSingleEquationStore(state => state.activeEquation)
