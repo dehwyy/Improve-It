@@ -6,6 +6,7 @@ import Home from '@mui/icons-material/HomeOutlined'
 import SignOut from '@mui/icons-material/ExitToApp'
 import LeaderboardIcon from '@mui/icons-material/LeaderboardOutlined'
 import CalculateIcon from '@mui/icons-material/CalculateOutlined'
+import CodeIcon from '@mui/icons-material/CodeOutlined'
 import { FC, memo, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { useNavbarStore } from '@/app/utils/store/componentsStore'
@@ -41,6 +42,9 @@ const Navbar: FC<IProps> = ({ userId }) => {
             </Link>
             <Link href="/leaderboard">
               <LeaderboardIcon sx={{ cursor: 'pointer' }} fontSize="large" />
+            </Link>
+            <Link href="/develop">
+              <CodeIcon sx={{ cursor: 'pointer' }} fontSize="large" />
             </Link>
             <Link href={userId ? `user/${userId}` : ''}>
               <PermIdentityIcon

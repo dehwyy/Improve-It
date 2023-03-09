@@ -9,17 +9,17 @@ export default class MultiplyEquation implements IEquationKind {
     return [`${rFirst} * ${rSecond} = `, rFirst * rSecond]
   }
 
-  MediumEquation(): EquationT {
+  MediumEquation(): ReturnEquationT {
     const rFirst = this.EquationBaseHelper.getRandomFrom(20, 70)
     const rSecond = this.EquationBaseHelper.getRandomFrom(20, 70)
     return [`${rFirst} * ${rSecond} = `, rFirst * rSecond]
   }
-  HardEquation(): EquationT {
+  HardEquation(): ReturnEquationT {
     const rFirst = this.EquationBaseHelper.getRandomFrom(20, 100)
     const rSecond = this.EquationBaseHelper.getRandomFrom(20, 100)
     return [`${rFirst} * ${rSecond} = `, rFirst * rSecond]
   }
-  ImpossibleEquation(): EquationT {
+  ImpossibleEquation(): ReturnEquationT {
     const rFirst = this.EquationBaseHelper.getRandomFrom(100, 1000)
     const rSecond = this.EquationBaseHelper.getRandomFrom(100, 1000)
     return [`${rFirst} * ${rSecond} = `, rFirst * rSecond]
