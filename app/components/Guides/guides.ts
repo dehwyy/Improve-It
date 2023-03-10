@@ -1,4 +1,4 @@
-import { AvailableLanguages } from '@/app/utils/store/componentsStore'
+import { AvailableLanguages } from '@/app/utils/store/globalStore'
 
 interface IGuide {
   header: string

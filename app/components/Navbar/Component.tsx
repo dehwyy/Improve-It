@@ -8,6 +8,7 @@ import AuthIcon from '@/app/components/Navbar/Icons/AuthIcon'
 import SignOutIcon from '@/app/components/Navbar/Icons/SignOutIcon'
 import ExpandNavbar from '@/app/components/Navbar/Icons/ExpandNavbar'
 import Transition from '@/app/components/Navbar/Transition'
+import LanguageIcon from '@/app/components/Navbar/Icons/LanguageIcon'
 
 interface IProps {
   userId: string
@@ -23,6 +24,7 @@ const Navbar: FC<IProps> = ({ userId }) => {
         <DeveloperIcon />
         <AuthIcon userId={userId} />
         <SignOutIcon userId={userId} />
+        <LanguageIcon />
         <ExpandNavbar />
       </Transition>
     </nav>

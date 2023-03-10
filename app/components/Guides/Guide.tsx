@@ -1,11 +1,11 @@
 'use client'
-import { useUserStore } from '@/app/utils/store/componentsStore'
+import { useUserStore } from '@/app/utils/store/globalStore'
 import GuidesLanguages from '@/app/components/Guides/guides'
-import { Varela_Round } from '@next/font/google'
+import { Mulish } from '@next/font/google'
 import { useMemo } from 'react'
 
-const h2Font = Varela_Round({
-  subsets: ['latin'],
+const h2Font = Mulish({
+  subsets: ['latin', 'cyrillic'],
   weight: '400',
 })
 
