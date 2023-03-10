@@ -3,6 +3,7 @@ import { Varela_Round } from '@next/font/google'
 import CustomButton from '@/app/components/UI/Global/CustomButton'
 import SignInButton from '@/app/components/SignInButton'
 import { getUser } from '@/app/utils/prismaQueries/user/getUserIdByImage'
+import Guide from '@/app/components/Guides/Guide'
 
 const h1Font = Varela_Round({
   subsets: ['latin'],
@@ -28,6 +29,9 @@ const Page = async () => {
         ) : (
           <SignInButton />
         )}
+      </div>
+      <div className="block-neo-style mt-10 w-[90%] mx-auto text-justify p-5">
+        <Guide />
       </div>
     </div>
   )
