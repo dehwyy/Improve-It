@@ -16,8 +16,9 @@ const LanguageSelector = () => {
       className={`${
         windowState ? 'visible opacity-100' : 'invisible opacity-0'
       } transition-all duration-300 right-[50%] translate-x-1/2 absolute top-[68px] block-neo-style z-50 usm:right-[100%]`}>
-      {languages.map(lang => (
+      {languages.map((lang, i) => (
         <div
+          key={i}
           onClick={() => {
             setLanguage(lang)
             setWindowState(false)

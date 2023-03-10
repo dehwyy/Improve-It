@@ -12,7 +12,7 @@ interface IUserStore {
 }
 
 export const useUserStore = create<IUserStore>(set => ({
-  lang: AvailableLanguages.eng,
+  lang: '' as AvailableLanguages,
   allLanguages: (() => {
     // getting keys of enum AvailableLanguages
     const array = [] as AvailableLanguages[]

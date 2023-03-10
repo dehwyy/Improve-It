@@ -13,7 +13,7 @@ const h1Font = Varela_Round({
 const Page = async () => {
   const user = await getUser()
   return (
-    <div className="pt-28 sm:pt-20 select-none">
+    <div className="pt-14 sm:pt-10 select-none pb-10">
       <div className="text-center flex items-center flex-col">
         <h1 className={`${h1Font.className} text-7xl uusm:text-6xl text-white`}>Solve It!</h1>
         <div className="mt-1.5 w-[275px] max-w-screen  h-[5px] bg-gradient-to-r from-white to-custom-light-blue rounded-xl"></div>
@@ -30,7 +30,7 @@ const Page = async () => {
           <SignInButton />
         )}
       </div>
-      <div className="block-neo-style mt-10 w-[90%] mx-auto text-justify p-5">
+      <div className="block-neo-style mt-10 w-[90%] mx-auto text-justify p-8">
         <Guide />
       </div>
     </div>
