@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { Varela_Round } from '@next/font/google'
-
 const h3Font = Varela_Round({
   subsets: ['latin'],
   weight: '400',
@@ -22,7 +21,7 @@ const LeaderboardUser: FC<IProps> = ({ answered, correctAnswered, id, image, nam
           <div className="flex sm:items-stretch items-center gap-y-5 sm:flex-col w-[100%] justify-between">
             <div className="flex gap-x-5 items-center justify-center">
               <div className="w-[70px] h-[70px]">
-                <img className="w-full h-full" src={image} alt="profile image" />
+                <img className="w-full h-full" src={image || '/images/profile_image.jpg'} alt="profile image" />
               </div>
               <h3 className={`${h3Font.className} text-3xl`}>{name}</h3>
             </div>

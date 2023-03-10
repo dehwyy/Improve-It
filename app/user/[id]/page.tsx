@@ -30,7 +30,11 @@ const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
       <div className="w-full h-full px-5 ">
         <div className="pl-10 md:pl-0 flex gap-x-16 gap-y-8 min-h-[200px] md:flex-col">
           <div className="block-neo-style self-center uusm:min-w-[200px] uusm:min-h-[200px] min-w-[250px] min-h-[250px] bg-[#444444]">
-            <img className="rounded-xl uusm:w-[200px] uusm:h-[200px] w-[250px] h-[250px]" src={data?.image as string} alt={data?.name as string} />
+            <img
+              className="rounded-xl uusm:w-[200px] uusm:h-[200px] w-[250px] h-[250px]"
+              src={(data?.image as string) || '/images/profile_image.jpg'}
+              alt={data?.name as string}
+            />
           </div>
           <div className="block-neo-style min-w-[200px] bg-[#444444] md:bg-[#555555] flex-auto mr-10 md:mr-0">
             <div className="p-5 text-center flex flex-col gap-y-5 text-white">
