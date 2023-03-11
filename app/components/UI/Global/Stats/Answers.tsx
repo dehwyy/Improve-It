@@ -1,6 +1,8 @@
+'use client'
 import { FC } from 'react'
 import { Ubuntu } from '@next/font/google'
-
+import useFieldsByLanguage from '@/app/utils/hooks/useFieldsByLanguage'
+import AnswersLanguages from '@/app/components/UI/Global/Stats/answersLangs'
 const pFont = Ubuntu({
   subsets: ['latin'],
   weight: '400',
@@ -12,13 +14,14 @@ interface IProps {
 }
 
 const Answers: FC<IProps> = ({ correctCount, count }) => {
+  const languages = useFieldsByLanguage(AnswersLanguages) || AnswersLanguages
   return (
-    <div className={`min-w-[250px] text-left w-full text-xl text-white w-min pr-5`}>
+    <div className={`text-left min-w-full text-xl text-white w-min pr-5`}>
       <p className={`${pFont.className}`}>
-        Correct answers:&nbsp;<span className="text-green-400">{correctCount}</span>
+        {languages.correct}:&nbsp;<span className="text-green-400">{correctCount}</span>
       </p>
       <p className={pFont.className}>
-        Wrong answers:&nbsp;<span className="text-red-400 pl-[8px]">{count - correctCount}</span>
+        {languages.wrong}:&nbsp;<span className="text-red-400 pl-[8px]">{count - correctCount}</span>
       </p>
     </div>
   )

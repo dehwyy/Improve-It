@@ -1,19 +1,15 @@
 import { selectByCorrectAnswered } from '@/app/utils/prismaQueries/leaderboard/selectByCorrectAnswered'
-import LeaderboardUser from '@/app/leaderboard/components/UI/LeaderboardUser'
-import { Varela_Round } from '@next/font/google'
+import LeaderboardUser from '@/app/leaderboard/components/LeaderboardUser'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import Heading from '@/app/leaderboard/components/Heading'
 
-const h1Font = Varela_Round({
-  subsets: ['latin'],
-  weight: '400',
-})
 const Page = async () => {
   const users = await selectByCorrectAnswered()
   const currentUser = await getServerSession(authOptions)
   return (
     <div className="mx-auto md:w-full w-[800px] flex flex-col mt-5 p-5 bg-[#555555] block-neo-style pb-10">
-      <h1 className={`${h1Font.className} text-center text-7xl uusm:text-6xl text-white vsm:text-[2.85rem] uusm:text-4xl`}>Leaderboard</h1>
+      <Heading />
       <div className="flex-auto flex flex-col gap-y-5 mt-5">
         {users &&
           users.map(user => (
