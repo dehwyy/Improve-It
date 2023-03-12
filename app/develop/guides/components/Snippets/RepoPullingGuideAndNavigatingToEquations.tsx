@@ -1,3 +1,7 @@
+import File from '@/app/develop/guides/components/TextCustomization/file'
+import Path from '@/app/develop/guides/components/TextCustomization/path'
+import Folder from '@/app/develop/guides/components/TextCustomization/folder'
+
 const RepoPullingGuideAndNavigatingToEquations = () => {
   return (
     <>
@@ -8,14 +12,14 @@ const RepoPullingGuideAndNavigatingToEquations = () => {
         </a>
         , dev branch.
       </p>
-      <p className="text-white opacity-60">
-        * I should notice you that authorization wouldn't work cuz I wouldn't have any <span className="text-emerald-400">.env</span> variables.
+      <p className="opacity-60">
+        * I should notice you that authorization wouldn't work cuz I wouldn't have any <File>.env</File> variables.
       </p>
       <p>
-        Navigate to <span className="text-rose-400">app/utils/equations</span>
+        Navigate to <Path>app/utils/equations</Path>
       </p>
       <p>
-        You will see 2 dirs: <span className="text-teal-400">'helpers'</span> and <span className="text-teal-400">'kinds'</span>
+        You will see 2 dirs: <Folder>'helpers'</Folder> and <Folder>'kinds'</Folder>
       </p>
     </>
   )

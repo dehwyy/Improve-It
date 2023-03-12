@@ -1,5 +1,5 @@
 import './global.css'
-import Navbar from '@/app/components/UI/Navbar'
+import Navbar from '@/app/components/Navbar/Component'
 import AppWrapper from '@/app/components/UI/Wrappers/AppWrapper'
 import ContentWrapper from '@/app/components/UI/Wrappers/ContentWrapper'
 import Provider from '@/app/components/Provider'

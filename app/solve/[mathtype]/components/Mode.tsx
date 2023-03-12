@@ -1,6 +1,7 @@
 'use client'
 import { useEquationResultsStore, useEquationStore, useSingleEquationStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
+import { start as startProgressbar, done as finishProgressbar } from 'nprogress'
 import { FC, useEffect, useMemo, useState } from 'react'
 import getEquations from '@/app/utils/tools/equations/EquationModule'
 import { Modes } from '@/types/export'
@@ -11,6 +12,8 @@ import SubmitButton from '@/app/solve/[mathtype]/components/UI/SubmitButton'
 import { useRouter } from 'next/navigation'
 import SolveError from '@/app/components/UI/Global/Error/SolveError'
 import { signIn } from 'next-auth/react'
+import ErrorAuth from '@/app/solve/[mathtype]/components/Errors/ErrorAuth'
+import ErrorAllSubmit from '@/app/solve/[mathtype]/components/Errors/ErrorAllSubmit'
 
 interface IProps {
   currentPage: keyof typeof Modes
@@ -26,7 +29,6 @@ const Mode: FC<IProps> = ({ currentPage }) => {
   )
   const [hasRendered, setRendered] = useState(false)
   const [isError, setError] = useState(false)
-  const [isActiveButton, setActiveButton] = useState(false)
   const [isErrorOnActiveButton, setErrorOnActiveButton] = useState(false)
   useEffect(() => {
     setRendered(true)
@@ -34,17 +36,14 @@ const Mode: FC<IProps> = ({ currentPage }) => {
   useEffect(() => {
     setError(false)
     setErrorOnActiveButton(false)
-  }, [trigger, diff, count])
-  useEffect(() => {
-    if (answeredCount === count) {
-      setActiveButton(true)
-    }
-  }, [answeredCount])
+  }, [trigger, diff, count, answeredCount])
   const equations = useMemo(() => Array.from(getEquations(currentPage, diff, count)), [diff, count, trigger])
   const handleSubmitButton = async () => {
+    startProgressbar()
     if (count !== answeredCount) {
       window.scrollTo(0, 0)
       setErrorOnActiveButton(true)
+      finishProgressbar()
       return
     }
     const response = await fetch('/api/update/count', {
@@ -60,6 +59,7 @@ const Mode: FC<IProps> = ({ currentPage }) => {
     } else {
       setError(true)
     }
+    finishProgressbar()
   }
 
   const activeEquation = useSingleEquationStore(state => state.activeEquation)
@@ -67,16 +67,8 @@ const Mode: FC<IProps> = ({ currentPage }) => {
   if (!hasRendered) return <div></div>
   return equations && equations[0][0] ? (
     <>
-      <SolveError setTrigger={() => setError(false)} trigger={isError}>
-        Please&nbsp;
-        <span className="cursor-pointer text-sky-400 " onClick={() => signIn()}>
-          authorize
-        </span>
-        &nbsp;to submit score!
-      </SolveError>
-      <SolveError setTrigger={() => setErrorOnActiveButton(false)} trigger={isErrorOnActiveButton}>
-        You can only submit when solve <span className="text-green-300">all</span> the equations!
-      </SolveError>
+      <ErrorAuth isError={isError} setError={() => setError(false)} />
+      <ErrorAllSubmit setError={() => setErrorOnActiveButton(false)} isError={isErrorOnActiveButton} />
       <div className={`${isError || isErrorOnActiveButton ? 'h-[100px] vsm:h-[125px]' : 'h-12'} w-full transition-all duration-1000`} />
       <EquationsWrapper>
         {equations.map((eq, i) => {
@@ -85,7 +77,7 @@ const Mode: FC<IProps> = ({ currentPage }) => {
         })}
       </EquationsWrapper>
       <div className="pt-3">
-        <SubmitButton handleClick={handleSubmitButton} isActive={isActiveButton} />
+        <SubmitButton handleClick={handleSubmitButton} />
       </div>
     </>
   ) : (

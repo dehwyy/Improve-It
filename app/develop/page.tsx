@@ -9,7 +9,7 @@ const h13Font = Varela_Round({
 const Page = () => {
   return (
     <GuideWrapper>
-      <h1 className={`${h13Font.className} text-center text-7xl uusm:text-6xl text-white vsm:text-[2.85rem] uusm:text-4xl`}>For developers</h1>
+      <h1 className={`${h13Font.className} text-center text-7xl usm:text-5xl text-white vsm:text-[2.85rem] uusm:text-4xl`}>For developers</h1>
       <div className="flex-auto flex flex-col gap-y-5 mt-5 text-white text-2xl">
         <p>
           Work on this website is still continuing, I'll be glad of any help. SolveDir is extensible, so you can create your own {'<EquationKind>'}
