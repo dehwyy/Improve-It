@@ -1,26 +1,31 @@
 'use client'
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
-import getEquations from '@/app/utils/tools/equations/EquationModule'
-import { useAlphaEquationStore } from '@/app/utils/store/alpha-equationStore'
+import { alphaGetEquations } from '@/app/utils/tools/equations/EquationModule'
+import { useAlphaEquationGeneratorStore, useAlphaEquationStore } from '@/app/utils/store/alpha-equationStore'
 import { shallow } from 'zustand/shallow'
 import { useRouter } from 'next/navigation'
 import { CircularProgress } from '@mui/material'
 import SingleEquation from '@/app/alpha-solve/play/components/SingleEquation'
-import { useEquationStore } from '@/app/utils/store/equationStore'
+import { AlphaModes } from '@/types/alpha-export'
 
 const Page = () => {
   const router = useRouter()
+
+  const [mode, difficulty, count] = useAlphaEquationGeneratorStore(state => [state.mode, state.difficulty, state.count], shallow)
+  if (!mode || !difficulty || !count) return <></>
+
   const initAns = useAlphaEquationStore(state => state.initializeAnswers, shallow)
+
   const [currentPage, setPage] = useState(0)
-  const [difficulty, count] = useEquationStore(state => [state.diff, state.count], shallow)
-  const equations = useMemo(() => Array.from(getEquations('plusminus', difficulty, 5 || count)), [])
+
+  const equations = useMemo(() => Array.from(alphaGetEquations(mode as AlphaModes, difficulty, count)), [])
   const currentEquation = useMemo(() => {
     return equations[currentPage]
-  }, [currentPage])
+  }, [currentPage, equations])
 
-  useEffect(() => initAns(5), [])
+  useEffect(() => initAns(count), [])
   useLayoutEffect(() => {
-    if (currentPage === 5) {
+    if (currentPage === count) {
       router.push('/alpha-result')
     }
   }, [currentPage])

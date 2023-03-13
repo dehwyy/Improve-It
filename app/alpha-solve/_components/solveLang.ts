@@ -8,11 +8,11 @@ interface ISolveLanguages {
 const solveLanguages = {
   eng: {
     step1: 'Select mode',
-    step2: 'Set up',
+    step2: 'Mode Settings',
   },
   ru: {
     step1: 'Выбрать мод',
-    step2: 'Настройка параметров',
+    step2: 'Настройки мода',
   },
 } as Record<AvailableLanguages, ISolveLanguages>
 

@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import produce from 'immer'
 import { Diffs } from '@/types/export'
-import { AlphaModes } from '@/types/alpha-export'
+import { AlphaDifficulties, AlphaModes } from '@/types/alpha-export'
 
 interface IAnswer {
   isTruthy: boolean
@@ -36,7 +36,7 @@ export const useAlphaEquationStore = create<IAlphaEquationStore>(set => ({
 
 interface IEquationGenerator {
   count: number | null
-  difficulty: Diffs | null
+  difficulty: AlphaDifficulties | null
   mode: AlphaModes | null
 }
 
@@ -49,9 +49,11 @@ export const useAlphaEquationGeneratorStore = create<IAlphaEquationGeneratorStor
   count: null,
   difficulty: null,
   setEquationSettings: ({ difficulty, count, mode }) =>
-    set({
-      count,
-      mode,
-      difficulty,
-    }),
+    set(
+      produce<IAlphaEquationGeneratorStore>(state => {
+        if (difficulty) state.difficulty = difficulty
+        if (count) state.count = count
+        if (mode) state.mode = mode
+      })
+    ),
 }))

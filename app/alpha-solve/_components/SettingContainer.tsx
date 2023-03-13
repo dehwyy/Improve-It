@@ -1,5 +1,7 @@
 import { useAlphaEquationGeneratorStore } from '@/app/utils/store/alpha-equationStore'
 import { shallow } from 'zustand/shallow'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 interface IProps {
   children: React.ReactNode
@@ -7,20 +9,31 @@ interface IProps {
   setStep: React.Dispatch<React.SetStateAction<number>>
 }
 const SettingContainer: React.FC<IProps> = ({ children, setStep, step }) => {
+  const router = useRouter()
+  const [] = useState(false)
   const [mode, difficulty, count] = useAlphaEquationGeneratorStore(state => [state.mode, state.difficulty, state.count], shallow)
   return (
-    <div className="pt-12">
+    <div className="pt-7">
       {children}
       <div className="pt-16 flex gap-2 justify-between">
         <div
-          onClick={() => step && setStep(p => p - 1)}
+          onClick={() => {
+            if (!step) return
+            window.scrollTo(0, 175)
+            setStep(p => p - 1)
+          }}
           className={`${
             step ? 'opacity-100 cursor-pointer hover:border-current' : 'text-opacity-30'
           } select-none w-[160px] text-center  py-3 shadow-orange-500/10 text-orange-500 text-xl font-extrabold px-8 rounded-lg p-4 md:p-8 transition-all bg-[#333333]  shadow-lg border-2 border-transparent`}>
-          Previous
+          Back
         </div>
         <div
-          onClick={() => ((mode && !step) || (difficulty && count && mode)) && setStep(p => p + 1)}
+          onClick={() => {
+            if (mode && !step) {
+              setStep(p => p + 1)
+              window.scrollTo(0, 175)
+            } else if (difficulty && count && mode && step === 1) router.push('/alpha-solve/play')
+          }}
           className={`${
             step === 1
               ? difficulty && count
