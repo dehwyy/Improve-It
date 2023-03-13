@@ -1,26 +1,19 @@
 'use client'
-import type { FC } from 'react'
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
-import { Diffs, Modes } from '@/types/export'
 import getEquations from '@/app/utils/tools/equations/EquationModule'
 import { useAlphaEquationStore } from '@/app/utils/store/alpha-equationStore'
 import { shallow } from 'zustand/shallow'
 import { useRouter } from 'next/navigation'
 import { CircularProgress } from '@mui/material'
-import SingleEquation from '@/app/testingSolve/[mathtype]/components/SingleEquation'
+import SingleEquation from '@/app/alpha-solve/play/components/SingleEquation'
+import { useEquationStore } from '@/app/utils/store/equationStore'
 
-interface IProps {
-  params: {
-    mathtype: keyof typeof Modes
-  }
-}
-
-const Page: FC<IProps> = ({ params }) => {
+const Page = () => {
   const router = useRouter()
   const initAns = useAlphaEquationStore(state => state.initializeAnswers, shallow)
   const [currentPage, setPage] = useState(0)
-
-  const equations = useMemo(() => Array.from(getEquations(params.mathtype, Diffs.Easy, 5)), [])
+  const [difficulty, count] = useEquationStore(state => [state.diff, state.count], shallow)
+  const equations = useMemo(() => Array.from(getEquations('plusminus', difficulty, 5 || count)), [])
   const currentEquation = useMemo(() => {
     return equations[currentPage]
   }, [currentPage])

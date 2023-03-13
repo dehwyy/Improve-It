@@ -1,6 +1,6 @@
-import { ChangeEvent, FC, KeyboardEvent, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import { ChangeEvent, FC, KeyboardEvent, useCallback, useEffect, useState } from 'react'
 import { useAlphaEquationStore } from '@/app/utils/store/alpha-equationStore'
-import SuccessAnimation from '@/app/testingSolve/[mathtype]/components/SuccessAnimation'
+import SuccessAnimation from '@/app/alpha-solve/play/components/SuccessAnimation'
 import { Gothic_A1 } from '@next/font/google'
 
 const mathFont = Gothic_A1({

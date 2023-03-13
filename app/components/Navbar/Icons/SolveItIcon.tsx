@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const SolveItIcon = () => {
   return (
-    <Link href="/solve/plusminus">
+    <Link href="/alpha-solve">
       <CalculateIcon sx={{ cursor: 'pointer' }} fontSize="large" />
     </Link>
   )
