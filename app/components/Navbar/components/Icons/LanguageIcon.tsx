@@ -1,6 +1,6 @@
 import LanguageIconMui from '@mui/icons-material/Translate'
 
-import LanguageSelector from '@/app/components/Navbar/LanguageSelector'
+import LanguageSelector from '@/app/components/Navbar/components/LanguageSelector'
 import { useLanguageSelectorStore } from '@/app/utils/store/componentsStore'
 import { shallow } from 'zustand/shallow'
 const LanguageIcon = () => {

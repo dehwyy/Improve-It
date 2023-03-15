@@ -15,7 +15,7 @@ const LanguageSelector = () => {
       style={{ borderRadius: 0 }}
       className={`${
         windowState ? 'visible opacity-100' : 'invisible opacity-0'
-      } transition-all duration-300 right-[50%] translate-x-1/2 absolute top-[68px] block-neo-style z-50 usm:right-[100%]`}>
+      } transition-all duration-300 right-[50%] translate-x-1/2 absolute top-[45px] block-neo-style z-50 usm:right-[100%]`}>
       {languages.map((lang, i) => (
         <div
           key={i}
@@ -23,7 +23,7 @@ const LanguageSelector = () => {
             setLanguage(lang)
             setWindowState(false)
           }}
-          className={`${LangItemFont.className} cursor-pointer transition-all bg-white hover:bg-custom-blue p-5 text-2xl text-center`}>
+          className={`${LangItemFont.className} cursor-pointer transition-all bg-violet-600 hover:bg-blue-500 p-5 text-2xl text-center`}>
           {lang.toUpperCase()}
         </div>
       ))}
