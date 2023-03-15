@@ -1,6 +1,6 @@
 import { AlphaModes } from '@/types/alpha-export'
 import { useMemo } from 'react'
-import SettingItem from '@/app/alpha-solve/_components/SettingItem'
+import SettingItem from '@/app/alpha-solve/_components/_components/SettingItem'
 import { useAlphaEquationGeneratorStore } from '@/app/utils/store/alpha-equationStore'
 import { shallow } from 'zustand/shallow'
 

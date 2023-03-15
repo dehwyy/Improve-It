@@ -6,24 +6,22 @@ import { shallow } from 'zustand/shallow'
 import { useRouter } from 'next/navigation'
 import { CircularProgress } from '@mui/material'
 import SingleEquation from '@/app/alpha-solve/play/components/SingleEquation'
-import { AlphaModes } from '@/types/alpha-export'
+import { AlphaDifficulties, AlphaModes } from '@/types/alpha-export'
 
 const Page = () => {
   const router = useRouter()
-
   const [mode, difficulty, count] = useAlphaEquationGeneratorStore(state => [state.mode, state.difficulty, state.count], shallow)
-  if (!mode || !difficulty || !count) return <></>
-
   const initAns = useAlphaEquationStore(state => state.initializeAnswers, shallow)
-
   const [currentPage, setPage] = useState(0)
 
-  const equations = useMemo(() => Array.from(alphaGetEquations(mode as AlphaModes, difficulty, count)), [])
+  const equations = useMemo(() => Array.from(alphaGetEquations(mode as AlphaModes, difficulty as AlphaDifficulties, count as number)), [])
   const currentEquation = useMemo(() => {
     return equations[currentPage]
   }, [currentPage, equations])
 
-  useEffect(() => initAns(count), [])
+  useEffect(() => {
+    count && initAns(count)
+  }, [])
   useLayoutEffect(() => {
     if (currentPage === count) {
       router.push('/alpha-result')
@@ -31,9 +29,13 @@ const Page = () => {
   }, [currentPage])
 
   if (window == undefined) return <></>
-  return currentEquation ? (
+  return currentEquation || !count ? (
     <div className="pt-10 w-[80%] sm:w-[92%] vsm:w-full mx-auto text-center text-white">
-      <SingleEquation setNextPage={() => setPage(p => p + 1)} idx={currentPage} correctAnswer={currentEquation[1]} answer={currentEquation[0]} />
+      {currentEquation ? (
+        <SingleEquation setNextPage={() => setPage(p => p + 1)} idx={currentPage} correctAnswer={currentEquation[1]} equation={currentEquation[0]} />
+      ) : (
+        <SingleEquation setNextPage={() => setPage(p => p + 1)} idx={currentPage} correctAnswer={0} equation="" />
+      )}
     </div>
   ) : (
     <div className="flex justify-center items-center pt-36">

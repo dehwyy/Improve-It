@@ -1,7 +1,8 @@
 import { ChangeEvent, FC, KeyboardEvent, useCallback, useEffect, useState } from 'react'
 import { useAlphaEquationStore } from '@/app/utils/store/alpha-equationStore'
-import SuccessAnimation from '@/app/alpha-solve/play/components/SuccessAnimation'
+import SuccessAnimation from '@/app/alpha-solve/play/components/components/SuccessAnimation'
 import { Gothic_A1 } from '@next/font/google'
+import Redirect from '@/app/alpha-solve/play/components/components/Redirect'
 
 const mathFont = Gothic_A1({
   subsets: ['latin'],
@@ -12,10 +13,10 @@ interface IProps {
   setNextPage: () => void
   idx: number
   correctAnswer: number
-  answer: string
+  equation: string
 }
 
-const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, answer }) => {
+const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation }) => {
   const setAnswerState = useAlphaEquationStore(state => state.setAnswer)
   const [startTime, setStartTime] = useState(Date.now())
   const [inputValue, setInputValue] = useState<string>('')
@@ -57,9 +58,10 @@ const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, answer })
     },
     [startTime, idx]
   )
+  if (!equation && !correctAnswer) return <Redirect />
   return !isAnimation ? (
     <>
-      <div className={`${mathFont.className} text-5xl w-full vsm:w-[92%] vsm:mx-auto`}>{answer}?</div>
+      <div className={`${mathFont.className} text-5xl w-full vsm:w-[92%] vsm:mx-auto`}>{equation}?</div>
       <div className="pt-12">
         <input
           value={inputValue}

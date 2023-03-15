@@ -1,13 +1,16 @@
+'use client'
+
 import { FC } from 'react'
-import AnswersList from '@/app/alpha-result/components/AnswersList'
+import AlphaDefaultPageWrapper from '@/app/components/UI/Wrappers/_AlphaDefaultPageWrapper'
+import Statistics from '@/app/alpha-result/components/Statistics'
 
 interface IProps {}
 
 const Page: FC<IProps> = ({}) => {
   return (
-    <div className="mx-auto md:w-full w-[800px] flex flex-col mt-5 p-5 bg-[#555555] block-neo-style pb-10">
-      <AnswersList />
-    </div>
+    <AlphaDefaultPageWrapper className="mt-12 shadow-blue-500/100 text-blue-500 border-current">
+      <Statistics />
+    </AlphaDefaultPageWrapper>
   )
 }
 
