@@ -18,7 +18,7 @@ const Statistics = () => {
   return (
     <>
       <h2 className="text-5xl font-extrabold">Statistics</h2>
-      <div className="flex gap-5 p-5 w-full pb-10">
+      <div className="grid grid-cols-3 lg:grid-row-2 lg:grid-cols-2 sm:grid-cols-[40fr_23fr] gap-5 p-5 w-full pb-10">
         <AnswersList />
         <OverallTime />
         <AverageTimePerAnswer />

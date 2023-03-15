@@ -8,9 +8,11 @@ interface IProps {}
 
 const Page: FC<IProps> = ({}) => {
   return (
-    <AlphaDefaultPageWrapper className="my-12 shadow-lg shadow-blue-500/100 text-blue-500 border-current">
-      <Statistics />
-    </AlphaDefaultPageWrapper>
+    <div className="px-1">
+      <AlphaDefaultPageWrapper className="usm:px-0 my-12 shadow-lg shadow-blue-500/100 text-blue-500 border-current">
+        <Statistics />
+      </AlphaDefaultPageWrapper>
+    </div>
   )
 }
 
