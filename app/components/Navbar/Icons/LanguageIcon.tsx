@@ -1,4 +1,5 @@
-import LanguageIconMui from '@mui/icons-material/Language'
+import LanguageIconMui from '@mui/icons-material/Translate'
+
 import LanguageSelector from '@/app/components/Navbar/LanguageSelector'
 import { useLanguageSelectorStore } from '@/app/utils/store/componentsStore'
 import { shallow } from 'zustand/shallow'

@@ -2,7 +2,6 @@ import { ChangeEvent, FC, KeyboardEvent, useCallback, useEffect, useState } from
 import { useAlphaEquationStore } from '@/app/utils/store/alpha-equationStore'
 import SuccessAnimation from '@/app/alpha-solve/play/components/components/SuccessAnimation'
 import { Gothic_A1 } from '@next/font/google'
-import Redirect from '@/app/alpha-solve/play/components/components/Redirect'
 
 const mathFont = Gothic_A1({
   subsets: ['latin'],
@@ -58,7 +57,6 @@ const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation 
     },
     [startTime, idx]
   )
-  if (!equation && !correctAnswer) return <Redirect />
   return !isAnimation ? (
     <>
       <div className={`${mathFont.className} text-5xl w-full vsm:w-[92%] vsm:mx-auto`}>{equation}?</div>

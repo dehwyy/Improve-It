@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { CircularProgress } from '@mui/material'
 import SingleEquation from '@/app/alpha-solve/play/components/SingleEquation'
 import { AlphaDifficulties, AlphaModes } from '@/types/alpha-export'
+import Redirect from '@/app/alpha-solve/play/components/components/Redirect'
 
 const Page = () => {
   const router = useRouter()
@@ -29,13 +30,10 @@ const Page = () => {
   }, [currentPage])
 
   if (window == undefined) return <></>
+  if (!difficulty || !count || !mode || (mode == 'Variable' && (difficulty == 'Impossible' || difficulty == 'Hard'))) return <Redirect />
   return currentEquation || !count ? (
     <div className="pt-10 w-[80%] sm:w-[92%] vsm:w-full mx-auto text-center text-white">
-      {currentEquation ? (
-        <SingleEquation setNextPage={() => setPage(p => p + 1)} idx={currentPage} correctAnswer={currentEquation[1]} equation={currentEquation[0]} />
-      ) : (
-        <SingleEquation setNextPage={() => setPage(p => p + 1)} idx={currentPage} correctAnswer={0} equation="" />
-      )}
+      <SingleEquation setNextPage={() => setPage(p => p + 1)} idx={currentPage} correctAnswer={currentEquation[1]} equation={currentEquation[0]} />
     </div>
   ) : (
     <div className="flex justify-center items-center pt-36">

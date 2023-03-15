@@ -32,7 +32,7 @@ const SuccessAnimationWrapper = styled.div`
     stroke-dashoffset: 166;
     stroke-width: 4;
     stroke-miterlimit: 10;
-    fill: #444444;
+    fill: #333333;
     animation: stroke 0.2s cubic-bezier(0.65, 0, 0.45, 1) forwards;
   }
   .checkmark__check {
