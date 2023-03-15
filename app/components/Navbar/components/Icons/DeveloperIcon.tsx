@@ -4,7 +4,7 @@ import Link from 'next/link'
 const DeveloperIcon = () => {
   return (
     <Link href="/develop">
-      <CodeIcon sx={{ cursor: 'pointer' }} fontSize="large" />
+      <CodeIcon sx={{ cursor: 'pointer' }} />
     </Link>
   )
 }

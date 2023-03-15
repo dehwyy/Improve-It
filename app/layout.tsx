@@ -14,7 +14,7 @@ const Layout: (props: IProps) => Promise<JSX.Element> = async ({ children }) => 
   return (
     <html lang="en">
       <head />
-      <body className="uusm:min-w-[290px] w-full h-full min-h-screen min-w-full bg-[#444444] overflow-x-hidden">
+      <body className="uusm:min-w-[300px] w-full h-full min-h-screen min-w-screen bg-[#333333] overflow-x-hidden">
         <NextTopLoader showSpinner={false} />
         <Provider>
           <AppWrapper>

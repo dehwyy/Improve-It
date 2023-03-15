@@ -4,7 +4,7 @@ import Link from 'next/link'
 const HomePageIcon = () => {
   return (
     <Link href="/">
-      <Home sx={{ cursor: 'pointer' }} fontSize="large" />
+      <Home sx={{ cursor: 'pointer' }} />
     </Link>
   )
 }

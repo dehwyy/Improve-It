@@ -3,14 +3,13 @@ import LeaderboardUser from '@/app/leaderboard/components/LeaderboardUser'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import Heading from '@/app/leaderboard/components/Heading'
-
 const Page = async () => {
   const users = await selectByCorrectAnswered()
   const currentUser = await getServerSession(authOptions)
   return (
-    <div className="mx-auto md:w-full w-[800px] flex flex-col mt-5 p-5 bg-[#555555] block-neo-style pb-10">
+    <div className="usm:min-w-[400px] mx-auto md:w-full w-[900px] flex flex-col">
       <Heading />
-      <div className="flex-auto flex flex-col gap-y-5 mt-5">
+      <div className="flex flex-col gap-y-5 my-5 w-[90%] mx-auto">
         {users &&
           users.map(user => (
             <LeaderboardUser
