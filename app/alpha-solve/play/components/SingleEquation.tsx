@@ -66,7 +66,7 @@ const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation 
           onChange={inputHandler}
           onKeyUp={keyupHandler}
           autoFocus={true}
-          className="border-0 bg-transparent focus-visible:outline-0 text-8xl premd:text-6xl vsm:text-[2.8rem] text-center w-full"
+          className="border-0 max-w-[95%] mx-auto bg-transparent focus-visible:outline-0 text-8xl premd:text-6xl vsm:text-[2.8rem] text-center w-full"
         />
       </div>
     </>

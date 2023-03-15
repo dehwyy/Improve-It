@@ -1,10 +1,11 @@
 import AnswersList from '@/app/alpha-result/components/_components/AnswersList'
 import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
-import { useMemo } from 'react'
+import { useLayoutEffect, useMemo } from 'react'
 import { useAlphaEquationStore } from '@/app/utils/store/alpha-equationStore'
 import OverallTime from '@/app/alpha-result/components/_components/OverallTime'
 import AverageTimePerAnswer from '@/app/alpha-result/components/_components/AverageTimePerAnswer'
 import { useRouter } from 'next/navigation'
+import { start as startProgressbar, done as finishProgressbar } from 'nprogress'
 
 const Statistics = () => {
   const router = useRouter()
@@ -12,9 +13,30 @@ const Statistics = () => {
   const correctAnswersCount = useMemo(() => {
     return answers?.reduce((p, current) => (current.isTruthy ? p + 1 : p), 0)
   }, []) as number
-  if (!answers) {
-    router.push('/alpha-solve')
+  useLayoutEffect(() => {
+    if (!answers) {
+      router.push('/alpha-solve')
+    } else {
+      submitResultHandler().then(m => console.log(m))
+    }
+  }, [])
+  const submitResultHandler = async () => {
+    startProgressbar()
+    const response = await fetch('/api/update/count', {
+      method: 'POST',
+      body: JSON.stringify({
+        answeredCount: answers!.length,
+        correctlyAnsweredCount: correctAnswersCount,
+      }),
+    })
+    finishProgressbar()
+    if (!response.ok) {
+      return 'ERROR'
+    } else {
+      return 'OK'
+    }
   }
+
   return (
     <>
       <h2 className="text-5xl font-extrabold">Statistics</h2>

@@ -40,12 +40,12 @@ const SettingContainer: React.FC<IProps> = ({ children, setStep, step }) => {
   return (
     <div className="pt-7">
       {children}
-      <div className="pt-16 flex gap-2 justify-between">
+      <div className="pt-16 flex gap-2 justify-between usm:flex-col usm:w-full">
         <div
           onClick={backHandler}
           className={`${
             step ? 'opacity-100 cursor-pointer hover:border-current' : 'text-opacity-30'
-          } select-none w-[160px] text-center  py-3 shadow-orange-500/10 text-orange-500 text-xl font-extrabold px-8 rounded-lg p-4 transition-all bg-[#333333]  shadow-lg border-2 border-transparent`}>
+          } select-none min-w-[160px] text-center  py-3 shadow-orange-500/10 text-orange-500 text-xl font-extrabold px-8 rounded-lg p-4 transition-all bg-[#333333]  shadow-lg border-2 border-transparent`}>
           Back
         </div>
         <div
@@ -56,7 +56,7 @@ const SettingContainer: React.FC<IProps> = ({ children, setStep, step }) => {
                 ? 'shadow-purple-500/10 text-purple-500 hover:border-current underline decoration-fuchsia-300 underline-offset-4 decoration-2'
                 : 'text-opacity-30 shadow-purple-500/10 text-purple-500 cursor-default'
               : 'shadow-orange-500/10 text-orange-500 hover:border-current'
-          } select-none w-[160px] text-center cursor-pointer py-3  text-xl font-extrabold px-8 rounded-lg p-4 transition-all bg-[#333333]  shadow-lg border-2 border-transparent`}>
+          } select-none min-w-[160px] text-center cursor-pointer py-3 text-xl font-extrabold px-8 rounded-lg p-4 transition-all bg-[#333333]  shadow-lg border-2 border-transparent`}>
           {step === 1 ? 'Solve It!' : 'Next'}
         </div>
       </div>
