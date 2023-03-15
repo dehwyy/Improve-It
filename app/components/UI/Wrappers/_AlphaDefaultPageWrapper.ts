@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 const _AlphaDefaultPageWrapper = styled.div`
-  min-width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

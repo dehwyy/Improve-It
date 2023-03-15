@@ -15,7 +15,6 @@ const AuthIcon: FC<IProps> = ({ userId }) => {
           !userId && signIn()
         }}
         sx={{ cursor: 'pointer' }}
-        fontSize="large"
       />
     </Link>
   )

@@ -14,9 +14,7 @@ const Transition: FC<IProps> = ({ children }) => {
     <CSSTransition in={isExpanded} nodeRef={nodeRef} timeout={1500} classNames="navbar">
       <div
         ref={nodeRef}
-        className={`${
-          isExpanded ? 'w-screen ' : 'w-[30rem] rounded-bl-3xl border-l-4 pr-0 vsm:w-screen vsm:min-w-[300px]'
-        } h-[100px] bg-white border-b-4 border-black flex items-center
+        className={`${isExpanded ? 'w-screen ' : 'w-[30rem] pr-0 vsm:w-screen vsm:min-w-[300px]'} h-[100px] flex items-center
         `}>
         <div
           className={

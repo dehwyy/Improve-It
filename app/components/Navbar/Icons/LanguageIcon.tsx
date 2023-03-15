@@ -7,7 +7,7 @@ const LanguageIcon = () => {
   const [windowState, setWindowState] = useLanguageSelectorStore(state => [state.isOpened, state.setOpened], shallow)
   return (
     <div className="relative">
-      <LanguageIconMui sx={{ cursor: 'pointer' }} fontSize="large" onClick={() => setWindowState(!windowState)} />
+      <LanguageIconMui sx={{ cursor: 'pointer' }} onClick={() => setWindowState(!windowState)} />
       <LanguageSelector />
     </div>
   )

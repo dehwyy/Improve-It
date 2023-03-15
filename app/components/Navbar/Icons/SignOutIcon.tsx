@@ -6,7 +6,7 @@ interface IProps {
   userId: string
 }
 const SignOutIcon: FC<IProps> = ({ userId }) => {
-  return userId ? <SignOut onClick={() => signOut()} sx={{ cursor: 'pointer' }} fontSize="large" /> : <></>
+  return userId ? <SignOut onClick={() => signOut()} sx={{ cursor: 'pointer' }} /> : <></>
 }
 
 export default SignOutIcon

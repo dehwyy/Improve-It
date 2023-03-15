@@ -15,8 +15,8 @@ const Component: FC<IProps> = ({ id }) => {
   const language = useFieldsByLanguage(ButtonsLanguages)
   if (!language) return <Skeleton variant="rectangular" height="300" />
   return (
-    <div className="flex justify-evenly pt-16 text-3xl sm:flex-col sm:items-center sm:gap-y-5">
-      <Link href={'/alpha-solve'}>
+    <div className="flex justify-evenly pt-16 text-3xl lg:flex-col lg:items-center gap-x-10 gap-5">
+      <Link href={'/alpha-solve'} className="w-[90%]">
         <AlphaStyleWrapper classes="shadow-green-500/100 shadow-md mt-10 text-green-500 font-extrabold border-current">
           {language.solve}
         </AlphaStyleWrapper>
