@@ -9,7 +9,7 @@ const AverageTimePerAnswer = () => {
   return (
     <div className="text-2xl text-blue-500 text-center w-1/3">
       <h3 className="font-bold">Average time</h3>
-      <div className="border-yellow-500 mx-auto mt-5 border-2 rounded-md py-3 text-center">{overallTime / answers!.length / 1000}s</div>
+      <div className="border-yellow-500 mx-auto mt-5 border-2 rounded-md py-3 text-center">{(overallTime / answers!.length / 1000).toFixed(3)}s</div>
     </div>
   )
 }

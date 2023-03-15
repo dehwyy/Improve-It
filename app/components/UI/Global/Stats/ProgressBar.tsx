@@ -17,7 +17,9 @@ const ProgressBar: FC<IProps> = ({ correctCount, count }) => {
     <div className={`min-w-[100px] w-full`}>
       <div className={`w-full flex h-full min-h-[20px]`}>
         <div ref={blockCorrectWidth} className={`w-[1px] transition-all duration-1000 bg-green-500 text-white relative`}>
-          <div className="absolute bottom-[-28.5px] right-[-20px]">~{(correctCount / count) * 100}%</div>
+          <div className="absolute top-[-28.5px] right-[-20px]">
+            {correctCount && count !== correctCount ? `~${(correctCount / count) * 100}%` : ''}
+          </div>
         </div>
         <div className="flex-auto bg-red-400" />
       </div>
