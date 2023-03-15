@@ -40,7 +40,7 @@ const SettingContainer: React.FC<IProps> = ({ children, setStep, step }) => {
   return (
     <div className="pt-7">
       {children}
-      <div className="pt-16 flex gap-2 justify-between usm:flex-col usm:w-full">
+      <div className="pt-16 flex gap-2 gap-y-4 justify-between sm:flex-col sm:w-full">
         <div
           onClick={backHandler}
           className={`${
@@ -55,7 +55,9 @@ const SettingContainer: React.FC<IProps> = ({ children, setStep, step }) => {
               ? difficulty && count
                 ? 'shadow-purple-500/10 text-purple-500 hover:border-current underline decoration-fuchsia-300 underline-offset-4 decoration-2'
                 : 'text-opacity-30 shadow-purple-500/10 text-purple-500 cursor-default'
-              : 'shadow-orange-500/10 text-orange-500 hover:border-current'
+              : mode
+              ? 'shadow-orange-500/10 text-orange-500 hover:border-current'
+              : 'shadow-orange-500/10 text-orange-500 hover:border-current text-opacity-30'
           } select-none min-w-[160px] text-center cursor-pointer py-3 text-xl font-extrabold px-8 rounded-lg p-4 transition-all bg-[#333333]  shadow-lg border-2 border-transparent`}>
           {step === 1 ? 'Solve It!' : 'Next'}
         </div>
