@@ -11,10 +11,10 @@ const SelectSetupSolve = () => {
   )
   const UICustomDifficulty = useMemo(
     () => [
-      'shadow-teal-500/30 text-teal-500',
       'shadow-fuchsia-500/30 text-fuchsia-500',
-      'shadow-green-500/30 text-green-500',
-      'shadow-yellow-500/30 text-yellow-500',
+      'shadow-fuchsia-500/30 text-fuchsia-500',
+      'shadow-fuchsia-500/30 text-fuchsia-500',
+      'shadow-fuchsia-500/30 text-fuchsia-500',
     ],
     []
   )
