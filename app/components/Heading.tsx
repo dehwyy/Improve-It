@@ -7,8 +7,11 @@ const h1Font = Varela_Round({
 const Heading = () => {
   return (
     <div className="text-center flex items-center flex-col">
-      <h1 className={`${h1Font.className} text-7xl uusm:text-6xl text-white`}>Solve It!</h1>
-      <div className="mt-1.5 w-[275px] max-w-screen  h-[5px] bg-gradient-to-r from-white to-custom-light-blue rounded-xl"></div>
+      <h1
+        className={`${h1Font.className} text-7xl font-extrabold uusm:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500`}>
+        Solve It!
+      </h1>
+      <div className="mt-1.5 w-[275px] max-w-screen  h-[5px] bg-gradient-to-l from-purple-500 to-blue-500 rounded-xl"></div>
     </div>
   )
 }

@@ -1,17 +1,18 @@
 import Buttons from '@/app/components/Buttons/Component'
 import Guide from '@/app/components/Guides/Guide'
-import { getUser } from '@/app/utils/prismaQueries/user/getUserIdByImage'
+import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 import Heading from '@/app/components/Heading'
+import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 
 const Page = async () => {
-  const user = await getUser()
+  const user = await getUserNotById()
 
   return (
-    <div className="pt-14 sm:pt-10 select-none pb-10">
+    <PageWrapper classes="py-10 select-none">
       <Heading />
       <Guide />
       <Buttons id={user?.id} />
-    </div>
+    </PageWrapper>
   )
 }
 

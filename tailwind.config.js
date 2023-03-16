@@ -4,10 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'custom-blue': '#77c3ec',
-        'custom-light-blue': '#89cff0',
-        'custom-pale-blue': '#9dd9f3',
-        'custom-ultra-pale-blue': '#b8e2f2',
+        'custom-red': '#ff0059',
+        'custom-yellow': '#ffcb00',
+        'custom-green': '#00cf68',
       },
       screens: {
         vsm: { max: '470px' },
