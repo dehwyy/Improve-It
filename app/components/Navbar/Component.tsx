@@ -27,9 +27,9 @@ const Navbar: FC<IProps> = ({ userId }) => {
     }
   }, [])
   return (
-    <nav className="fixed right-0 top-0 left-0 select-none z-50">
+    <nav className="fixed right-0 top-0 left-0 select-none z-50 bg-gradient-to-b from-violet-700 to-violet-500">
       <AlphaWrapper>
-        <div className="flex justify-start vsm:justify-center vsm:gap-5 transition-all gap-10 text-zinc-800">
+        <div className="flex justify-start vsm:justify-center usm:gap-2 vsm:gap-5 transition-all gap-10 text-zinc-800">
           <HomePageIcon />
           <SolveItIcon />
           <LeaderboardIcon />

@@ -21,7 +21,7 @@ const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
     <div className="py-10 mx-2 mt-5">
       <div className="w-full h-full px-5 ">
         <div className="pl-10 md:pl-0 flex gap-x-16 gap-y-8 min-h-[200px] md:flex-col">
-          <div className="block-neo-style self-center uusm:min-w-[200px] uusm:min-h-[200px] min-w-[250px] min-h-[250px] bg-[#444444]">
+          <div className="block-neo-style self-center uusm:min-w-[200px] uusm:min-h-[200px] min-w-[250px] min-h-[250px] bg-[#333333]">
             <img
               className="rounded-xl uusm:w-[200px] uusm:h-[200px] w-[250px] h-[250px]"
               src={(data?.image as string) || '/images/profile_image.jpg'}

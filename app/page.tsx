@@ -7,7 +7,7 @@ const Page = async () => {
   const user = await getUser()
 
   return (
-    <div className="pt-10 sm:pt-10 select-none pb-10 flex flex-col">
+    <div className="py-10 select-none flex flex-col">
       <Heading />
       <Guide />
       <Buttons id={user?.id} />

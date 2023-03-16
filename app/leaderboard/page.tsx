@@ -7,9 +7,9 @@ const Page = async () => {
   const users = await selectByCorrectAnswered()
   const currentUser = await getServerSession(authOptions)
   return (
-    <div className="usm:min-w-[400px] mx-auto md:w-full w-[900px] flex flex-col">
+    <div className="mx-auto md:w-full flex flex-col">
       <Heading />
-      <div className="flex flex-col gap-y-5 my-5 w-[90%] mx-auto">
+      <div className="flex flex-col gap-y-5 my-5">
         {users &&
           users.map(user => (
             <LeaderboardUser
