@@ -5,7 +5,6 @@ import DeveloperIcon from '@/app/components/Navbar/components/Icons/DeveloperIco
 import AuthIcon from '@/app/components/Navbar/components/Icons/AuthIcon'
 import SignOutIcon from '@/app/components/Navbar/components/Icons/SignOutIcon'
 import LanguageIcon from '@/app/components/Navbar/components/Icons/LanguageIcon'
-import ExpandNavbar from '@/app/components/Navbar/components/Icons/ExpandNavbar'
 
 interface IProps {
   userId: string
@@ -21,7 +20,6 @@ const Icons: React.FC<IProps> = ({ userId }) => {
       <AuthIcon userId={userId} />
       <SignOutIcon userId={userId} />
       <LanguageIcon />
-      <ExpandNavbar />
     </>
   )
 }
