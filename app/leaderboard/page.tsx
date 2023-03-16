@@ -3,11 +3,12 @@ import LeaderboardUser from '@/app/leaderboard/components/LeaderboardUser'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import Heading from '@/app/leaderboard/components/Heading'
+import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 const Page = async () => {
   const users = await selectByCorrectAnswered()
   const currentUser = await getServerSession(authOptions)
   return (
-    <div className="mx-auto md:w-full flex flex-col">
+    <PageWrapper classes="mx-auto md:w-full">
       <Heading />
       <div className="flex flex-col gap-y-5 my-5">
         {users &&
@@ -22,7 +23,7 @@ const Page = async () => {
             />
           ))}
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 

@@ -1,48 +1,58 @@
 import { create } from 'zustand'
-import { Diffs } from '@/types/export'
+import produce from 'immer'
+import { AlphaDifficulties, AlphaModes } from '@/types/alpha-export'
 
-interface IFormStore {
-  diff: Diffs
-  count: EquationsCountT
-  trigger: boolean
-  generate: () => void
-  setEquation: (newDiff: Diffs, newCount: EquationsCountT) => void
+interface IAnswer {
+  isTruthy: boolean
+  timeMs: number
 }
 
-export const useEquationStore = create<IFormStore>((set, get) => ({
-  diff: Diffs.Easy,
-  count: 10,
-  trigger: true,
-  generate: () => set({ trigger: !get().trigger }),
-  setEquation: (newDiff: Diffs, newCount: EquationsCountT) => set({ diff: newDiff, count: newCount }),
+interface ISetAnswer {
+  isTruthy: boolean
+  idx: number
+  startTimeMs: number
+}
+
+interface IEquationStore {
+  answers: IAnswer[] | null
+  setAnswer: (setAnswerArgs: ISetAnswer) => void
+  initializeAnswers: (arrayLength: number) => void
+}
+
+export const useEquationStore = create<IEquationStore>(set => ({
+  answers: null,
+  initializeAnswers: arrayLength => set({ answers: new Array(arrayLength).fill({ isTruthy: false, timeMs: 0 }) }),
+  setAnswer: ({ isTruthy, startTimeMs, idx }) =>
+    set(
+      produce<IEquationStore>(state => {
+        if (state.answers) {
+          state.answers[idx].isTruthy = isTruthy
+          state.answers[idx].timeMs = Date.now() - startTimeMs
+        }
+      })
+    ),
 }))
 
-interface IResultsStore {
-  answeredCount: number
-  correctlyAnsweredCount: number
-  addAnsweredCount: () => void
-  addCorrectlyAnsweredCount: () => void
-  removeCorrectlyAnsweredCount: () => void
-  resetCount: () => void
+interface IEquationSettings {
+  count: number | null
+  difficulty: AlphaDifficulties | null
+  mode: AlphaModes | null
 }
 
-export const useEquationResultsStore = create<IResultsStore>((set, get) => ({
-  answeredCount: 0,
-  correctlyAnsweredCount: 0,
-
-  addAnsweredCount: () => set({ answeredCount: get().answeredCount + 1 }),
-  addCorrectlyAnsweredCount: () => set({ correctlyAnsweredCount: get().correctlyAnsweredCount + 1 }),
-  removeCorrectlyAnsweredCount: () => set({ correctlyAnsweredCount: get().correctlyAnsweredCount - 1 }),
-  resetCount: () => set({ correctlyAnsweredCount: 0, answeredCount: 0 }),
-}))
-
-interface ISingleStore {
-  activeEquation: number
-  setActiveEquation: (newState: number) => void
+interface IEquationSettingsStore extends IEquationSettings {
+  setEquationSettings: (args: Partial<IEquationSettings>) => void
 }
 
-export const useSingleEquationStore = create<ISingleStore>((set, get) => ({
-  activeEquation: 0,
-
-  setActiveEquation: (newState: number) => set({ activeEquation: newState }),
+export const useEquationSettingsStore = create<IEquationSettingsStore>(set => ({
+  mode: null,
+  count: null,
+  difficulty: null,
+  setEquationSettings: ({ difficulty, count, mode }) =>
+    set(
+      produce<IEquationSettingsStore>(state => {
+        if (difficulty) state.difficulty = difficulty
+        if (count) state.count = count
+        if (mode) state.mode = mode
+      })
+    ),
 }))
