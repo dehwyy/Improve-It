@@ -9,16 +9,6 @@ const SelectSetupSolve = () => {
     state => [state.difficulty, state.count, state.setEquationSettings],
     shallow
   )
-  const UICustomDifficulty = useMemo(
-    () => [
-      'shadow-fuchsia-500/30 text-fuchsia-500',
-      'shadow-fuchsia-500/30 text-fuchsia-500',
-      'shadow-fuchsia-500/30 text-fuchsia-500',
-      'shadow-fuchsia-500/30 text-fuchsia-500',
-    ],
-    []
-  )
-  const UICustomCount = useMemo(() => 'shadow-sky-500/30 text-sky-500', [])
   const difficulties = useMemo(() => {
     return Object.keys(AlphaDifficulties) as Array<AlphaDifficulties>
   }, [])
@@ -38,7 +28,7 @@ const SelectSetupSolve = () => {
             onClick={() => editStore({ difficulty })}
             isActive={difficulty === currentDifficulty}
             mode={String(difficulty)}
-            customClasses={UICustomDifficulty[i]}
+            customClasses={'shadow-fuchsia-500/70 text-fuchsia-500'}
           />
         ))}
       </div>
@@ -50,7 +40,7 @@ const SelectSetupSolve = () => {
             onClick={() => editStore({ count })}
             isActive={currentCount === count}
             mode={String(count)}
-            customClasses={UICustomCount}
+            customClasses={'shadow-sky-500/70 text-sky-500'}
           />
         ))}
       </div>

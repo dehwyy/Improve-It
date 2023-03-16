@@ -40,7 +40,7 @@ const Statistics = () => {
   return answers ? (
     <StyledWrapper className="usm:px-0 my-12 shadow-lg shadow-blue-500/100 text-blue-500 border-current">
       <h2 className="text-5xl font-extrabold">Statistics</h2>
-      <div className="grid grid-cols-3 lg:grid-row-2 lg:grid-cols-2 sm:grid-cols-[40fr_23fr] gap-5 p-5 w-full pb-10">
+      <div className="grid grid-cols-3 lg:grid-row-2 lg:grid-cols-2 sm:grid-cols-[40fr_23fr] gap-5 p-5 w-full pb-10 cursor-defaultg">
         <AnswersList />
         <OverallTime />
         <AverageTimePerAnswer />

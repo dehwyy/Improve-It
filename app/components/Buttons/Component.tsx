@@ -17,7 +17,7 @@ const Component: FC<IProps> = ({ id }) => {
   return (
     <div className="flex justify-evenly pt-16 text-3xl lg:flex-col lg:items-center gap-x-10 gap-5">
       <Link href="/solve" className="w-[90%]">
-        <StyledWrapper className="shadow-green-500/100 shadow-md mt-10 text-green-500 hover:shadow-red-500/100 hover:text-red-500 font-extrabold border-current">
+        <StyledWrapper className="shadow-lg shadow-green-500/100 mt-10 text-green-500 hover:shadow-red-500/100 hover:text-red-500 font-extrabold border-current">
           {language.solve}
         </StyledWrapper>
       </Link>

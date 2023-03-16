@@ -7,7 +7,7 @@ import { shallow } from 'zustand/shallow'
 const SelectSolveMode = () => {
   const [currentMode, editStore] = useEquationSettingsStore(state => [state.mode, state.setEquationSettings], shallow)
   const UICustomClasses = useMemo(
-    () => ['shadow-sky-500 text-sky-500', 'shadow-violet-500 text-violet-500', 'shadow-custom-green text-custom-green'],
+    () => ['shadow-sky-500/70 text-sky-500', 'shadow-violet-500/70 text-violet-500', 'shadow-custom-green/70 text-custom-green'],
     []
   )
   return (
