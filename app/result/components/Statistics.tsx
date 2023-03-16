@@ -35,6 +35,7 @@ const Statistics = () => {
       return 'OK'
     }
   }, [answers, correctAnswersCount])
+  if (!answers) router.push('/solve')
 
   return answers ? (
     <StyledWrapper className="usm:px-0 my-12 shadow-lg shadow-blue-500/100 text-blue-500 border-current">
@@ -47,10 +48,7 @@ const Statistics = () => {
       <ProgressBar count={answers?.length as number} correctCount={correctAnswersCount} />
     </StyledWrapper>
   ) : (
-    () => {
-      router.push('/solve')
-      return <Loader />
-    }
+    <Loader />
   )
 }
 
