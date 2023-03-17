@@ -19,9 +19,9 @@ const LanguageSelector: React.FC<IProps> = ({ isWindowVisible }) => {
   return (
     <div
       style={{ borderRadius: 0 }}
-      className={`${
-        isWindowVisible ? 'visible opacity-100' : 'invisible opacity-0'
-      } transition-all duration-300 right-[50%] translate-x-1/2 absolute ${isPhone ? 'right-[136px] bottom-0' : 'top-[50px]'}  block-neo-style z-50`}>
+      className={`${isWindowVisible ? 'visible opacity-100' : 'invisible opacity-0'} transition-all duration-300 translate-x-1/2 absolute ${
+        isPhone ? 'right-[136px] bottom-0' : 'top-[50px] right-[50%]'
+      }  block-neo-style z-50`}>
       {languages.map((lang, i) => (
         <div
           key={i}
