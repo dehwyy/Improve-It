@@ -11,7 +11,7 @@ interface IProps {
 const Wrapper = styled.div`
   @media (min-width: 639px) and (hover: hover) {
     & > div:first-child {
-      padding-top: 50px;
+      margin-top: 50px;
       opacity: 0;
       visibility: hidden;
       transition: 0.4s ease;
