@@ -5,12 +5,15 @@ import NavItemWrapper from '@/app/components/Navbar/components/Icons/_components
 
 interface IProps {
   userId: string
+  idx: number
+  isGrowable: boolean
 }
-const SignOutIcon: FC<IProps> = ({ userId }) => {
+
+const SignOutIcon: FC<IProps> = ({ userId, idx, isGrowable }) => {
   return userId ? (
-    <NavItemWrapper text="Sign out">
+    <NavItemWrapper text="Sign out" idx={idx} isGrowable={isGrowable}>
       <a onClick={e => e.preventDefault()}>
-        <SignOut onClick={() => signOut()} sx={{ cursor: 'pointer' }} />
+        <SignOut fontSize="large" onClick={() => signOut()} sx={{ cursor: 'pointer' }} />
       </a>
     </NavItemWrapper>
   ) : (

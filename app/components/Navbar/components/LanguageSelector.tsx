@@ -1,6 +1,7 @@
 import { useUserStore } from '@/app/utils/store/globalStore'
 import { shallow } from 'zustand/shallow'
 import { Varela_Round } from '@next/font/google'
+import { useMediaQuery } from '@mui/material'
 
 const LangItemFont = Varela_Round({
   weight: '400',
@@ -14,12 +15,13 @@ interface IProps {
 
 const LanguageSelector: React.FC<IProps> = ({ isWindowVisible }) => {
   const [languages, setLanguage] = useUserStore(state => [state.allLanguages, state.changeLang], shallow)
+  const isPhone = useMediaQuery('(max-width:639px)')
   return (
     <div
       style={{ borderRadius: 0 }}
-      className={`${
-        isWindowVisible ? 'visible opacity-100' : 'invisible opacity-0'
-      } transition-all duration-300 right-[50%] translate-x-1/2 absolute top-[45px] block-neo-style z-50 usm:right-[100%]`}>
+      className={`${isWindowVisible ? 'visible opacity-100' : 'invisible opacity-0'} transition-all duration-300 translate-x-1/2 absolute ${
+        isPhone ? 'right-[136px] bottom-0' : 'top-[50px] right-[50%]'
+      }  block-neo-style z-50`}>
       {languages.map((lang, i) => (
         <div
           key={i}

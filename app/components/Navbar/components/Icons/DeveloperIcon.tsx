@@ -2,11 +2,16 @@ import CodeIcon from '@mui/icons-material/CodeOutlined'
 import Link from 'next/link'
 import NavItemWrapper from '@/app/components/Navbar/components/Icons/_components/NavItemWrapper'
 
-const DeveloperIcon = () => {
+interface IProps {
+  idx: number
+  isGrowable: boolean
+}
+
+const DeveloperIcon = ({ idx, isGrowable }: IProps) => {
   return (
-    <NavItemWrapper text="For developers">
+    <NavItemWrapper text="For developers" idx={idx} isGrowable={isGrowable}>
       <Link href="/develop">
-        <CodeIcon sx={{ cursor: 'pointer' }} />
+        <CodeIcon fontSize="large" sx={{ cursor: 'pointer' }} />
       </Link>
     </NavItemWrapper>
   )
