@@ -6,13 +6,16 @@ import NavItemWrapper from '@/app/components/Navbar/components/Icons/_components
 
 interface IProps {
   userId: string
+  idx: number
+  isGrowable: boolean
 }
 
-const AuthIcon: FC<IProps> = ({ userId }) => {
+const AuthIcon: FC<IProps> = ({ userId, idx, isGrowable }) => {
   return (
-    <NavItemWrapper text={userId ? 'Profile' : 'Authorization'}>
+    <NavItemWrapper text={userId ? 'Profile' : 'Authorization'} idx={idx} isGrowable={isGrowable}>
       <Link href={userId ? `user/${userId}` : ''}>
         <PermIdentityIcon
+          fontSize="large"
           onClick={() => {
             !userId && signIn()
           }}

@@ -3,13 +3,20 @@ import LanguageSelector from '@/app/components/Navbar/components/LanguageSelecto
 import { useState } from 'react'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
 import NavItemWrapper from '@/app/components/Navbar/components/Icons/_components/NavItemWrapper'
-const LanguageIcon = () => {
+import { useMediaQuery } from '@mui/material'
+
+interface IProps {
+  idx: number
+  isGrowable: boolean
+}
+
+const LanguageIcon = ({ idx, isGrowable }: IProps) => {
   const [windowState, setWindowState] = useState(false)
   return (
-    <NavItemWrapper text="Language">
+    <NavItemWrapper text="Language" idx={idx} isGrowable={isGrowable}>
       <div className="relative">
         <ClickAwayListener onClickAway={() => setWindowState(false)}>
-          <LanguageIconMui sx={{ cursor: 'pointer' }} onClick={() => setWindowState(!windowState)} />
+          <LanguageIconMui fontSize="large" sx={{ cursor: 'pointer' }} onClick={() => setWindowState(!windowState)} />
         </ClickAwayListener>
         <LanguageSelector closeWindow={() => setWindowState(false)} isWindowVisible={windowState} />
       </div>

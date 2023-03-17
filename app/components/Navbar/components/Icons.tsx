@@ -8,18 +8,19 @@ import LanguageIcon from '@/app/components/Navbar/components/Icons/LanguageIcon'
 
 interface IProps {
   userId: string
+  isGrowable: boolean
 }
 
-const Icons: React.FC<IProps> = ({ userId }) => {
+const Icons: React.FC<IProps> = ({ userId, isGrowable }) => {
   return (
     <>
-      <HomePageIcon />
-      <SolveItIcon />
-      <LeaderboardIcon />
-      <DeveloperIcon />
-      <AuthIcon userId={userId} />
-      <SignOutIcon userId={userId} />
-      <LanguageIcon />
+      <HomePageIcon idx={0} isGrowable={isGrowable} />
+      <SolveItIcon idx={1} isGrowable={isGrowable} />
+      <LeaderboardIcon idx={2} isGrowable={isGrowable} />
+      <DeveloperIcon idx={3} isGrowable={isGrowable} />
+      <AuthIcon idx={4} userId={userId} isGrowable={isGrowable} />
+      <SignOutIcon idx={5} userId={userId} isGrowable={isGrowable} />
+      <LanguageIcon idx={6} isGrowable={isGrowable} />
     </>
   )
 }

@@ -2,11 +2,16 @@ import Home from '@mui/icons-material/HomeOutlined'
 import Link from 'next/link'
 import NavItemWrapper from '@/app/components/Navbar/components/Icons/_components/NavItemWrapper'
 
-const HomePageIcon = () => {
+interface IProps {
+  idx: number
+  isGrowable: boolean
+}
+
+const HomePageIcon = ({ idx, isGrowable }: IProps) => {
   return (
-    <NavItemWrapper text="Home">
+    <NavItemWrapper text="Home" idx={idx} isGrowable={isGrowable}>
       <Link href="/">
-        <Home sx={{ cursor: 'pointer' }} />
+        <Home fontSize="large" sx={{ cursor: 'pointer' }} />
       </Link>
     </NavItemWrapper>
   )

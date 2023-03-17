@@ -2,11 +2,16 @@ import Link from 'next/link'
 import LeaderboardIcoMui from '@mui/icons-material/LeaderboardOutlined'
 import NavItemWrapper from '@/app/components/Navbar/components/Icons/_components/NavItemWrapper'
 
-const LeaderboardIcon = () => {
+interface IProps {
+  idx: number
+  isGrowable: boolean
+}
+
+const LeaderboardIcon = ({ idx, isGrowable }: IProps) => {
   return (
-    <NavItemWrapper text="Leaderboard">
+    <NavItemWrapper text="Leaderboard" idx={idx} isGrowable={isGrowable}>
       <Link href="/leaderboard">
-        <LeaderboardIcoMui sx={{ cursor: 'pointer' }} />
+        <LeaderboardIcoMui fontSize="large" sx={{ cursor: 'pointer' }} />
       </Link>
     </NavItemWrapper>
   )

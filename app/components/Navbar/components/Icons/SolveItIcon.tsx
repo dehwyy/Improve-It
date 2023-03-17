@@ -2,11 +2,16 @@ import CalculateIcon from '@mui/icons-material/CalculateOutlined'
 import Link from 'next/link'
 import NavItemWrapper from '@/app/components/Navbar/components/Icons/_components/NavItemWrapper'
 
-const SolveItIcon = () => {
+interface IProps {
+  idx?: number
+  isGrowable?: boolean
+}
+
+const SolveItIcon = ({ idx, isGrowable }: IProps) => {
   return (
-    <NavItemWrapper text="Solve it!">
+    <NavItemWrapper text="Solve it!" idx={idx} isGrowable={isGrowable}>
       <Link href="/solve">
-        <CalculateIcon sx={{ cursor: 'pointer' }} />
+        <CalculateIcon fontSize="large" sx={{ cursor: 'pointer' }} />
       </Link>
     </NavItemWrapper>
   )
