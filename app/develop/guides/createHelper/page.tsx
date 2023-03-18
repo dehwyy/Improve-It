@@ -5,29 +5,33 @@ import GuideContentWrapper from '@/app/develop/guides/components/GuideContentWra
 import Link from 'next/link'
 import Path from '@/app/develop/guides/components/TextCustomization/path'
 import File from '@/app/develop/guides/components/TextCustomization/file'
+import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
 
 const Page = () => {
   return (
-    <GuideWrapper>
-      <CreateYourOwnTemplate>EquationHelper</CreateYourOwnTemplate>
-      <GuideContentWrapper>
-        <>
-          <RepoPullingGuideAndNavigatingToEquations />
-          <p>
-            Navigate to <Path>helpers/example.ts</Path> (if you want to create custom Kind check out this{' '}
-            <Link className="text-sky-400" href="/develop/guides/createKind">
-              guide
-            </Link>
-            )
-          </p>
-          <p>
-            After this just follow the steps written in <File>example.ts</File>
-          </p>
-          <hr />
-          <p>Congratulations! You created custom helper! I guess I should add images...</p>
-        </>
-      </GuideContentWrapper>
-    </GuideWrapper>
+    <>
+      <TopPageLoader />
+      <GuideWrapper>
+        <CreateYourOwnTemplate>EquationHelper</CreateYourOwnTemplate>
+        <GuideContentWrapper>
+          <>
+            <RepoPullingGuideAndNavigatingToEquations />
+            <p>
+              Navigate to <Path>helpers/example.ts</Path> (if you want to create custom Kind check out this{' '}
+              <Link className="text-sky-400" href="/develop/guides/createKind">
+                guide
+              </Link>
+              )
+            </p>
+            <p>
+              After this just follow the steps written in <File>example.ts</File>
+            </p>
+            <hr />
+            <p>Congratulations! You created custom helper! I guess I should add images...</p>
+          </>
+        </GuideContentWrapper>
+      </GuideWrapper>
+    </>
   )
 }
 

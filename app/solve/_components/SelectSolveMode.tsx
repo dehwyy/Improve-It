@@ -1,4 +1,4 @@
-import { AlphaModes } from '@/types/alpha-export'
+import { Modes } from '../../../types/export'
 import { useMemo } from 'react'
 import SettingItem from '@/app/solve/_components/_components/SettingItem'
 import { useEquationSettingsStore } from '@/app/utils/store/equationStore'
@@ -14,7 +14,7 @@ const SelectSolveMode = () => {
     <>
       <h2 className="text-center text-5xl text-white font-extrabold pb-7">Select Mode</h2>
       <div className="sm:flex-col flex gap-5">
-        {Object.values(AlphaModes).map((mode, i) => (
+        {Object.values(Modes).map((mode, i) => (
           <SettingItem key={i} onClick={() => editStore({ mode })} isActive={mode === currentMode} mode={mode} customClasses={UICustomClasses[i]} />
         ))}
       </div>

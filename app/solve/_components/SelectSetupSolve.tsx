@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import SettingItem from '@/app/solve/_components/_components/SettingItem'
 import { useEquationSettingsStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
-import { AlphaDifficulties } from '@/types/alpha-export'
+import { Difficulties } from '../../../types/export'
 
 const SelectSetupSolve = () => {
   const [currentDifficulty, currentCount, editStore] = useEquationSettingsStore(
@@ -10,7 +10,7 @@ const SelectSetupSolve = () => {
     shallow
   )
   const difficulties = useMemo(() => {
-    return Object.keys(AlphaDifficulties) as Array<AlphaDifficulties>
+    return Object.keys(Difficulties) as Array<Difficulties>
   }, [])
   const availableCount = useMemo(() => {
     return [5, 10, 15, 20, 30]

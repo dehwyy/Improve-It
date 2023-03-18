@@ -1,11 +1,11 @@
 'use client'
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
-import { alphaGetEquations } from '@/app/utils/tools/equations/EquationModule'
+import { getEquations } from '@/app/utils/tools/equations/EquationModule'
 import { useEquationSettingsStore, useEquationStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
 import { useRouter } from 'next/navigation'
 import SingleEquation from '@/app/solve/play/components/SingleEquation'
-import { AlphaDifficulties, AlphaModes } from '@/types/alpha-export'
+import { Difficulties, Modes } from '@/types/export'
 import Redirect from '@/app/solve/play/components/components/Redirect'
 import Loader from '@/app/components/UI/Global/Loader'
 
@@ -15,7 +15,7 @@ const Page = () => {
   const initAns = useEquationStore(state => state.initializeAnswers, shallow)
   const [currentPage, setPage] = useState(0)
 
-  const equations = useMemo(() => Array.from(alphaGetEquations(mode as AlphaModes, difficulty as AlphaDifficulties, count as number)), [])
+  const equations = useMemo(() => Array.from(getEquations(mode as Modes, difficulty as Difficulties, count as number)), [])
   const currentEquation = useMemo(() => {
     return equations[currentPage]
   }, [currentPage, equations])
