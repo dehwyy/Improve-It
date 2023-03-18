@@ -13,19 +13,7 @@ const Variable = () => new VariableEquation(new PlusMinusHelper(RandomModule))
 const PlusMinus = () => new PlusMinusEquation(new PlusMinusHelper(RandomModule))
 const Multiply = () => new MultiplyEquation(new EquationBaseHelper(RandomModule))
 
-function getEquationKindFromMode(mode: keyof typeof Modes) {
-  if (mode === 'variable') {
-    return Variable()
-  } else if (mode === 'plusminus') {
-    return PlusMinus()
-  } else if (mode === 'multiply') {
-    return Multiply()
-  } else {
-    return PlusMinus()
-  }
-}
-
-function alphaGetEquationKindFromMode(mode: AlphaModes) {
+function GetEquationFromMode(mode: AlphaModes) {
   switch (mode) {
     case AlphaModes.plusminus:
       return PlusMinus()
@@ -35,32 +23,9 @@ function alphaGetEquationKindFromMode(mode: AlphaModes) {
       return Multiply()
   }
 }
-
-export default function* getEquations(mode: keyof typeof Modes, diff: Diffs = 0, count = 1): Generator<ReturnEquationT, void> {
+export function* getEquations(mode: AlphaModes, diff: AlphaDifficulties, count: number): Generator<ReturnEquationT, void> {
   let localCount = 0
-  const Equation = new EquationFactory(getEquationKindFromMode(mode))
-  while (localCount < count) {
-    localCount++
-    switch (diff) {
-      case Diffs.Easy:
-        yield Equation.EasyEquation()
-        break
-      case Diffs.Medium:
-        yield Equation.MediumEquation()
-        break
-      case Diffs.Hard:
-        yield Equation.HardEquation()
-        break
-      case Diffs.Impossible:
-        yield Equation.ImpossibleEquation()
-        break
-    }
-  }
-}
-
-export function* alphaGetEquations(mode: AlphaModes, diff: AlphaDifficulties, count: number): Generator<ReturnEquationT, void> {
-  let localCount = 0
-  const Equation = new EquationFactory(alphaGetEquationKindFromMode(mode))
+  const Equation = new EquationFactory(GetEquationFromMode(mode))
   while (localCount < count) {
     localCount++
     switch (diff) {

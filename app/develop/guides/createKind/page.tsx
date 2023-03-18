@@ -6,24 +6,28 @@ import ModifyingEquationModule from '@/app/develop/guides/createKind/components/
 import NavigatingToKindsExample from '@/app/develop/guides/createKind/components/NavigatingToKindsExample'
 import CreateYourOwnTemplate from '@/app/develop/guides/components/CreateYourOwnTemplate'
 import GuideContentWrapper from '@/app/develop/guides/components/GuideContentWrapper'
+import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
 
 const Page = () => {
   return (
-    <GuideWrapper>
-      <CreateYourOwnTemplate>EquationKind</CreateYourOwnTemplate>
-      <GuideContentWrapper>
-        <>
-          <RepoPullingGuideAndNavigatingToEquations />
-          <NavigatingToKindsExample />
-          <hr />
-          <ModifyingModesEnum />
-          <hr />
-          <ModifyingEquationModule />
-          <hr />
-          <p>Congratulations! You created custom equation! I guess I should add images...</p>
-        </>
-      </GuideContentWrapper>
-    </GuideWrapper>
+    <>
+      <TopPageLoader />
+      <GuideWrapper>
+        <CreateYourOwnTemplate>EquationKind</CreateYourOwnTemplate>
+        <GuideContentWrapper>
+          <>
+            <RepoPullingGuideAndNavigatingToEquations />
+            <NavigatingToKindsExample />
+            <hr />
+            <ModifyingModesEnum />
+            <hr />
+            <ModifyingEquationModule />
+            <hr />
+            <p>Congratulations! You created custom equation! I guess I should add images...</p>
+          </>
+        </GuideContentWrapper>
+      </GuideWrapper>
+    </>
   )
 }
 

@@ -2,8 +2,8 @@ import './global.css'
 import Navbar from '@/app/components/Navbar/Component'
 import Provider from '@/app/components/Providers'
 import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
-import NextTopLoader from 'nextjs-toploader'
 import { FC } from 'react'
+import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
 
 interface IProps {
   children: React.ReactNode
@@ -15,7 +15,6 @@ const Layout: (props: IProps) => Promise<JSX.Element> = async ({ children }) => 
     <html lang="en">
       <head />
       <body className="uusm:min-w-[279px] w-full h-full min-h-screen min-w-screen bg-[#333333] overflow-x-hidden">
-        <NextTopLoader showSpinner={false} color="rgb(239,68,68)" />
         <Provider>
           <Navbar userId={user?.id as string} />
           <ContentWrapper>{children}</ContentWrapper>

@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
-import { alphaGetEquations } from '@/app/utils/tools/equations/EquationModule'
+import { getEquations } from '@/app/utils/tools/equations/EquationModule'
 import { useEquationSettingsStore, useEquationStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
 import { useRouter } from 'next/navigation'
@@ -15,7 +15,7 @@ const Page = () => {
   const initAns = useEquationStore(state => state.initializeAnswers, shallow)
   const [currentPage, setPage] = useState(0)
 
-  const equations = useMemo(() => Array.from(alphaGetEquations(mode as AlphaModes, difficulty as AlphaDifficulties, count as number)), [])
+  const equations = useMemo(() => Array.from(getEquations(mode as AlphaModes, difficulty as AlphaDifficulties, count as number)), [])
   const currentEquation = useMemo(() => {
     return equations[currentPage]
   }, [currentPage, equations])
