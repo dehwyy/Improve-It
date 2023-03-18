@@ -13,12 +13,13 @@ export default class PlusMinusHelper extends EquationBaseHelper implements IPlus
 
   public generatePlusOrMinusAndGetResult(minusCb: () => number, plusCb: () => number): { sign: string; result: number } {
     const sign = this.getRandomSign()
-    let result: number
-    if (sign === Signs.minus) {
-      result = minusCb()
-    } else {
-      result = plusCb()
-    }
+    const result = (function () {
+      if (sign === Signs.minus) {
+        return minusCb()
+      } else {
+        return plusCb()
+      }
+    })()
     return {
       result,
       sign,

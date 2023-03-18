@@ -1,4 +1,3 @@
-import { Diffs, Modes } from '@/types/export'
 import VariableEquation from '@/app/utils/tools/equations/kinds/variable'
 import PlusMinusHelper from '@/app/utils/tools/equations/helpers/PlusMinusHelper'
 import RandomModule from '@/app/utils/tools/RandomModule'
@@ -7,38 +6,38 @@ import { ReturnEquationT } from '@/app/utils/tools/equations/types'
 import PlusMinusEquation from '@/app/utils/tools/equations/kinds/plusminus'
 import MultiplyEquation from '@/app/utils/tools/equations/kinds/multiply'
 import EquationBaseHelper from '@/app/utils/tools/equations/helpers/EquationBaseHelper'
-import { AlphaDifficulties, AlphaModes } from '@/types/alpha-export'
+import { Difficulties, Modes } from '@/types/export'
 
 const Variable = () => new VariableEquation(new PlusMinusHelper(RandomModule))
 const PlusMinus = () => new PlusMinusEquation(new PlusMinusHelper(RandomModule))
 const Multiply = () => new MultiplyEquation(new EquationBaseHelper(RandomModule))
 
-function GetEquationFromMode(mode: AlphaModes) {
+function GetEquationFromMode(mode: Modes) {
   switch (mode) {
-    case AlphaModes.plusminus:
+    case Modes.plusminus:
       return PlusMinus()
-    case AlphaModes.variable:
+    case Modes.variable:
       return Variable()
-    case AlphaModes.multiply:
+    case Modes.multiply:
       return Multiply()
   }
 }
-export function* getEquations(mode: AlphaModes, diff: AlphaDifficulties, count: number): Generator<ReturnEquationT, void> {
+export function* getEquations(mode: Modes, diff: Difficulties, count: number): Generator<ReturnEquationT, void> {
   let localCount = 0
   const Equation = new EquationFactory(GetEquationFromMode(mode))
   while (localCount < count) {
     localCount++
     switch (diff) {
-      case AlphaDifficulties.Easy:
+      case Difficulties.Easy:
         yield Equation.EasyEquation()
         break
-      case AlphaDifficulties.Medium:
+      case Difficulties.Medium:
         yield Equation.MediumEquation()
         break
-      case AlphaDifficulties.Hard:
+      case Difficulties.Hard:
         yield Equation.HardEquation()
         break
-      case AlphaDifficulties.Impossible:
+      case Difficulties.Impossible:
         yield Equation.ImpossibleEquation()
         break
     }

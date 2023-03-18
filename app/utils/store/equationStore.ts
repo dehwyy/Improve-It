@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import produce from 'immer'
-import { AlphaDifficulties, AlphaModes } from '@/types/alpha-export'
+import { Difficulties, Modes } from '@/types/export'
 
 interface IAnswer {
   isTruthy: boolean
@@ -35,8 +35,8 @@ export const useEquationStore = create<IEquationStore>(set => ({
 
 interface IEquationSettings {
   count: number | null
-  difficulty: AlphaDifficulties | null
-  mode: AlphaModes | null
+  difficulty: Difficulties | null
+  mode: Modes | null
 }
 
 interface IEquationSettingsStore extends IEquationSettings {
