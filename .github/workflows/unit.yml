@@ -1,4 +1,4 @@
-name: github ci
+name: Unit tests
 on:
   push:
     branches-ignore:
