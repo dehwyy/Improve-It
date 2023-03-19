@@ -18,7 +18,7 @@ const Guide = () => {
   }, [])
   if (!languageLoaded) return <Skeleton />
   return (
-    <div className="mt-10 p-8">
+    <div className="mt-10 p-8" data-testid="guide_block">
       <div className="text-[1.4rem] flex flex-col items-center vsm:text-xl text-justify leading-10 select-text font-bold text-center">
         <h2 className={`${h2Font.className} text-6xl sm:text-4xl vsm:text-3xl text-center pb-5 text-sky-500 font-extrabold`}>{language.header}⭐</h2>
         <p className="text-fuchsia-500 text-center">{language.target}.</p>

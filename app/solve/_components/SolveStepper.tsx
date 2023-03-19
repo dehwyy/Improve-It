@@ -16,7 +16,7 @@ const SolveStepper: React.FC<IProps> = ({ currentStep }) => {
   const language = useFieldsByLanguage(solveLanguages)
   const matches = useMediaQuery('(max-width:639px)')
   return (
-    <div className="w-3/4 mx-auto sm:w-full">
+    <div className="w-3/4 mx-auto sm:w-full" data-testid="solve_stepper">
       <Stepper activeStep={currentStep} orientation={matches ? 'vertical' : 'horizontal'} className="p-2">
         <Step>
           <StepButton>

@@ -1,16 +1,20 @@
 import { test, expect } from '@playwright/test'
 
-test('has title', async ({ page }) => {
+test('heading and guides', async ({ page }) => {
   await page.goto('/')
   await expect(page).toHaveTitle(/solve it/i)
+  await expect(page.getByRole('heading', { name: /solve it/i })).toBeVisible()
+  await expect(page.getByTestId('guide_block')).toBeVisible()
 })
+test('buttons w/o "profile" button', async ({ page }) => {
+  await page.goto('/')
+  const solveButton = page.getByTestId('solve_button_style')
+  await expect(solveButton).toBeVisible()
+  await expect(solveButton).toHaveClass(/text-green-500/)
+  await expect(solveButton).toHaveClass(/hover:text-red-500/)
 
-// test('get started link', async ({ page }) => {
-//   await page.goto('https://playwright.dev/')
-//
-//   // Click the get started link.
-//   await page.getByRole('link', { name: 'Get started' }).click()
-//
-//   // Expects the URL to contain intro.
-//   await expect(page).toHaveURL(/.*intro/)
-// })
+  const authButton = page.getByTestId('auth_button_style')
+  await expect(authButton).toBeVisible()
+  await expect(authButton).toHaveClass(/text-blue-500/)
+  await expect(authButton).toHaveClass(/hover:text-red-500/)
+})

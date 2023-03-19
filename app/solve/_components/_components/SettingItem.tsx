@@ -10,6 +10,7 @@ interface IPropsUI {
 const SettingItem: React.FC<IPropsUI> = ({ mode, customClasses, isActive, onClick }) => {
   return (
     <StyleWrapper
+      data-testid="mode_button"
       onClick={onClick}
       className={`${
         isActive ? 'shadow-yellow-500/100 text-yellow-500 underline' : customClasses
