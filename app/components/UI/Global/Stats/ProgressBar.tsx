@@ -14,7 +14,7 @@ const ProgressBar: FC<IProps> = ({ correctCount, count }) => {
     }
   }, [])
   return (
-    <div className={`min-w-[100px] w-full sm:px-5 sm:px-0`}>
+    <div className={`min-w-[100px] w-full px-5 sm:px-0`}>
       <div className={`w-full flex h-full min-h-[20px]`}>
         <div ref={blockCorrectWidth} className={`w-[1px] transition-all duration-1000 bg-green-500 text-white`} />
         <div className="flex-auto bg-red-400" />

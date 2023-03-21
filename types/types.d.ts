@@ -6,3 +6,5 @@ interface EquationDiffs {
   HardEquation: () => EquationT
   ImpossibleEquation: () => EquationT
 }
+
+type InputKey = number | '-' | 'Backspace'

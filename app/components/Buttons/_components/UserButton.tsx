@@ -10,9 +10,11 @@ interface IProps {
   id: string | undefined
 }
 
-const ButtonStyledWrapper = ({ children }: { children: React.ReactNode }) => {
+const ButtonStyledWrapper = ({ children, testid }: { children: React.ReactNode; testid: string }) => {
   return (
-    <StyleWrapper className="hover:shadow-red-500/100 hover:text-red-500 shadow-blue-500/100 shadow-lg mt-10 text-blue-500 font-extrabold border-current">
+    <StyleWrapper
+      data-testid={testid}
+      className="hover:shadow-red-500/100 hover:text-red-500 shadow-blue-500/100 shadow-lg mt-10 text-blue-500 font-extrabold border-current">
       {children}
     </StyleWrapper>
   )
@@ -23,11 +25,11 @@ const UserButton: FC<IProps> = ({ id }) => {
 
   return language && id ? (
     <Link href={`/user/${id}`} className="w-[90%]">
-      <ButtonStyledWrapper>{language.profile}</ButtonStyledWrapper>
+      <ButtonStyledWrapper testid="profile_button_style">{language.profile}</ButtonStyledWrapper>
     </Link>
   ) : (
     <div onClick={() => signIn()} className="cursor-pointer w-[90%]">
-      <ButtonStyledWrapper>{language.signIn}</ButtonStyledWrapper>
+      <ButtonStyledWrapper testid="auth_button_style">{language.signIn}</ButtonStyledWrapper>
     </div>
   )
 }

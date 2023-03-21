@@ -8,7 +8,7 @@ const Page = async () => {
   const user = await getUserNotById()
 
   return (
-    <PageWrapper classes="py-10 select-none">
+    <PageWrapper classes="sm:mt-[-6rem] pt-5 pb-2 sm:pt-0 select-none">
       <Heading />
       <Guide />
       <Buttons id={user?.id} />

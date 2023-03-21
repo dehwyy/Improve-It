@@ -14,7 +14,7 @@ const ButtonsLanguages = {
   },
   ru: {
     profile: 'Профиль',
-    signIn: 'Авторизоваться',
+    signIn: 'Войти',
     solve: 'Решать!',
   },
 } as Record<AvailableLanguages, IButtons>
