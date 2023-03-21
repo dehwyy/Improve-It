@@ -42,6 +42,7 @@ const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation,
       const answerLength = String(correctAnswer).length
       const conditionIfValidInput =
         (!isNaN(Number(newInputValue)) || newInputValue == '-') &&
+        (Number(newInputValue) || newInputValue == '-') &&
         ((correctAnswer <= 0 && inputValue.length <= answerLength + 2) || (correctAnswer > 0 && inputValue.length <= answerLength + 1))
       const conditionIfBackspace = inputValue.length > newInputValue.length
       if (conditionIfValidInput || conditionIfBackspace) {
