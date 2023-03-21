@@ -9,7 +9,7 @@ interface IProps {
 const MobileKeyboard = ({ isAnimation }: IProps) => {
   const nums = useMemo(() => Array.from({ length: 9 }, (_, i) => i + 1), [])
   return !isAnimation ? (
-    <div className="invisible opacity-0 sm:opacity-100 sm:visible">
+    <div className="hidden sm:block">
       <div className="grid grid-cols-3 place-content-center gap-y-5 gap-x-3 w-[80%] mx-auto">
         {nums.map((n, i) => (
           <KeyboardNumber key={i} n={n} />
