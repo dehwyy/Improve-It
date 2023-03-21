@@ -32,7 +32,7 @@ const MobileNavbar = ({ userId }: IProps) => {
             />
           </div>
           <Slide in={isExpanded} direction="left" unmountOnExit mountOnEnter>
-            <div className="bg-gradient-to-r from-violet-500 to-violet-700 fixed bottom-0 top-0 pt-20 z-40">
+            <div className="bg-gradient-to-r from-violet-500 to-violet-700 fixed bottom-0 top-0 pt-20 z-40 pr-0.5">
               <Icons userId={userId} isGrowable={isExpanded} />
             </div>
           </Slide>
