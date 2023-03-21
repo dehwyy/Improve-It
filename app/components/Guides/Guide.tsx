@@ -20,7 +20,9 @@ const Guide = () => {
   return (
     <div className="mt-8" data-testid="guide_block">
       <div className="flex flex-col items-center vsm:text-xl text-justify leading-10 select-text font-bold text-center">
-        <h2 className={`${h2Font.className} text-6xl sm:text-5xl text-center pb-5 text-white font-extrabold sm:leading-[1.2]`}>{language.header}</h2>
+        <h2 className={`${h2Font.className} text-6xl sm:text-5xl text-center pb-5 text-white font-extrabold sm:leading-[1.2]`}>
+          ⭐{language.header}⭐
+        </h2>
       </div>
     </div>
   )
