@@ -1,16 +1,21 @@
 'use client'
 import MenuIcon from '@mui/icons-material/Menu'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Icons from '@/app/components/Navbar/components/Icons'
 import { Slide } from '@mui/material'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
 import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
+import { usePathname } from 'next/navigation'
 interface IProps {
   userId: string
 }
 
 const MobileNavbar = ({ userId }: IProps) => {
   const [isExpanded, setExpanded] = useState(false)
+  const pathname = usePathname()
+  useEffect(() => {
+    setExpanded(false)
+  }, [pathname])
   return (
     <>
       <TopPageLoader />
