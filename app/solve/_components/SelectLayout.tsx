@@ -3,6 +3,7 @@ import { shallow } from 'zustand/shallow'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 import Loader from '@/app/components/UI/Global/Loader'
+import { useInputStore } from '@/app/utils/store/inputStore'
 
 interface IProps {
   children: React.ReactNode
@@ -13,6 +14,7 @@ const SettingContainer: React.FC<IProps> = ({ children, setStep, step }) => {
   const router = useRouter()
   const [isLoading, setLoading] = useState(false)
   const [mode, difficulty, count] = useEquationSettingsStore(state => [state.mode, state.difficulty, state.count], shallow)
+  const setKey = useInputStore(state => state.setPressedKey)
 
   const backHandler = useCallback(() => {
     if (!step) return
@@ -25,6 +27,7 @@ const SettingContainer: React.FC<IProps> = ({ children, setStep, step }) => {
       setStep(p => p + 1)
       window.scrollTo(0, 175)
     } else if (difficulty && count && mode && step === 1) {
+      setKey(null)
       setLoading(true)
       router.push('/solve/play')
     }

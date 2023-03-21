@@ -2,6 +2,8 @@ import { ChangeEvent, FC, KeyboardEvent, useCallback, useEffect, useState } from
 import { useEquationStore } from '@/app/utils/store/equationStore'
 import SuccessAnimation from '@/app/solve/play/components/components/SuccessAnimation'
 import { Gothic_A1 } from '@next/font/google'
+import { useInputStore } from '@/app/utils/store/inputStore'
+import { shallow } from 'zustand/shallow'
 
 const mathFont = Gothic_A1({
   subsets: ['latin'],
@@ -13,26 +15,40 @@ interface IProps {
   idx: number
   correctAnswer: number
   equation: string
+  isAnimation: boolean
+  setAnimation: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation }) => {
+const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation, setAnimation, isAnimation }) => {
   const setAnswerState = useEquationStore(state => state.setAnswer)
+  const [prevKey, trigger] = useInputStore(state => [state.previousKey, state.trigger], shallow)
   const [startTime, setStartTime] = useState(Date.now())
   const [inputValue, setInputValue] = useState<string>('')
-  const [isAnimation, setAnimation] = useState(false)
   const [isTruthy, setTruthy] = useState(false)
   useEffect(() => {
     if (correctAnswer === Number(inputValue)) submitEquation({ isTruthy: true })
   }, [inputValue])
 
-  const inputHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const newInputValue = e.target.value
-    const conditionIfValidInput = (!isNaN(Number(newInputValue)) || newInputValue == '-') && inputValue.length < 12
-    const conditionIfBackspace = inputValue.length > newInputValue.length
-    if (conditionIfValidInput || conditionIfBackspace) {
-      setInputValue(newInputValue)
-    }
-  }, [])
+  useEffect(() => {
+    if (prevKey == 'Backspace') setInputValue(p => p.slice(0, p.length - 1))
+    else if (prevKey == '-' && !inputValue) setInputValue(p => '-')
+    else inputHandler(null, inputValue + prevKey)
+  }, [prevKey, trigger])
+
+  const inputHandler = useCallback(
+    (e: ChangeEvent<HTMLInputElement> | null, newStringByMobileKeyboard?: string) => {
+      const newInputValue = e ? e.target.value : (newStringByMobileKeyboard as string)
+      const answerLength = String(correctAnswer).length
+      const conditionIfValidInput =
+        (!isNaN(Number(newInputValue)) || newInputValue == '-') &&
+        ((correctAnswer <= 0 && inputValue.length <= answerLength + 2) || (correctAnswer > 0 && inputValue.length <= answerLength + 1))
+      const conditionIfBackspace = inputValue.length > newInputValue.length
+      if (conditionIfValidInput || conditionIfBackspace) {
+        setInputValue(newInputValue)
+      }
+    },
+    [inputValue, prevKey]
+  )
 
   const submitEquation = useCallback(
     ({ isTruthy }: { isTruthy: boolean }) => {
@@ -60,7 +76,7 @@ const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation 
   return !isAnimation ? (
     <>
       <div className={`${mathFont.className} text-5xl w-full vsm:w-[92%] vsm:mx-auto`}>{equation}?</div>
-      <div className="pt-12">
+      <div className="pt-12 sm:pb-2 sm:pt-2">
         <input
           value={inputValue}
           onChange={inputHandler}
