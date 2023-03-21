@@ -7,6 +7,7 @@ import ButtonsLanguages from '@/app/components/Buttons/buttons'
 import { Skeleton } from '@mui/material'
 import StyledWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
+import IndexButton from '@/app/components/Guides/IndexButton'
 
 interface IProps {
   id: string | undefined
@@ -20,16 +21,13 @@ const Component: FC<IProps> = ({ id }) => {
       <TopPageLoader />
       <div className="flex justify-evenly text-3xl lg:flex-col lg:items-center sm:gap-y-0 gap-x-10 gap-5">
         <Link href="/solve" className="w-[90%]">
-          <StyledWrapper
-            data-testid="solve_button_style"
-            className="text-center shadow-lg shadow-green-500/100 mt-10 text-green-500 hover:shadow-red-500/100 hover:text-red-500 font-extrabold border-current">
+          <IndexButton testid="solve_button_style" className="shadow-green-500/100 text-green-500">
             {language.solve}
-          </StyledWrapper>
+          </IndexButton>
         </Link>
         <UserButton id={id} />
       </div>
     </>
   )
 }
-
 export default Component

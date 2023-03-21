@@ -1,10 +1,6 @@
 'use client'
 import styled from '@emotion/styled'
 
-interface IProps {
-  children: React.ReactNode
-  classes: string
-}
 const StyledWrapper = styled.div`
   cursor: pointer;
   width: 100%;
