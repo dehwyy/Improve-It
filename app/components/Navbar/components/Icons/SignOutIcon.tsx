@@ -12,8 +12,12 @@ interface IProps {
 const SignOutIcon: FC<IProps> = ({ userId, idx, isGrowable }) => {
   return userId ? (
     <NavItemWrapper text="Sign out" idx={idx} isGrowable={isGrowable}>
-      <a onClick={e => e.preventDefault()}>
-        <SignOut fontSize="large" onClick={() => signOut()} sx={{ cursor: 'pointer' }} />
+      <a
+        onClick={e => {
+          e.preventDefault()
+          signOut().then()
+        }}>
+        <SignOut fontSize="large" sx={{ cursor: 'pointer' }} />
       </a>
     </NavItemWrapper>
   ) : (

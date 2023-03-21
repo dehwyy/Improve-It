@@ -14,7 +14,7 @@ const ButtonStyledWrapper = ({ children, testid }: { children: React.ReactNode; 
   return (
     <StyleWrapper
       data-testid={testid}
-      className="hover:shadow-red-500/100 hover:text-red-500 shadow-blue-500/100 shadow-lg mt-10 text-blue-500 font-extrabold border-current">
+      className="text-center hover:shadow-red-500/100 hover:text-red-500 shadow-blue-500/100 shadow-lg mt-10 text-blue-500 font-extrabold border-current">
       {children}
     </StyleWrapper>
   )
