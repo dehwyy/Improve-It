@@ -17,6 +17,7 @@ const LeaderboardUser: FC<IProps> = ({ answered, correctAnswered, id, image, nam
   return (
     <Link href={`/user/${id}`} className="cursor-pointer">
       <div
+        data-testid="leaderboard-item"
         className={`${
           currentUserImage === image
             ? 'border-green-500  shadow-green-500/100 text-green-500'
