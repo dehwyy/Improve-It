@@ -2,13 +2,8 @@ import { Skeleton } from '@mui/material'
 
 const SkeletonTemplate = () => {
   return (
-    <div>
-      <Skeleton variant="text" sx={{ fontSize: '3.75rem' }} />
-      <Skeleton variant="rectangular" height={160} />
-      <br />
-      <Skeleton variant="rectangular" height={160} />
-      <br />
-      <Skeleton variant="rectangular" height={160} />
+    <div className="mt-8" data-testid="guide_block">
+      <Skeleton variant="text" className="text-6xl sm:text-5xl text-center pb-5 font-extrabold sm:leading-[1.2]" />
     </div>
   )
 }
