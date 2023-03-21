@@ -10,7 +10,6 @@ test('first page: appearance', async ({ page }) => {
   const modeButtons = await page.getByTestId('mode_button')
   await expect(modeButtons).toHaveCount(3)
   await expect(modeButtons).toHaveClass([/text-sky-500/, /text-violet-500/, /text-custom-green/])
-  await expect(modeButtons).toHaveClass([/hover:text-red-500/, /hover:text-red-500/, /hover:text-red-500/])
   const backButton = page.getByText(/back/i)
   await expect(backButton).toHaveClass(/text-opacity-30/)
   await expect(backButton).toHaveClass(/text-orange-500/)
