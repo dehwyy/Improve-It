@@ -4,6 +4,7 @@ import SuccessAnimation from '@/app/solve/play/components/components/SuccessAnim
 import { Gothic_A1 } from '@next/font/google'
 import { useInputStore } from '@/app/utils/store/inputStore'
 import { shallow } from 'zustand/shallow'
+import { useMediaQuery } from '@mui/material'
 
 const mathFont = Gothic_A1({
   subsets: ['latin'],
@@ -66,22 +67,22 @@ const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation,
     },
     [startTime, idx]
   )
-
   const keyupHandler = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') submitEquation({ isTruthy: false })
     },
     [startTime, idx]
   )
+  const isMobile = useMediaQuery('(max-width:639px)')
   return !isAnimation ? (
     <>
       <div className={`${mathFont.className} text-5xl w-full vsm:w-[92%] vsm:mx-auto`}>{equation}?</div>
-      <div className="pt-12 sm:pb-2 sm:pt-2">
+      <div className="pt-12 sm:pb-2 sm:pt-2 my-5">
         <input
           value={inputValue}
           onChange={inputHandler}
           onKeyUp={keyupHandler}
-          autoFocus={true}
+          autoFocus={!isMobile}
           className="border-0 max-w-[95%] mx-auto bg-transparent focus-visible:outline-0 text-8xl premd:text-6xl vsm:text-[2.8rem] text-center w-full"
         />
       </div>

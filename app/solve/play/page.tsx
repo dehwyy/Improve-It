@@ -35,7 +35,7 @@ const Page = () => {
   if (window == undefined) return <></>
   if (!difficulty || !count || !mode || (mode == 'Variable' && (difficulty == 'Impossible' || difficulty == 'Hard'))) return <Redirect />
   return currentEquation || !count ? (
-    <div className="pt-10 w-[80%] sm:w-[92%] vsm:w-full mx-auto text-center text-white">
+    <div className="pt-10 sm:pt-0 w-[80%] sm:w-[92%] vsm:w-full mx-auto text-center text-white">
       <SingleEquation
         setAnimation={setAnimation}
         isAnimation={isAnimation}
