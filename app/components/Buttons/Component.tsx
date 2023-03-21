@@ -18,7 +18,7 @@ const Component: FC<IProps> = ({ id }) => {
   return (
     <>
       <TopPageLoader />
-      <div className="flex justify-evenly pt-16 text-3xl lg:flex-col lg:items-center gap-x-10 gap-5">
+      <div className="flex justify-evenly text-3xl lg:flex-col lg:items-center sm:gap-y-0 gap-x-10 gap-5">
         <Link href="/solve" className="w-[90%]">
           <StyledWrapper
             data-testid="solve_button_style"

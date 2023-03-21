@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "playwright test && vitest __tests__/unit",
     "test:unit": "vitest __tests__/unit",
-    "test:e2e": "playwright"
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
