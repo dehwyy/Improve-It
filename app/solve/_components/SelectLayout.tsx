@@ -35,7 +35,7 @@ const SettingContainer: React.FC<IProps> = ({ children, setStep, step }) => {
   return (
     <div className="pt-7">
       {children}
-      <div className="pt-16 flex gap-2 gap-y-4 justify-between sm:flex-col sm:w-full">
+      <div className="pt-16 flex gap-2 gap-y-4 justify-between sm:flex-col-reverse sm:w-full">
         <div
           onClick={backHandler}
           className={`${
