@@ -71,6 +71,9 @@ export default defineConfig({
     ? {
         command: 'npm run dev',
         port: 3000,
+        env: {
+          DATABASE_URL: process.env.DATABASE_URL as string,
+        },
       }
     : undefined,
 })
