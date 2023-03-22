@@ -8,9 +8,10 @@ interface IProps {
 const AnswersFull = ({ answers }: IProps) => {
   return (
     <div className="flex flex-col gap-y-3">
-      {answers.map(answer => (
+      {answers.map((answer, i) => (
         <StyleWrapper
-          style={{ padding: '7px' }}
+          key={i}
+          style={{ padding: '7px', cursor: 'default' }}
           className={`${answer.isCorrect ? 'text-green-500 shadow-green-500' : 'text-red-500 shadow-red-500'} shadow-lg border-current`}>
           {(answer.timeMs / 1000).toFixed(2)}s
         </StyleWrapper>

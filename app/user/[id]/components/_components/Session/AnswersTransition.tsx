@@ -21,18 +21,20 @@ const AnswersTransition = ({ children, full }: IProps) => {
   return (
     <>
       {children}
-      <Collapse in={isOpen}>{full}</Collapse>
+      <Collapse in={isOpen} className="px-5">
+        {full}
+      </Collapse>
       {isShowButtonVisible && (
         <StyleWrapper
           className="text-teal-500 shadow-teal-500 border-current shadow-lg mt-[-1.25rem]"
           style={{ padding: '10px' }}
           onClick={() => setState(true)}>
-          detailed info...
+          Detailed scores
         </StyleWrapper>
       )}
       {isCloseButtonVisible && (
         <StyleWrapper className="text-teal-500 shadow-teal-500 border-current shadow-lg" style={{ padding: '10px' }} onClick={() => setState(false)}>
-          close
+          Close
         </StyleWrapper>
       )}
     </>

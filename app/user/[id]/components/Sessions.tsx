@@ -74,8 +74,8 @@ const { sessions } = {
 const Sessions = () => {
   return (
     <div className="flex flex-col gap-y-7 w-5/6 md:w-full mx-auto">
-      {sessions.map(session => (
-        <StyleWrapper className="text-blue-500 shadow-blue-500 shadow-lg font-extrabold border-current">
+      {sessions.map((session, i) => (
+        <StyleWrapper key={i} style={{ cursor: 'default' }} className="text-blue-500 shadow-blue-500 shadow-lg font-extrabold border-current">
           <div className="text-white w-full">
             <Header day={session.day} month={session.month} year={session.year} time={session.time} isSinglePlayer={session.isSinglePlayer} />
             <div className="w-full grid grid-cols-2 lg:flex md:flex-col-reverse lg:gap-x-5 text-xl gap-y-8 py-5">
