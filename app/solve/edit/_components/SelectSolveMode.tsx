@@ -1,8 +1,8 @@
-import { Modes } from '../../../types/export'
 import { useMemo } from 'react'
-import SettingItem from '@/app/solve/_components/_components/SettingItem'
+import SettingItem from '@/app/solve/edit/_components/__components/SettingItem'
 import { useEquationSettingsStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
+import { Modes } from '@/types/export'
 
 const SelectSolveMode = () => {
   const [currentMode, editStore] = useEquationSettingsStore(state => [state.mode, state.setEquationSettings], shallow)

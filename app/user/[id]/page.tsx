@@ -19,7 +19,7 @@ const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
           <UserImage image={data?.image} name={data?.name} />
           <UserInfoBlock name={data?.name as string} correct={data?.correctAnswered} total={data?.answered} />
         </div>
-        <Sessions />
+        <Sessions userId={data?.id as string} />
       </div>
     </PageWrapper>
   )

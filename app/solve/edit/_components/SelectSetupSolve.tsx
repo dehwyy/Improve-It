@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import SettingItem from '@/app/solve/_components/_components/SettingItem'
+import SettingItem from '@/app/solve/edit/_components/__components/SettingItem'
 import { useEquationSettingsStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
-import { Difficulties } from '../../../types/export'
+import { Difficulties } from '../../../../types/export'
 
 const SelectSetupSolve = () => {
   const [currentDifficulty, currentCount, editStore] = useEquationSettingsStore(

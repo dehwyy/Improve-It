@@ -8,3 +8,4 @@ interface EquationDiffs {
 }
 
 type InputKey = number | '-' | 'Backspace'
+type SessionWinner = string | 'bot' | null

@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { Collapse } from '@mui/material'
 import StyleWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
-import styled from '@emotion/styled'
 interface IProps {
   children: React.ReactNode
   full: React.ReactNode
