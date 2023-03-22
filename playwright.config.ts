@@ -1,7 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 import { config } from 'dotenv'
-import path from 'path'
-config({ path: path.resolve(__dirname, '.env') })
+config()
 export default defineConfig({
   testDir: './__tests__/e2e',
   /* Maximum time one test can run for. */
