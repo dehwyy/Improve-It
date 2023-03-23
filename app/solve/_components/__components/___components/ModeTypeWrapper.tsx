@@ -4,11 +4,17 @@ import { PlayerModes } from '@/types/export'
 interface IProps {
   children: React.ReactNode
   mode: PlayerModes
+  onClick: () => void
 }
-const ModeTypeWrapper = ({ children, mode }: IProps) => {
+const ModeTypeWrapper = ({ children, mode, onClick }: IProps) => {
   const setGameType = useGameTypeStore(state => state.setGameType)
   return (
-    <div onClick={() => setGameType(mode)} className="relative w-full flex flex-col items-center">
+    <div
+      onClick={() => {
+        setGameType(mode)
+        onClick()
+      }}
+      className="relative w-full flex flex-col items-center">
       {children}
     </div>
   )

@@ -20,7 +20,7 @@ const Singleplayer = ({ gameType }: IProps) => {
         <p className="text-3xl text-center">Solo practice mode.</p>
         <p className="opacity-70 text-center mt-3">Want to improve your mental calculation? Become stronger at math? This mode is for you.</p>
       </TextWrapper>
-      <TextUrl gameType={gameType} />
+      <TextUrl gameType={gameType} url="/solve/edit" />
     </ModeTypeWrapper>
   )
 }

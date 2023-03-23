@@ -17,7 +17,7 @@ const SelectSetupSolve = () => {
   }, [])
   return (
     <>
-      <h2 className="text-center text-5xl text-white font-extrabold pb-7 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-red-500">
+      <h2 className="text-center text-5xl font-extrabold pb-7 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-red-500">
         Mode Settings
       </h2>
       <h3 className="text-center text-3xl opacity-80 text-white font-bold pb-4">Difficulty</h3>

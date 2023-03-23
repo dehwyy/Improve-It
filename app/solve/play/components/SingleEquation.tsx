@@ -5,6 +5,8 @@ import { Gothic_A1 } from '@next/font/google'
 import { useInputStore } from '@/app/utils/store/inputStore'
 import { shallow } from 'zustand/shallow'
 import { useMediaQuery } from '@mui/material'
+import { useGameTypeStore } from '@/app/utils/store/gameTypeStore'
+import Participants from '@/app/solve/play/components/components/participants'
 
 const mathFont = Gothic_A1({
   subsets: ['latin'],
@@ -22,14 +24,15 @@ interface IProps {
 
 const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation, setAnimation, isAnimation }) => {
   const setAnswerState = useEquationStore(state => state.setAnswer)
+  const selectedGameType = useGameTypeStore(state => state.gameType)
   const [prevKey, trigger] = useInputStore(state => [state.previousKey, state.trigger], shallow)
   const [startTime, setStartTime] = useState(Date.now())
   const [inputValue, setInputValue] = useState<string>('')
   const [isTruthy, setTruthy] = useState(false)
+
   useEffect(() => {
     if (correctAnswer === Number(inputValue)) submitEquation({ isTruthy: true })
   }, [inputValue])
-
   useEffect(() => {
     if (prevKey == 'Backspace') setInputValue(p => p.slice(0, p.length - 1))
     else if (prevKey == '-' && !inputValue) setInputValue(p => '-')
@@ -51,7 +54,6 @@ const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation,
     },
     [inputValue, prevKey]
   )
-
   const submitEquation = useCallback(
     ({ isTruthy }: { isTruthy: boolean }) => {
       setAnswerState({ isTruthy, startTimeMs: startTime, idx })
@@ -77,6 +79,7 @@ const SingleEquation: FC<IProps> = ({ setNextPage, idx, correctAnswer, equation,
   const isMobile = useMediaQuery('(max-width:639px)')
   return !isAnimation ? (
     <>
+      {selectedGameType != 'Solo' && <Participants />}
       <div className={`${mathFont.className} text-5xl w-full vsm:w-[92%] vsm:mx-auto`}>{equation}?</div>
       <div className="pt-12 sm:pb-2 sm:pt-2 my-5">
         <input

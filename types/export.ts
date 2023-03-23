@@ -17,6 +17,12 @@ export enum PlayerModes {
   Withbot = 'With Bot',
 }
 
+export enum BotDifficulties {
+  Noob = 'Noob',
+  Mid = 'Mid',
+  Pro = 'Pro',
+}
+type PlayerId = string | 'bot'
 interface SessionRoom {
   sessionId: string
   difficulty: Difficulties
@@ -29,17 +35,13 @@ interface SessionRoom {
   playerMode: PlayerModes
   winner: SessionWinner
   participants: {
-    playerId: string | 'bot'
+    playerId: PlayerId
     playerTimeMsSpend: string
-    answers: {
-      isCorrect: boolean
-      timeMs: number
-    }[]
   }[]
-}
-
-interface TempUser {
-  Sessions: SessionRoom[]
+  answers: {
+    playerId: PlayerId
+    timeMs: number
+  }[]
 }
 
 export interface Session {

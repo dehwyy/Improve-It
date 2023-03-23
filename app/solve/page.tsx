@@ -1,11 +1,12 @@
-'use client'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import SelectGameType from '@/app/solve/_components/SelectGameType'
+import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 
-const Page = () => {
+const Page = async () => {
+  const user = await getUserNotById()
   return (
     <PageWrapper classes="pb-24">
-      <SelectGameType />
+      <SelectGameType userId={user?.id as string} />
     </PageWrapper>
   )
 }
