@@ -5,15 +5,16 @@ import Image from 'next/image'
 import TextUrl from '@/app/solve/_components/__components/___components/TextUrl'
 import ImagesWrapper from '@/app/solve/_components/__components/___components/ImagesWrapper'
 import TextWrapper from '@/app/solve/_components/__components/___components/TextWrapper'
+import InDevelopment from '@/app/components/UI/Global/InDevelopment'
+import ModeTypeWrapper from '@/app/solve/_components/__components/___components/ModeTypeWrapper'
 
 interface IProps {
   gameType: PlayerModes
 }
 
 const Multiplayer = ({ gameType }: IProps) => {
-  const setGameType = useGameTypeStore(state => state.setGameType)
   return (
-    <div onClick={() => setGameType(gameType)} className="w-full flex flex-col items-center">
+    <ModeTypeWrapper mode={gameType}>
       <ImagesWrapper>
         <Image src="/images/chad.png" alt="blueface" width="200" height="200" className="rounded" />
       </ImagesWrapper>
@@ -22,7 +23,8 @@ const Multiplayer = ({ gameType }: IProps) => {
         <p className="opacity-70 text-center mt-3">Wanna chill with friends or prove your superiority? This mode was made to these</p>
       </TextWrapper>
       <TextUrl gameType={gameType} />
-    </div>
+      <InDevelopment />
+    </ModeTypeWrapper>
   )
 }
 

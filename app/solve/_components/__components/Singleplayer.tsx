@@ -1,19 +1,18 @@
 import { useGameTypeStore } from '@/app/utils/store/gameTypeStore'
-import { shallow } from 'zustand/shallow'
 import { PlayerModes } from '@/types/export'
 import ImagesWrapper from '@/app/solve/_components/__components/___components/ImagesWrapper'
 import Image from 'next/image'
 import TextUrl from '@/app/solve/_components/__components/___components/TextUrl'
 import TextWrapper from '@/app/solve/_components/__components/___components/TextWrapper'
+import ModeTypeWrapper from '@/app/solve/_components/__components/___components/ModeTypeWrapper'
 
 interface IProps {
   gameType: PlayerModes
 }
 
-const Multiplayer = ({ gameType }: IProps) => {
-  const setGameType = useGameTypeStore(state => state.setGameType)
+const Singleplayer = ({ gameType }: IProps) => {
   return (
-    <div onClick={() => setGameType(gameType)} className="w-full flex flex-col items-center">
+    <ModeTypeWrapper mode={gameType}>
       <ImagesWrapper>
         <Image src="/images/blue.jpg" alt="blueface" width="200" height="200" className="rounded" />
       </ImagesWrapper>
@@ -22,8 +21,8 @@ const Multiplayer = ({ gameType }: IProps) => {
         <p className="opacity-70 text-center mt-3">Want to improve your mental calculation? Become stronger at math? This mode is for you.</p>
       </TextWrapper>
       <TextUrl gameType={gameType} />
-    </div>
+    </ModeTypeWrapper>
   )
 }
 
-export default Multiplayer
+export default Singleplayer
