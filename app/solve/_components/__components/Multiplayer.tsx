@@ -8,10 +8,10 @@ import ModeTypeWrapper from '@/app/solve/_components/__components/___components/
 
 interface IProps {
   gameType: PlayerModes
-  onClick: () => void
+  userId: string
 }
 
-const Multiplayer = ({ gameType }: IProps) => {
+const Multiplayer = ({ gameType, userId }: IProps) => {
   return (
     <ModeTypeWrapper mode={gameType}>
       <ImagesWrapper>
@@ -21,7 +21,7 @@ const Multiplayer = ({ gameType }: IProps) => {
         <p className="text-3xl text-center">Multiplayer for 2+ player. The fastest player wins.</p>
         <p className="opacity-70 text-center mt-3">Wanna chill with friends or prove your superiority? This mode was made to these</p>
       </TextWrapper>
-      <TextUrl gameType={gameType} url="/solve/multi" onClick={() => {}} />
+      <TextUrl gameType={gameType} url="/solve/multi" userId={userId} />
       <InDevelopment />
     </ModeTypeWrapper>
   )

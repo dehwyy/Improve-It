@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import { start as startProgressbar, done as finishProgressbar } from 'nprogress'
 import StyledWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import Loader from '@/app/components/UI/Global/Loader'
+import { ApiRoutes } from '@/types/routes'
 
 const Statistics = () => {
   const router = useRouter()
@@ -21,7 +22,7 @@ const Statistics = () => {
   }, []) as number
   const submitResultHandler = useCallback(async () => {
     startProgressbar()
-    const response = await fetch('/api/update/count', {
+    const response = await fetch(ApiRoutes.updateUserCount, {
       method: 'POST',
       body: JSON.stringify({
         answeredCount: answers!.length,

@@ -1,3 +1,4 @@
+'use client'
 import { useGameTypeStore } from '@/app/utils/store/gameTypeStore'
 import { PlayerModes } from '@/types/export'
 
