@@ -22,7 +22,7 @@ const SelectGameType = ({ userId }: { userId: string }) => {
         <CustomDivider />
         <PlayWithBot gameType={PlayerModes.Withbot} onClick={() => setParticipants([{ id: 'bot' }, { id: userId }])} />
         <CustomDivider />
-        <Multiplayer gameType={PlayerModes.Multiplayer} />
+        <Multiplayer gameType={PlayerModes.Multiplayer} onClick={() => setParticipants([{ id: userId }])} />
       </div>
     </>
   )
