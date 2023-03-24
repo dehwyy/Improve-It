@@ -2,6 +2,7 @@ import useSWR, { Fetcher } from 'swr'
 import { ApiRoutes } from '@/types/routes'
 import SmallLoader from '@/app/components/UI/Global/SmallLoader'
 import { useRouter } from 'next/navigation'
+import { Skeleton } from '@mui/material'
 interface IProps {
   player: {
     id: string | ' bot'
@@ -19,7 +20,7 @@ const fetcher: Fetcher<{ user: UserInfo }, string> = route => fetch(route).then(
 const Participant = ({ player }: IProps) => {
   const router = useRouter()
   let { data, isLoading, error } = useSWR(`${ApiRoutes.getUserById}/${player.id}`, fetcher)
-  if (isLoading) return <SmallLoader />
+  if (isLoading) return <Skeleton height={50} />
   if (error || !data?.user) return <></>
   const { id, name, image } = data.user
   if (id) router.prefetch(`/user/${id}`)

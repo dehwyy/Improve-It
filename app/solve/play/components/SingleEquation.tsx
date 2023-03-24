@@ -7,6 +7,7 @@ import { shallow } from 'zustand/shallow'
 import { useMediaQuery } from '@mui/material'
 import { useGameParticipantsStore, useGameTypeStore } from '@/app/utils/store/gameTypeStore'
 import Participants from '@/app/solve/play/components/components/Participants'
+import useBotTime from '@/app/utils/hooks/useBotTime'
 
 const mathFont = Gothic_A1({
   subsets: ['latin'],
