@@ -1,17 +1,16 @@
 'use client'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import SolveStepper from '@/app/solve/edit/_components/SolveStepper'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import SelectSolveMode from '@/app/solve/edit/_components/SelectSolveMode'
 import SelectSetupSolve from '@/app/solve/edit/_components/SelectSetupSolve'
 import SelectLayout from '@/app/solve/edit/_components/SelectLayout'
 import SolveTransition from '@/app/solve/edit/_components/SolveTransition'
-import { useEquationStore } from '@/app/utils/store/equationStore'
+import useClearEquationStores from '@/app/utils/hooks/useClearEquationStores'
 
 const Page = () => {
   const [currentStep, setCurrentStep] = useState<number>(0)
-  const setEquationStore = useEquationStore(state => state.initializeAnswers)
-  useEffect(() => setEquationStore(0))
+  useClearEquationStores()
   return (
     <PageWrapper classes="mt-12 sm:mt-6">
       <SolveStepper currentStep={currentStep} />

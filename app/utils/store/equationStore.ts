@@ -14,12 +14,16 @@ interface ISetAnswer {
 }
 
 interface IEquationStore {
+  page: number
+  setPage: (page: number) => void
   answers: IAnswer[] | null
   setAnswer: (setAnswerArgs: ISetAnswer) => void
   initializeAnswers: (arrayLength: number) => void
 }
 
-export const useEquationStore = create<IEquationStore>(set => ({
+export const useEquationStore = create<IEquationStore>((set, get) => ({
+  page: 0,
+  setPage: page => set({ page }),
   answers: null,
   initializeAnswers: arrayLength => set({ answers: new Array(arrayLength).fill({ isTruthy: false, timeMs: 0 }) }),
   setAnswer: ({ isTruthy, startTimeMs, idx }) =>
@@ -31,6 +35,16 @@ export const useEquationStore = create<IEquationStore>(set => ({
         }
       })
     ),
+}))
+
+interface IEquationAnimationStore {
+  isAnimation: boolean
+  setAnimation: (state: boolean) => void
+}
+
+export const useEquationAnimationStore = create<IEquationAnimationStore>(set => ({
+  isAnimation: false,
+  setAnimation: state => set({ isAnimation: state }),
 }))
 
 interface IEquationSettings {

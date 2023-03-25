@@ -10,6 +10,7 @@ import { start as startProgressbar, done as finishProgressbar } from 'nprogress'
 import StyledWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import Loader from '@/app/components/UI/Global/Loader'
 import { ApiRoutes } from '@/types/routes'
+import useClearEquationStores from '@/app/utils/hooks/useClearEquationStores'
 
 const Statistics = () => {
   const router = useRouter()
