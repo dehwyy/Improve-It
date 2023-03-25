@@ -4,15 +4,15 @@ import type { IRandomModule } from '@/app/utils/tools/types'
 export default class BotPlusMinus implements IBotKind {
   constructor(private rand: IRandomModule) {}
   EasyEquation() {
-    return this.rand.getRandomWithCoefficientRounded(200, 2)
+    return this.rand.getRandomWithCoefficientRounded(10, 2)
   }
   MediumEquation() {
-    return this.rand.getRandomWithCoefficientRounded(200, 2)
+    return this.rand.getRandomWithCoefficientRounded(20, 2)
   }
   HardEquation() {
-    return this.rand.getRandomWithCoefficientRounded(200, 2)
+    return this.rand.getRandomWithCoefficientRounded(30, 2)
   }
   ImpossibleEquation() {
-    return this.rand.getRandomWithCoefficientRounded(200, 2)
+    return this.rand.getRandomWithCoefficientRounded(50, 2)
   }
 }

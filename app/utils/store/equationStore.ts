@@ -3,12 +3,12 @@ import produce from 'immer'
 import { Difficulties, Modes } from '@/types/export'
 
 interface IAnswer {
-  isTruthy: boolean
+  userId: string | 'bot' | null // null if not authed
   timeMs: number
 }
 
 interface ISetAnswer {
-  isTruthy: boolean
+  userId: string | 'bot' | null
   idx: number
   startTimeMs: number
 }
@@ -25,12 +25,12 @@ export const useEquationStore = create<IEquationStore>((set, get) => ({
   page: 0,
   setPage: page => set({ page }),
   answers: null,
-  initializeAnswers: arrayLength => set({ answers: new Array(arrayLength).fill({ isTruthy: false, timeMs: 0 }) }),
-  setAnswer: ({ isTruthy, startTimeMs, idx }) =>
+  initializeAnswers: arrayLength => set({ answers: new Array(arrayLength).fill({ timeMs: 0 }) }),
+  setAnswer: ({ userId, startTimeMs, idx }) =>
     set(
       produce<IEquationStore>(state => {
         if (state.answers) {
-          state.answers[idx].isTruthy = isTruthy
+          state.answers[idx].userId = userId
           state.answers[idx].timeMs = Date.now() - startTimeMs
         }
       })

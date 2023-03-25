@@ -4,6 +4,10 @@ import { Gothic_A1 } from '@next/font/google'
 import { useGameTypeStore } from '@/app/utils/store/gameTypeStore'
 import Participants from '@/app/solve/play/components/components/Participants'
 import useEquationKeyboard from '@/app/utils/hooks/useEquationKeyboard'
+import useLobby from '@/app/utils/hooks/useLobby'
+import useBotTime from '@/app/utils/hooks/useBotTime'
+import useTimeout from '@/app/utils/hooks/useTimeout'
+import { useEffect } from 'react'
 
 const mathFont = Gothic_A1({
   subsets: ['latin'],
@@ -18,7 +22,9 @@ interface IProps {
 const SingleEquation = ({ correctAnswer, equation }: IProps) => {
   const selectedGameType = useGameTypeStore(state => state.gameType)
   const isAnimation = useEquationAnimationStore(state => state.isAnimation)
-  const { inputValue, setInputValue, keyupHandler, isTruthy, isMobile } = useEquationKeyboard({ correctAnswer })
+  const { inputValue, setInputValue, keyupHandler, isMobile } = useEquationKeyboard({ correctAnswer })
+  const { isDone } = useBotTime()
+  const { currentUserId, answeredUserId } = useLobby({ inputValue, setInputValue, correctAnswer, botIsDone: isDone })
   return !isAnimation ? (
     <>
       {selectedGameType != 'Solo' && <Participants />}
@@ -34,7 +40,7 @@ const SingleEquation = ({ correctAnswer, equation }: IProps) => {
       </div>
     </>
   ) : (
-    <SuccessAnimation isSuccess={isTruthy} />
+    <SuccessAnimation isSuccess={currentUserId == answeredUserId} />
   )
 }
 

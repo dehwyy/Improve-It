@@ -11,15 +11,17 @@ import StyledWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import Loader from '@/app/components/UI/Global/Loader'
 import { ApiRoutes } from '@/types/routes'
 import useClearEquationStores from '@/app/utils/hooks/useClearEquationStores'
+import { useUserStore } from '@/app/utils/store/globalStore'
 
 const Statistics = () => {
   const router = useRouter()
+  const currentUserId = useUserStore(state => state.userId)
   const answers = useEquationStore(state => state.answers)
   useLayoutEffect(() => {
     answers && submitResultHandler()
   }, [])
   const correctAnswersCount = useMemo(() => {
-    return answers?.reduce((p, current) => (current.isTruthy ? p + 1 : p), 0)
+    return answers?.reduce((p, current) => (current.userId == currentUserId ? p + 1 : p), 0)
   }, []) as number
   const submitResultHandler = useCallback(async () => {
     startProgressbar()
@@ -42,7 +44,7 @@ const Statistics = () => {
   return answers ? (
     <StyledWrapper className="usm:px-0 my-12 shadow-lg shadow-blue-500/100 text-blue-500 border-current">
       <h2 className="text-5xl font-extrabold">Statistics</h2>
-      <div className="grid grid-cols-3 lg:grid-row-2 lg:grid-cols-2 sm:grid-cols-[40fr_23fr] gap-5 p-5 w-full pb-10 cursor-defaultg">
+      <div className="grid grid-cols-3 lg:grid-row-2 lg:grid-cols-2 usm:grid-cols-1 sm:grid-cols-[40fr_23fr] gap-5 p-5 w-full pb-10 cursor-default">
         <AnswersList />
         <OverallTime />
         <AverageTimePerAnswer />

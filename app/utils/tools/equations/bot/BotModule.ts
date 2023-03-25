@@ -29,11 +29,7 @@ function getBotDifficulty(diff: Difficulties, selectedBot: IBotKind) {
   }
 }
 
-export function getBotTime(mode: Modes, diff: Difficulties, count: number): number[] {
-  const times = [] as number[]
+export function getBotTime(mode: Modes, diff: Difficulties, count: number): () => number {
   const Bot = new BotFactory(getBotByMode(mode))
-  for (let i = 0; i < count; i++) {
-    times.push(getBotDifficulty(diff, Bot))
-  }
-  return times
+  return () => getBotDifficulty(diff, Bot)
 }

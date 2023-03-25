@@ -8,15 +8,14 @@ interface IArgs {
 }
 
 export default function useSubmit({ setInputValue, inputValue }: IArgs) {
-  const [setAnswerState, page, setPage] = useEquationStore(state => [state.setAnswer, state.page, state.setPage], shallow)
+  const [answers, setAnswerState, page, setPage] = useEquationStore(state => [state.answers, state.setAnswer, state.page, state.setPage], shallow)
   const setAnimation = useEquationAnimationStore(state => state.setAnimation)
-  const [isTruthy, setTruthy] = useState(false)
   const [startTime, setStartTime] = useState(Date.now())
 
   const submitEquation = useCallback(
-    ({ isTruthy }: { isTruthy: boolean }) => {
-      setAnswerState({ isTruthy, startTimeMs: startTime, idx: page })
-      setTruthy(isTruthy)
+    ({ userId }: { userId: string | 'bot' }) => {
+      if (answers && answers[page]?.userId) return null
+      setAnswerState({ userId, startTimeMs: startTime, idx: page })
       setTimeout(() => {
         setAnimation(true)
         setInputValue(null, '')
@@ -30,5 +29,5 @@ export default function useSubmit({ setInputValue, inputValue }: IArgs) {
     [startTime, page, inputValue]
   )
 
-  return { startTime, isTruthy, submitEquation }
+  return { submitEquation }
 }

@@ -1,6 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState } from 'react'
-import { useInputStore } from '@/app/utils/store/inputStore'
-import { shallow } from 'zustand/shallow'
+import { useEffect } from 'react'
 import useSubmit from '@/app/utils/hooks/useSubmit'
 import { useMediaQuery } from '@mui/material'
 import { useEquationStore } from '@/app/utils/store/equationStore'
@@ -15,15 +13,8 @@ export default function useEquationKeyboard({ correctAnswer }: IArgs) {
   const { setInputValue, inputValue, keyupHandler } = useNumberAndMobileKeyboard({
     maxInputLength: String(correctAnswer).length,
     enterDependencies: [page],
-    onEnterPress: () => submitEquation({ isTruthy: false }),
+    onEnterPress: () => {}, // NO enter for a while
   })
-  const { submitEquation, isTruthy } = useSubmit({ setInputValue, inputValue })
-  useEffect(() => {
-    if (correctAnswer === Number(inputValue)) {
-      submitEquation({ isTruthy: true })
-    }
-  }, [inputValue])
-
   const isMobile = useMediaQuery('(max-width:639px)')
-  return { inputValue, setInputValue, keyupHandler, isTruthy, isMobile }
+  return { inputValue, setInputValue, keyupHandler, isMobile }
 }

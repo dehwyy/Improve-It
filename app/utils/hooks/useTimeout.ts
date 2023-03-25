@@ -1,30 +1,24 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface IArgs {
-  callback: () => void
   time: number
 }
 
 interface ReturnParams {
-  cancel: () => void
   isDone: boolean
 }
 
-export default function useTimeout({ callback, time }: IArgs): ReturnParams {
+export default function useTimeout({ time }: IArgs): ReturnParams {
   const timeout = useRef<NodeJS.Timeout>()
   const [isDone, setDone] = useState(false)
   useEffect(() => {
+    setDone(false)
+    timeout.current && clearTimeout(timeout.current)
     timeout.current = setTimeout(() => {
-      callback()
       setDone(true)
     }, time)
-  })
-  const cancelTimeout = useCallback(() => {
-    callback()
-    setDone(false)
-  }, [])
+  }, [time])
   return {
-    cancel: cancelTimeout,
     isDone,
   }
 }

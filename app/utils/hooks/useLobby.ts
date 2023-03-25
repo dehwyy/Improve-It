@@ -1,34 +1,30 @@
-import useBotTime from '@/app/utils/hooks/useBotTime'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useEquationSettingsStore, useEquationStore } from '@/app/utils/store/equationStore'
+import { useEffect, useState } from 'react'
+import useSubmit from '@/app/utils/hooks/useSubmit'
+import { useUserStore } from '@/app/utils/store/globalStore'
 import { useGameTypeStore } from '@/app/utils/store/gameTypeStore'
-import { useStep } from 'usehooks-ts'
-import useTimeout from '@/app/utils/hooks/useTimeout'
 
-type Submit = ({ isTruthy }: { isTruthy: boolean }) => void
-
-export default function useLobby(submitEquation: Submit) {
+interface IArgs {
+  setInputValue: (e: null, value: string) => void
+  inputValue: string
+  correctAnswer: number
+  botIsDone?: boolean
+}
+export default function useLobby({ setInputValue, inputValue, correctAnswer, botIsDone }: IArgs) {
+  const userId = useUserStore(state => state.userId) as string
   const selectedGameType = useGameTypeStore(state => state.gameType)
-  const [difficulty, count, mode] = useEquationSettingsStore(state => [state.difficulty, state.count, state.mode])
-  const answers = useEquationStore(state => state.answers)
-  if (!mode || !difficulty || !count || !answers) return
-
-  const [step, { goToNextStep }] = useStep(count)
-  const botTimes = useBotTime(mode, difficulty, count)
-  const { isDone, cancel } = useTimeout({ callback: () => {}, time: botTimes[step - 1] })
-  const submitResult = useCallback(() => {
-    if (!answers[step - 1] && isDone) {
-      submitEquation({ isTruthy: false })
-      goToNextStep()
-    } else if (answers[step - 1] && !isDone) {
-      cancel()
-      goToNextStep()
-    }
-  }, [JSON.stringify(answers)])
-
+  const [answeredUserId, setAnsweredUserId] = useState<string | 'bot'>()
+  const { submitEquation } = useSubmit({ setInputValue, inputValue })
   useEffect(() => {
-    if (selectedGameType == 'With Bot') {
-      submitResult()
+    if (inputValue && Number(inputValue) === correctAnswer) {
+      submitEquation({ userId })
+      setAnsweredUserId(userId)
+    } else if (selectedGameType == 'With Bot' && botIsDone) {
+      const res = submitEquation({ userId: 'bot' })
+      res !== null && setAnsweredUserId('bot')
     }
-  }, [step, JSON.stringify(answers)])
+  }, [inputValue, botIsDone])
+  return {
+    currentUserId: userId,
+    answeredUserId,
+  }
 }

@@ -1,6 +1,6 @@
 'use client'
 import { memo, useEffect } from 'react'
-import { AvailableLanguages, useUserStore } from '@/app/utils/store/globalStore'
+import { AvailableLanguages, useUserSettingsStore, useUserStore } from '@/app/utils/store/globalStore'
 import { shallow } from 'zustand/shallow'
 import { useMediaQuery } from '@mui/material'
 import DefaultNavbar from '@/app/components/Navbar/DefaultNavbar'
@@ -11,8 +11,10 @@ interface IProps {
 }
 
 const Navbar = ({ userId }: IProps) => {
-  const [allLanguages, setLanguage] = useUserStore(state => [state.allLanguages, state.changeLang], shallow)
+  const [allLanguages, setLanguage] = useUserSettingsStore(state => [state.allLanguages, state.changeLang], shallow)
+  const setUserId = useUserStore(state => state.setUserId)
   useEffect(() => {
+    setUserId(userId)
     for (const language of navigator.languages) {
       if (allLanguages.includes(language as AvailableLanguages)) {
         setLanguage(language as AvailableLanguages)
