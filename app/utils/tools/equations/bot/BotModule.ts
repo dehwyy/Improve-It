@@ -1,17 +1,18 @@
 import BotFactory from '@/app/utils/tools/equations/bot/BotFactory'
-import { Difficulties, Modes } from '@/types/export'
-import BotPlusMinus from '@/app/utils/tools/equations/bot/bot-plusminus'
-import RandomModule from '@/app/utils/tools/RandomModule'
+import { BotDifficulties, Difficulties, Modes } from '@/types/export'
+import BotPlusMinus from '@/app/utils/tools/equations/bot/plusminus/export'
+import BotVariable from '@/app/utils/tools/equations/bot/variable/export'
+import BotMultiply from '@/app/utils/tools/equations/bot/multiply/export'
 import { IBotKind } from '@/app/utils/tools/equations/types'
 
-function getBotByMode(mode: Modes) {
+function getBotByMode(mode: Modes, botDifficulty: BotDifficulties) {
   switch (mode) {
     case Modes.plusminus:
-      return new BotPlusMinus(RandomModule)
+      return BotPlusMinus[botDifficulty]
     case Modes.variable:
-      return new BotPlusMinus(RandomModule)
+      return BotVariable[botDifficulty]
     case Modes.multiply:
-      return new BotPlusMinus(RandomModule)
+      return BotMultiply[botDifficulty]
   }
 }
 
@@ -29,7 +30,7 @@ function getBotDifficulty(diff: Difficulties, selectedBot: IBotKind) {
   }
 }
 
-export function getBotTime(mode: Modes, diff: Difficulties, count: number): () => number {
-  const Bot = new BotFactory(getBotByMode(mode))
+export function getBotTime(mode: Modes, diff: Difficulties, botDifficulty: BotDifficulties): () => number {
+  const Bot = new BotFactory(getBotByMode(mode, botDifficulty))
   return () => getBotDifficulty(diff, Bot)
 }

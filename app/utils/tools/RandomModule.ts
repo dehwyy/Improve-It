@@ -10,8 +10,8 @@ class RandomModule implements IRandomModule {
     return k * Math.floor(Math.random() * (max(first, second) - min(first, second)) + min(first, second))
   }
 
-  getRandomWithCoefficientRounded(coefficient: number, roundLength: number = 0) {
-    return Number((coefficient * Math.random()).toFixed(roundLength))
+  getRandomWithFloor(min: number, max: number, round: number = 1) {
+    return +(Math.random() * (max - min) + min).toFixed(round)
   }
 
   private getRandomRoundInRange(minNumber: number, maxNumber: number, k = 1): number {
