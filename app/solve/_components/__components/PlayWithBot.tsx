@@ -21,7 +21,7 @@ const PlayWithBot = ({ gameType, userId }: IProps) => {
         <p className="opacity-70 text-center mt-3">Want to compete against 200+iq players. Here it is. Bot with 300iq. Try to bit it!</p>
       </TextWrapper>
       <ErrorMustSignIn userId={userId}>
-        <TextUrl gameType={gameType} url={userId && '/solve/bot'} userId={userId} />
+        <TextUrl hasBot={true} gameType={gameType} url={userId && '/solve/bot'} userId={userId} />
       </ErrorMustSignIn>
     </ModeTypeWrapper>
   )

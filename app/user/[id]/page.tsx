@@ -12,6 +12,7 @@ interface IProps {
 
 const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
   const data = await getUserById(params.id)
+  console.log(data.playSessions)
   return (
     <PageWrapper classes="py-10 mx-2 mt-5">
       <div className="pl-10 md:pl-0 flex flex-col gap-y-10">

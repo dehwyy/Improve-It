@@ -2,7 +2,7 @@
 import AnswersList from '@/app/result/components/_components/AnswersList'
 import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
 import { useCallback, useLayoutEffect, useMemo } from 'react'
-import { useEquationStore } from '@/app/utils/store/equationStore'
+import { useEquationSettingsStore, useEquationStore } from '@/app/utils/store/equationStore'
 import OverallTime from '@/app/result/components/_components/OverallTime'
 import AverageTimePerAnswer from '@/app/result/components/_components/AverageTimePerAnswer'
 import { useRouter } from 'next/navigation'
@@ -12,11 +12,15 @@ import Loader from '@/app/components/UI/Global/Loader'
 import { ApiRoutes } from '@/types/routes'
 import useClearEquationStores from '@/app/utils/hooks/useClearEquationStores'
 import { useUserStore } from '@/app/utils/store/globalStore'
+import { useGameParticipantsStore, useGameTypeStore } from '@/app/utils/store/gameTypeStore'
 
 const Statistics = () => {
   const router = useRouter()
   const currentUserId = useUserStore(state => state.userId)
   const answers = useEquationStore(state => state.answers)
+  const players = useGameParticipantsStore(state => state.participants)
+  const playerMode = useGameTypeStore(state => state.gameType)
+  const [mode, difficulty, count] = useEquationSettingsStore(state => [state.mode, state.difficulty, state.count])
   useLayoutEffect(() => {
     answers && submitResultHandler()
   }, [])
@@ -32,6 +36,18 @@ const Statistics = () => {
         correctlyAnsweredCount: correctAnswersCount,
       }),
     })
+    const newResponse = await fetch(ApiRoutes.submitSession, {
+      method: 'Post',
+      body: JSON.stringify({
+        difficulty,
+        mode,
+        count,
+        answers,
+        playerMode,
+        players,
+      }),
+    })
+    console.log(newResponse)
     finishProgressbar()
     if (!response.ok) {
       return 'ERROR'

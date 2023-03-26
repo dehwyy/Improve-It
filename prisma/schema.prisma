@@ -47,7 +47,7 @@ model Player {
 model CorrectAnswer {
   id                     String     @id @default(cuid()) @unique()
   correctAnsweredUserId  String
-  correctAnsweredUser    User @relation(fields: [correctAnsweredUserId], references: [id])
+  correctAnsweredUser    User? @relation(fields: [correctAnsweredUserId], references: [id])
   sessionId  String
   session    PlaySession @relation(fields: [sessionId], references: [id])
   time       Int
