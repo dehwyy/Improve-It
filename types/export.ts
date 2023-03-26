@@ -1,7 +1,7 @@
 export enum Modes {
-  variable = 'Variable',
-  multiply = 'Multiply',
-  plusminus = 'Plus / Minus',
+  Variable = 'Variable',
+  Multiply = 'Multiply',
+  PlusMinus = 'Plus / Minus',
 }
 
 export enum Difficulties {
@@ -14,7 +14,7 @@ export enum Difficulties {
 export enum PlayerModes {
   Solo = 'Solo',
   Multiplayer = 'Multiplayer',
-  Withbot = 'With Bot',
+  WithBot = 'With Bot',
 }
 
 export enum BotDifficulties {
@@ -23,26 +23,6 @@ export enum BotDifficulties {
   Pro = 'Pro',
 }
 type PlayerId = string | 'bot'
-interface SessionRoom {
-  sessionId: string
-  difficulty: Difficulties
-  mode: Modes
-  count: number
-  day: number
-  month: number
-  year: number
-  time: string
-  playerMode: PlayerModes
-  winner: SessionWinner
-  participants: {
-    playerId: PlayerId
-    playerTimeMsSpend: string
-  }[]
-  answers: {
-    playerId: PlayerId
-    timeMs: number
-  }[]
-}
 
 export interface Session {
   difficulty: Difficulties

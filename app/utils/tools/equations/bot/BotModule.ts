@@ -7,11 +7,11 @@ import { IBotKind } from '@/app/utils/tools/equations/types'
 
 function getBotByMode(mode: Modes, botDifficulty: BotDifficulties) {
   switch (mode) {
-    case Modes.plusminus:
+    case Modes.PlusMinus:
       return BotPlusMinus[botDifficulty]
-    case Modes.variable:
+    case Modes.Variable:
       return BotVariable[botDifficulty]
-    case Modes.multiply:
+    case Modes.Multiply:
       return BotMultiply[botDifficulty]
   }
 }

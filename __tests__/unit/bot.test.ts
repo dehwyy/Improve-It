@@ -33,7 +33,7 @@ function createBot({ mode, botDifficulty }: ICreateBotArgs) {
 
 describe('Bot: Plusminus', () => {
   test('Plusminus: noob', () => {
-    const { easy, hard, medium, impossible } = createBot({ mode: Modes.plusminus, botDifficulty: BotDifficulties.Noob })
+    const { easy, hard, medium, impossible } = createBot({ mode: Modes.PlusMinus, botDifficulty: BotDifficulties.Noob })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 8, max: 15 })
       toBeInRange({ value: medium(), min: 17, max: 30 })
@@ -42,7 +42,7 @@ describe('Bot: Plusminus', () => {
     }
   })
   test('Plusminus: mid', () => {
-    const { easy, hard, medium, impossible } = createBot({ mode: Modes.plusminus, botDifficulty: BotDifficulties.Mid })
+    const { easy, hard, medium, impossible } = createBot({ mode: Modes.PlusMinus, botDifficulty: BotDifficulties.Mid })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 1, max: 3 })
       toBeInRange({ value: medium(), min: 3, max: 6 })
@@ -51,7 +51,7 @@ describe('Bot: Plusminus', () => {
     }
   })
   test('Plusminus: pro', () => {
-    const { easy, hard, medium, impossible } = createBot({ mode: Modes.plusminus, botDifficulty: BotDifficulties.Pro })
+    const { easy, hard, medium, impossible } = createBot({ mode: Modes.PlusMinus, botDifficulty: BotDifficulties.Pro })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 0.5, max: 2 })
       toBeInRange({ value: medium(), min: 2, max: 5 })
@@ -62,7 +62,7 @@ describe('Bot: Plusminus', () => {
 })
 describe('Bot: Multiply', () => {
   test('Plusminus: noob', () => {
-    const { easy, hard, medium, impossible } = createBot({ mode: Modes.multiply, botDifficulty: BotDifficulties.Noob })
+    const { easy, hard, medium, impossible } = createBot({ mode: Modes.Multiply, botDifficulty: BotDifficulties.Noob })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 10, max: 20 })
       toBeInRange({ value: medium(), min: 30, max: 60 })
@@ -71,7 +71,7 @@ describe('Bot: Multiply', () => {
     }
   })
   test('Plusminus: mid', () => {
-    const { easy, hard, medium, impossible } = createBot({ mode: Modes.multiply, botDifficulty: BotDifficulties.Mid })
+    const { easy, hard, medium, impossible } = createBot({ mode: Modes.Multiply, botDifficulty: BotDifficulties.Mid })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 1.5, max: 3.5 })
       toBeInRange({ value: medium(), min: 10, max: 20 })
@@ -80,7 +80,7 @@ describe('Bot: Multiply', () => {
     }
   })
   test('Plusminus: pro', () => {
-    const { easy, hard, medium, impossible } = createBot({ mode: Modes.multiply, botDifficulty: BotDifficulties.Pro })
+    const { easy, hard, medium, impossible } = createBot({ mode: Modes.Multiply, botDifficulty: BotDifficulties.Pro })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 0.7, max: 2.5 })
       toBeInRange({ value: medium(), min: 5, max: 12 })
@@ -91,21 +91,21 @@ describe('Bot: Multiply', () => {
 })
 describe('Bot: Variable', () => {
   test('Variable: noob', () => {
-    const { easy, medium } = createBot({ mode: Modes.variable, botDifficulty: BotDifficulties.Noob })
+    const { easy, medium } = createBot({ mode: Modes.Variable, botDifficulty: BotDifficulties.Noob })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 6, max: 15 })
       toBeInRange({ value: medium(), min: 8, max: 20 })
     }
   })
   test('Variable: mid', () => {
-    const { easy, medium } = createBot({ mode: Modes.variable, botDifficulty: BotDifficulties.Mid })
+    const { easy, medium } = createBot({ mode: Modes.Variable, botDifficulty: BotDifficulties.Mid })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 0.5, max: 3 })
       toBeInRange({ value: medium(), min: 1, max: 3.5 })
     }
   })
   test('Variable: pro', () => {
-    const { easy, medium } = createBot({ mode: Modes.variable, botDifficulty: BotDifficulties.Pro })
+    const { easy, medium } = createBot({ mode: Modes.Variable, botDifficulty: BotDifficulties.Pro })
     for (let i = 0; i < 20; i++) {
       toBeInRange({ value: easy(), min: 0.2, max: 2 })
       toBeInRange({ value: medium(), min: 1, max: 1.5 })

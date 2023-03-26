@@ -11,7 +11,7 @@ const SelectGameType = ({ userId }: { userId: string }) => {
       <div className="flex-col flex gap-12 w-7/12 mx-auto sm:w-full ">
         <Singleplayer gameType={PlayerModes.Solo} />
         <CustomDivider />
-        <PlayWithBot gameType={PlayerModes.Withbot} userId={userId} />
+        <PlayWithBot gameType={PlayerModes.WithBot} userId={userId} />
         <CustomDivider />
         <Multiplayer gameType={PlayerModes.Multiplayer} userId={userId} />
       </div>

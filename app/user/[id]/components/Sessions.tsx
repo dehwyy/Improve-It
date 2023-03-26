@@ -12,7 +12,7 @@ const sessions = [
     allTimeMs: 100200,
     count: 10,
     difficulty: Difficulties.Impossible,
-    playerMode: PlayerModes.Withbot,
+    playerMode: PlayerModes.WithBot,
     winner: 'clev6scus000gvizolbgtfujg',
     answers: [
       { isCorrect: true, timeMs: 11333 },

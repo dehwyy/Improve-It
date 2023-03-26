@@ -39,9 +39,9 @@ describe('Equations:kind tests', () => {
   }
 
   const equationAssertionHandler = (difficulty: Difficulties) => {
-    equationAssertionMaker(Modes.plusminus, difficulty)
-    equationAssertionMaker(Modes.multiply, difficulty)
-    equationAssertionMaker(Modes.variable, difficulty)
+    equationAssertionMaker(Modes.PlusMinus, difficulty)
+    equationAssertionMaker(Modes.Multiply, difficulty)
+    equationAssertionMaker(Modes.Variable, difficulty)
   }
   test('speed', () => {
     it('easy equation ', () => {
@@ -54,15 +54,15 @@ describe('Equations:kind tests', () => {
   })
 
   test('hard equation', () => {
-    equationAssertionMaker(Modes.plusminus, Difficulties.Hard)
-    equationAssertionMaker(Modes.multiply, Difficulties.Hard)
-    // equationAssertionMaker(Modes.variable, Difficulties.Hard) << Not working due to unimplemented
+    equationAssertionMaker(Modes.PlusMinus, Difficulties.Hard)
+    equationAssertionMaker(Modes.Multiply, Difficulties.Hard)
+    // equationAssertionMaker(Modes.Variable, Difficulties.Hard) << Not working due to unimplemented
   })
 
   test('impossible equation', () => {
-    equationAssertionMaker(Modes.plusminus, Difficulties.Impossible)
-    equationAssertionMaker(Modes.multiply, Difficulties.Impossible)
-    // equationAssertionMaker(Modes.variable, Difficulties.Impossible) << Not working due to unimplemented
+    equationAssertionMaker(Modes.PlusMinus, Difficulties.Impossible)
+    equationAssertionMaker(Modes.Multiply, Difficulties.Impossible)
+    // equationAssertionMaker(Modes.Variable, Difficulties.Impossible) << Not working due to unimplemented
   })
 })
 

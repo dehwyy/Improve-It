@@ -8,7 +8,7 @@ url      = env("DATABASE_URL")
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(cuid()) @unique
   name          String?
   email         String?   @unique
   emailVerified DateTime?
@@ -17,8 +17,61 @@ model User {
   sessions      Session[]
   correctAnswered Int @default(0)
   answered Int @default(0)
+  victorySessions PlaySession[]
+  playSessions  Player[]
+  correctAnswers  CorrectAnswer[]
 }
 
+model PlaySession {
+  id               String     @id @default(cuid()) @unique()
+  difficulty       Difficulty
+  mode             Modes
+  count            Int
+  playDate         DateTime   @default(now())
+  playerMode       PlayerModes
+  sessionWinnerId  String
+  sessionWinner    User? @relation(fields: [sessionWinnerId], references: [id])
+  players          Player[]
+  correctAnswers   CorrectAnswer[]
+}
+
+model Player {
+  sessionId  String
+  session    PlaySession @relation(fields: [sessionId], references: [id])
+  playerId   String
+  player     User @relation(fields: [playerId], references: [id])
+
+  @@unique([sessionId, playerId])
+}
+
+model CorrectAnswer {
+  id                     String     @id @default(cuid()) @unique()
+  correctAnsweredUserId  String
+  correctAnsweredUser    User @relation(fields: [correctAnsweredUserId], references: [id])
+  sessionId  String
+  session    PlaySession @relation(fields: [sessionId], references: [id])
+  time       Int
+}
+
+
+enum Difficulty {
+  Easy
+  Medium
+  Hard
+  Impossible
+}
+
+enum Modes {
+  Variable 
+  Multiply 
+  PlusMinus
+}
+
+enum PlayerModes {
+  Solo
+  Multiplayer
+  WithBot
+}
 
 model Account {
 id                 String  @id @default(cuid())
