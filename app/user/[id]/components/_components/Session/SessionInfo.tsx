@@ -1,11 +1,20 @@
 import StyleWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import { Difficulties, Modes } from '@/types/export'
+import { useMemo } from 'react'
 interface IProps {
-  mode: Modes
-  difficulty: Difficulties
-  time: number
+  mode: string
+  difficulty: string
+  answers: Array<{
+    correctAnsweredUserId: string | null
+    time: number
+  }>
 }
-const SessionInfo = ({ mode, difficulty, time }: IProps) => {
+const SessionInfo = ({ mode, difficulty, answers }: IProps) => {
+  const time = useMemo(() => {
+    return answers.reduce((p, c) => {
+      return p + c.time
+    }, 0)
+  }, [answers])
   return (
     <StyleWrapper
       className="sm:w-full mx-auto text-violet-500 shadow-violet-500 shadow-lg border-current gap-y-5"

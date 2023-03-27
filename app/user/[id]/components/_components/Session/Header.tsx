@@ -1,23 +1,20 @@
-import { PlayerModes } from '@/types/export'
-
 interface IProps {
-  day: number
-  month: number
-  year: number
-  time: string
-  playerMode: PlayerModes
+  time: Date
+  playerMode: string
   winner: SessionWinner
   userId: string
 }
-const Header = ({ day, month, year, time, playerMode, winner, userId }: IProps) => {
+const Header = ({ time, playerMode, winner, userId }: IProps) => {
   return (
     <h2 className="text-2xl text-center select-text">
-      {day}.{month}.{year} at {time} - {playerMode} {winner !== null && <WonAgainstBotText winner={winner} userId={userId} />}
+      <>
+        {time.toLocaleDateString()} at {time.toLocaleTimeString()}- {playerMode} {<WonAgainstBotText winner={winner} userId={userId} />}
+      </>
     </h2>
   )
 }
 
-const WonAgainstBotText = ({ userId, winner }: { userId: string; winner: string }) => {
+const WonAgainstBotText = ({ userId, winner }: { userId: string; winner: string | null }) => {
   const isSameIdAsPage = userId === winner
   return (
     <>

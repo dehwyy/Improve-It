@@ -2,13 +2,15 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '@/prisma/client'
 import { Difficulties, Modes, PlayerModes } from '@/types/export'
 
+type Answer = { userId: string | 'bot' | null; timeMs: number }
+
 interface IBody {
   difficulty: Difficulties
   mode: Modes
   count: number
   playerMode: PlayerModes
   players: { id: string | 'bot' }[]
-  answers: { userId: string | 'bot' | null; timeMs: number }[]
+  answers: Answer[]
 }
 
 function getPrismaModeByEnum(mode: Modes) {
@@ -45,34 +47,55 @@ function getWinnerFromSession(answers: { userId: string | 'bot' | null; timeMs: 
       maxUserId = ans.userId
     }
   }
-  return maxUserId
+  return maxUserId == 'bot' ? null : maxUserId
+}
+
+function getWinner({ answers }: { answers: Answer[] }) {
+  const sessionWinner = getWinnerFromSession(answers)
+  return !sessionWinner
+    ? {
+        sessionWinnerId: undefined,
+      }
+    : {
+        sessionWinner: {
+          connect: {
+            id: sessionWinner as string,
+          },
+        },
+      }
 }
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse<unknown>) {
-  const { difficulty, mode, count, answers, playerMode, players } = JSON.parse(req.body) as IBody
-  const a = await prisma.playSession.create({
-    data: {
-      difficulty,
-      mode: getPrismaModeByEnum(mode),
-      count,
-      playerMode: getPrismaGameTypeByEnum(playerMode),
-      sessionWinner: {
-        connect: {
-          id: getWinnerFromSession(answers),
+  try {
+    const { difficulty, mode, count, answers, playerMode, players } = JSON.parse(req.body) as IBody
+    console.log(players)
+    console.log(
+      'PLAYERs',
+      players.map(p => ({ playerId: p.id == 'bot' ? null : p.id }))
+    )
+    const a = await prisma.playSession.create({
+      data: {
+        difficulty,
+        mode: getPrismaModeByEnum(mode),
+        count,
+        playerMode: getPrismaGameTypeByEnum(playerMode),
+        ...getWinner({ answers }),
+        players: {
+          createMany: {
+            data: players.map(p => ({ playerId: p.id == 'bot' ? null : p.id })),
+          },
+        },
+        correctAnswers: {
+          createMany: {
+            data: answers.map(a => ({ correctAnsweredUserId: a.userId == 'bot' ? null : (a.userId as string), time: a.timeMs })),
+          },
         },
       },
-      players: {
-        createMany: {
-          data: players.map(p => ({ playerId: p.id })),
-        },
-      },
-      correctAnswers: {
-        createMany: {
-          data: answers.map(a => ({ correctAnsweredUserId: a.userId || 'bot', time: a.timeMs })),
-        },
-      },
-    },
-  })
-  console.log(a)
-  return res.status(201).json({ message: a })
+    })
+    console.log(a)
+    return res.status(201).json({ message: a })
+  } catch (e) {
+    console.log(e)
+    return res.status(400).json({ error: e })
+  }
 }

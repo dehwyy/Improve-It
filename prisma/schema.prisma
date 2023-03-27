@@ -29,24 +29,25 @@ model PlaySession {
   count            Int
   playDate         DateTime   @default(now())
   playerMode       PlayerModes
-  sessionWinnerId  String
+  sessionWinnerId  String?
   sessionWinner    User? @relation(fields: [sessionWinnerId], references: [id])
   players          Player[]
   correctAnswers   CorrectAnswer[]
 }
 
 model Player {
+  id         String @id @default(cuid())
   sessionId  String
   session    PlaySession @relation(fields: [sessionId], references: [id])
-  playerId   String
-  player     User @relation(fields: [playerId], references: [id])
+  playerId   String?
+  player     User? @relation(fields: [playerId], references: [id])
 
-  @@unique([sessionId, playerId])
+  @@unique([id, sessionId])
 }
 
 model CorrectAnswer {
   id                     String     @id @default(cuid()) @unique()
-  correctAnsweredUserId  String
+  correctAnsweredUserId  String?
   correctAnsweredUser    User? @relation(fields: [correctAnsweredUserId], references: [id])
   sessionId  String
   session    PlaySession @relation(fields: [sessionId], references: [id])
