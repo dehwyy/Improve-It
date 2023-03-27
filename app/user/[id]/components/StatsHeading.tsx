@@ -1,5 +1,5 @@
 'use client'
-import useFieldsByLanguage from '@/app/utils/hooks/useFieldsByLanguage'
+import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import AnswersLanguages from '@/app/components/UI/Global/Stats/answersLangs'
 import { Mulish } from '@next/font/google'
 

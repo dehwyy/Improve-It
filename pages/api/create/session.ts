@@ -69,11 +69,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse<u
   if (req.method === 'POST') {
     try {
       const { difficulty, mode, count, answers, playerMode, players } = JSON.parse(req.body) as IBody
-      console.log(players)
-      console.log(
-        'PLAYERs',
-        players.map(p => ({ playerId: p.id == 'bot' ? null : p.id }))
-      )
       await prisma.playSession.create({
         data: {
           difficulty,
@@ -95,7 +90,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse<u
       })
       return res.status(201).json({ message: 'success' })
     } catch (e) {
-      console.log(e)
       return res.status(400).json({ error: e })
     }
   }

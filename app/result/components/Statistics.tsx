@@ -8,7 +8,7 @@ import AverageTimePerAnswer from '@/app/result/components/_components/AverageTim
 import { useRouter } from 'next/navigation'
 import StyledWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import Loader from '@/app/components/UI/Global/Loader'
-import useSubmitLobby from '@/app/utils/hooks/useSubmitLobby'
+import useSubmitLobby from '@/app/utils/hooks/FetchHooks/useSubmitLobby'
 import useCorrectAnswersAfterSession from '@/app/utils/hooks/useCorrectAnswersAfterSession'
 
 const Statistics = () => {

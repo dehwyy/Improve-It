@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import useSubmit from '@/app/utils/hooks/useSubmit'
+import useSubmitEquation from '@/app/utils/hooks/EquationHooks/useSubmitEquation'
 import { useUserStore } from '@/app/utils/store/globalStore'
 import { useGameTypeStore } from '@/app/utils/store/gameTypeStore'
 
@@ -13,7 +13,7 @@ export default function useLobby({ setInputValue, inputValue, correctAnswer, bot
   const userId = useUserStore(state => state.userId) as string
   const selectedGameType = useGameTypeStore(state => state.gameType)
   const [answeredUserId, setAnsweredUserId] = useState<string | 'bot'>()
-  const { submitEquation } = useSubmit({ setInputValue, inputValue })
+  const { submitEquation } = useSubmitEquation({ setInputValue, inputValue })
   useEffect(() => {
     if (inputValue && Number(inputValue) === correctAnswer) {
       submitEquation({ userId })

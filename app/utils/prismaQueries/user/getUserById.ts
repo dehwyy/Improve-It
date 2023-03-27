@@ -11,6 +11,7 @@ export const getUserById = async (id: string) => {
           session: true,
         },
       },
+      correctAnswers: true,
     },
   })
   return user

@@ -4,7 +4,7 @@ import SingleEquation from '@/app/solve/play/components/SingleEquation'
 import Redirect from '@/app/solve/play/components/components/Redirect'
 import Loader from '@/app/components/UI/Global/Loader'
 import MobileKeyboard from '@/app/solve/play/components/MobileKeyboard'
-import useEquationGenerator from '@/app/utils/hooks/useEquationGenerator'
+import useEquationGenerator from '@/app/utils/hooks/EquationHooks/useEquationGenerator'
 
 const Page = () => {
   const isAnimation = useEquationAnimationStore(state => state.isAnimation)

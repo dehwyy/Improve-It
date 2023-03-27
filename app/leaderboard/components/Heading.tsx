@@ -1,6 +1,6 @@
 'use client'
 import { Mulish } from '@next/font/google'
-import useFieldsByLanguage from '@/app/utils/hooks/useFieldsByLanguage'
+import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import LeaderboardLanguages from '@/app/leaderboard/leaderboard'
 
 const h1Font = Mulish({

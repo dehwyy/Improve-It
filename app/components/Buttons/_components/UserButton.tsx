@@ -3,7 +3,7 @@ import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { FC } from 'react'
 import ButtonsLanguages from '@/app/components/Buttons/buttons'
-import useFieldsByLanguage from '@/app/utils/hooks/useFieldsByLanguage'
+import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import IndexButton from '@/app/components/Guides/IndexButton'
 
 interface IProps {

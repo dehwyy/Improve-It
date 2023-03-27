@@ -7,6 +7,9 @@ export const selectByCorrectAnswered = async (count: number = 5) => {
         correctAnswered: 'desc',
       },
     ],
+    include: {
+      correctAnswers: true,
+    },
     take: count,
   })
   return users

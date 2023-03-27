@@ -7,7 +7,7 @@ interface IArgs {
   inputValue: string
 }
 
-export default function useSubmit({ setInputValue, inputValue }: IArgs) {
+export default function useSubmitEquation({ setInputValue, inputValue }: IArgs) {
   const [answers, setAnswerState, page, setPage] = useEquationStore(state => [state.answers, state.setAnswer, state.page, state.setPage], shallow)
   const setAnimation = useEquationAnimationStore(state => state.setAnimation)
   const [startTime, setStartTime] = useState(Date.now())

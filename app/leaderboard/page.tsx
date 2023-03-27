@@ -20,7 +20,7 @@ const Page = async () => {
                 id={user.id}
                 name={user.name as string}
                 image={user.image as string}
-                correctAnswered={user.correctAnswered}
+                correctAnswered={user.correctAnswers.length}
                 answered={user.answered}
                 currentUserImage={currentUser?.user?.image}
               />
