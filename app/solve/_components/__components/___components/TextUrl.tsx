@@ -15,7 +15,7 @@ const TextUrl = ({ gameType, url, userId, hasBot }: IProps) => {
   return (
     <LinkWrapper url={url}>
       <div
-        onClick={() => setParticipants(hasBot ? [{ id: 'bot' }, { id: userId }] : [{ id: userId }])}
+        onClick={() => setParticipants(hasBot ? [{ id: userId }, { id: 'bot' }] : [{ id: userId }])}
         className="hover:text-red-500 text-blue-500 select-none p-5 w-full text-center transition-all duration-200">
         <span className="font-extrabold text-3xl usm:text-2xl cursor-pointer">Go {gameType}</span>
       </div>

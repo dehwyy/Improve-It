@@ -1,60 +1,24 @@
 'use client'
 import AnswersList from '@/app/result/components/_components/AnswersList'
 import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
-import { useCallback, useLayoutEffect, useMemo } from 'react'
-import { useEquationSettingsStore, useEquationStore } from '@/app/utils/store/equationStore'
+import { useLayoutEffect } from 'react'
+import { useEquationStore } from '@/app/utils/store/equationStore'
 import OverallTime from '@/app/result/components/_components/OverallTime'
 import AverageTimePerAnswer from '@/app/result/components/_components/AverageTimePerAnswer'
 import { useRouter } from 'next/navigation'
-import { start as startProgressbar, done as finishProgressbar } from 'nprogress'
 import StyledWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import Loader from '@/app/components/UI/Global/Loader'
-import { ApiRoutes } from '@/types/routes'
-import useClearEquationStores from '@/app/utils/hooks/useClearEquationStores'
-import { useUserStore } from '@/app/utils/store/globalStore'
-import { useGameParticipantsStore, useGameTypeStore } from '@/app/utils/store/gameTypeStore'
+import useSubmitLobby from '@/app/utils/hooks/useSubmitLobby'
+import useCorrectAnswersAfterSession from '@/app/utils/hooks/useCorrectAnswersAfterSession'
 
 const Statistics = () => {
   const router = useRouter()
-  const currentUserId = useUserStore(state => state.userId)
   const answers = useEquationStore(state => state.answers)
-  const players = useGameParticipantsStore(state => state.participants)
-  const playerMode = useGameTypeStore(state => state.gameType)
-  const [mode, difficulty, count] = useEquationSettingsStore(state => [state.mode, state.difficulty, state.count])
+  const correctAnswersCount = useCorrectAnswersAfterSession()
+  const { submitScore } = useSubmitLobby()
   useLayoutEffect(() => {
-    answers && submitResultHandler()
+    submitScore().then(() => {})
   }, [])
-  const correctAnswersCount = useMemo(() => {
-    return answers?.reduce((p, current) => (current.userId == currentUserId ? p + 1 : p), 0)
-  }, []) as number
-  const submitResultHandler = useCallback(async () => {
-    startProgressbar()
-    const response = await fetch(ApiRoutes.updateUserCount, {
-      method: 'POST',
-      body: JSON.stringify({
-        answeredCount: answers!.length,
-        correctlyAnsweredCount: correctAnswersCount,
-      }),
-    })
-    const newResponse = await fetch(ApiRoutes.submitSession, {
-      method: 'Post',
-      body: JSON.stringify({
-        difficulty,
-        mode,
-        count,
-        answers,
-        playerMode,
-        players,
-      }),
-    })
-    console.log(newResponse)
-    finishProgressbar()
-    if (!response.ok) {
-      return 'ERROR'
-    } else {
-      return 'OK'
-    }
-  }, [answers, correctAnswersCount])
   if (!answers) router.push('/solve')
 
   return answers ? (
