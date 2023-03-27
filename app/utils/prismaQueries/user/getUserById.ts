@@ -5,6 +5,13 @@ export const getUserById = async (id: string) => {
     where: {
       id,
     },
+    include: {
+      playSessions: {
+        include: {
+          session: true,
+        },
+      },
+    },
   })
   return user
 }

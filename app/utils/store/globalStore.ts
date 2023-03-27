@@ -11,7 +11,7 @@ interface IUserStore {
   changeLang: (lang: AvailableLanguages) => void
 }
 
-export const useUserStore = create<IUserStore>(set => ({
+export const useUserSettingsStore = create<IUserStore>(set => ({
   lang: '' as AvailableLanguages,
   allLanguages: (() => {
     // getting keys of enum AvailableLanguages
@@ -22,4 +22,14 @@ export const useUserStore = create<IUserStore>(set => ({
     return array
   })(),
   changeLang: newLang => set({ lang: newLang }),
+}))
+
+interface UserStore {
+  userId: string | null
+  setUserId: (userId: string | null) => void
+}
+
+export const useUserStore = create<UserStore>(set => ({
+  userId: null,
+  setUserId: userId => set({ userId }),
 }))

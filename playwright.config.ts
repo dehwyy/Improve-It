@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
+import { config } from 'dotenv'
+config()
 export default defineConfig({
   testDir: './__tests__/e2e',
   /* Maximum time one test can run for. */
@@ -71,6 +73,9 @@ export default defineConfig({
     ? {
         command: 'npm run dev',
         port: 3000,
+        env: {
+          DATABASE_URL: process.env.DATABASE_URL as string,
+        },
       }
     : undefined,
 })

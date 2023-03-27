@@ -1,5 +1,5 @@
 //@ts-nocheck
-import type { IRandomModule } from '@/app/utils/tools/equations/types'
+import type { IRandomModule } from '@/app/utils/tools/types'
 import EquationBaseHelper from '@/app/utils/tools/equations/helpers/EquationBaseHelper'
 
 // Should ALWAYS extend EquationBaseHelper and implement CUSTOM interface,

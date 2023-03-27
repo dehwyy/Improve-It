@@ -1,4 +1,5 @@
-import type { IPlusMinusHelper, IRandomModule } from '@/app/utils/tools/equations/types'
+import type { IPlusMinusHelper } from '@/app/utils/tools/equations/types'
+import type { IRandomModule } from '@/app/utils/tools/types'
 import { Signs } from '@/app/utils/tools/equations/types'
 import EquationBaseHelper from '@/app/utils/tools/equations/helpers/EquationBaseHelper'
 

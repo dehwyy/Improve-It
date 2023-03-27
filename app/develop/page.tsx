@@ -3,6 +3,7 @@ import Link from 'next/link'
 import GuideWrapper from '@/app/develop/guides/components/GuideWrapper'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
+import InDevelopment from '@/app/components/UI/Global/InDevelopment'
 
 const h13Font = Varela_Round({
   subsets: ['latin'],
@@ -39,6 +40,7 @@ const Page = () => {
               </li>
             </ol>
           </div>
+          <InDevelopment />
         </GuideWrapper>
       </PageWrapper>
     </>

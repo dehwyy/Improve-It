@@ -2,10 +2,6 @@ export enum Signs {
   plus = '+',
   minus = '-',
 }
-export interface IRandomModule {
-  getRandomInRange: (first: number, second: number, k?: number) => number
-  getRandomFromArray: <T, Nullable = T>(arr: T[]) => T | Nullable
-}
 // Every class of <EquationKind> must implement this interface
 export interface IEquationKind {
   EasyEquation: () => ReturnEquationT
@@ -13,8 +9,14 @@ export interface IEquationKind {
   HardEquation: () => ReturnEquationT
   ImpossibleEquation: () => ReturnEquationT
 }
-// It should return [<equation> as string, <equation result> as number]!
 export type ReturnEquationT = [string, number]
+// It should return [<equation> as string, <equation result> as number]!
+export interface IBotKind {
+  EasyEquation: () => number
+  MediumEquation: () => number
+  HardEquation: () => number
+  ImpossibleEquation: () => number
+}
 
 export interface IPlusMinusHelper extends IEquationBaseHelper {
   getRandomSign: () => Signs

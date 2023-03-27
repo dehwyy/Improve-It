@@ -1,4 +1,4 @@
-import { useUserStore } from '@/app/utils/store/globalStore'
+import { useUserSettingsStore } from '@/app/utils/store/globalStore'
 import { shallow } from 'zustand/shallow'
 import { Varela_Round } from '@next/font/google'
 import { useMediaQuery } from '@mui/material'
@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const LanguageSelector: React.FC<IProps> = ({ isWindowVisible }) => {
-  const [languages, setLanguage] = useUserStore(state => [state.allLanguages, state.changeLang], shallow)
+  const [languages, setLanguage] = useUserSettingsStore(state => [state.allLanguages, state.changeLang], shallow)
   const isPhone = useMediaQuery('(max-width:639px)')
   return (
     <div

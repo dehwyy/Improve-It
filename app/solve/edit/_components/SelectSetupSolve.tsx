@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import SettingItem from '@/app/solve/_components/_components/SettingItem'
+import SettingItem from '@/app/solve/edit/_components/__components/SettingItem'
 import { useEquationSettingsStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
-import { Difficulties } from '../../../types/export'
+import { Difficulties } from '../../../../types/export'
 
 const SelectSetupSolve = () => {
   const [currentDifficulty, currentCount, editStore] = useEquationSettingsStore(
@@ -17,7 +17,7 @@ const SelectSetupSolve = () => {
   }, [])
   return (
     <>
-      <h2 className="text-center text-5xl text-white font-extrabold pb-7 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-red-500">
+      <h2 className="text-center text-5xl font-extrabold pb-7 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-red-500">
         Mode Settings
       </h2>
       <h3 className="text-center text-3xl opacity-80 text-white font-bold pb-4">Difficulty</h3>

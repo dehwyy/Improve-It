@@ -3,7 +3,6 @@ import Navbar from '@/app/components/Navbar/Component'
 import Provider from '@/app/components/Providers'
 import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 import { FC } from 'react'
-import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
 
 interface IProps {
   children: React.ReactNode

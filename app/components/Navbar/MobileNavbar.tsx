@@ -28,11 +28,11 @@ const MobileNavbar = ({ userId }: IProps) => {
             <MenuIcon
               onClick={() => setExpanded(p => !p)}
               fontSize="large"
-              className={`transition-all text-[3rem] ${!isExpanded && 'bg-[#333333]'} rounded`}
+              className={`transition-all text-[3rem] ${!isExpanded && 'bg-[#333333]'} rounded mr-3`}
             />
           </div>
           <Slide in={isExpanded} direction="left" unmountOnExit mountOnEnter>
-            <div className="bg-gradient-to-r from-violet-500 to-violet-700 fixed bottom-0 top-0 pt-20 z-40 pr-0.5">
+            <div className="bg-gradient-to-r from-violet-500 to-violet-700 fixed bottom-0 top-0 pt-20 z-40 pr-3">
               <Icons userId={userId} isGrowable={isExpanded} />
             </div>
           </Slide>

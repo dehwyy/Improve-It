@@ -14,11 +14,11 @@ const Multiply = () => new MultiplyEquation(new EquationBaseHelper(RandomModule)
 
 function GetEquationFromMode(mode: Modes) {
   switch (mode) {
-    case Modes.plusminus:
+    case Modes.PlusMinus:
       return PlusMinus()
-    case Modes.variable:
+    case Modes.Variable:
       return Variable()
-    case Modes.multiply:
+    case Modes.Multiply:
       return Multiply()
   }
 }
