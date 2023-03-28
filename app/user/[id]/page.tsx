@@ -36,7 +36,7 @@ const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
           <UserImage image={data?.image} name={data?.name} />
           <UserInfoBlock name={data?.name as string} correct={data?.correctAnswers.length} total={data?.answered} />
         </div>
-        <VirtualScrollWrapper sessions={sessions.reverse() as unknown as ISession[]} userId={data?.id as string} />
+        {sessions.length && <VirtualScrollWrapper sessions={sessions.reverse() as unknown as ISession[]} userId={data?.id as string} />}
       </div>
     </PageWrapper>
   )
