@@ -1,25 +1,19 @@
 import { useEquationStore } from '@/app/utils/store/equationStore'
 import { useUserStore } from '@/app/utils/store/globalStore'
 import styled from '@emotion/styled'
-
-const PagesWrapper = styled.div`
-  margin: 0 auto;
-  justify-content: center;
-  display: grid;
-  place-items: center;
-  grid-template-columns: repeat(10, minmax(0, 26px));
-  padding-bottom: 3rem;
-  gap: 1.25rem;
+const Wrapper = styled.div<{ count?: number }>`
+  grid-template-columns: repeat(${props => ((props.count || 0) <= 15 ? props.count : '10')}, minmax(0, 26px));
 `
-
 const Pages = () => {
   const answers = useEquationStore(state => state.answers)
   return (
-    <PagesWrapper>
+    <Wrapper
+      count={answers?.length}
+      className="mx-auto justify-center grid place-items-center pb-12 gap-1 usm:mt-[-3.5rem] usm:grid-cols-7 usm:pr-16">
       {answers?.map((ans, i) => (
         <Page key={i} page={i} correctUser={ans.userId} />
       ))}
-    </PagesWrapper>
+    </Wrapper>
   )
 }
 // animation
@@ -36,7 +30,7 @@ const Page = ({ page, correctUser }: { page: number; correctUser: string | null 
           : page == currentPage
           ? 'bg-violet-500 animate-pulse'
           : 'bg-gray-500'
-      } border-2 border-[#222222] hover:animate-pulse rounded-full w-[26px] h-[26px]`}
+      } border-2  border-[#222222] hover:animate-pulse rounded-full w-[24px] h-[24px]`}
     />
   )
 }
