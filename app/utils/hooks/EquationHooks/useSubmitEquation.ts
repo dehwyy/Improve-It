@@ -3,8 +3,8 @@ import { useEquationAnimationStore, useEquationStore } from '@/app/utils/store/e
 import { shallow } from 'zustand/shallow'
 
 interface IArgs {
-  setInputValue: (e: null, newInputValue: string) => void
-  inputValue: string
+  setInputValue?: (e: null, newInputValue: string) => void
+  inputValue?: string
 }
 
 export default function useSubmitEquation({ setInputValue, inputValue }: IArgs) {
@@ -13,12 +13,12 @@ export default function useSubmitEquation({ setInputValue, inputValue }: IArgs) 
   const [startTime, setStartTime] = useState(Date.now())
 
   const submitEquation = useCallback(
-    ({ userId }: { userId: string | 'bot' }) => {
+    ({ userId }: { userId: string | 'bot' | null }) => {
       if (answers && answers[page]?.userId) return null
       setAnswerState({ userId, startTimeMs: startTime, idx: page })
       setTimeout(() => {
         setAnimation(true)
-        setInputValue(null, '')
+        setInputValue && setInputValue(null, '')
       }, 50)
       setTimeout(() => {
         setAnimation(false)
