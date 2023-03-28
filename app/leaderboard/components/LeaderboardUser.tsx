@@ -11,15 +11,15 @@ interface IProps {
   image: string
   correctAnswered: number
   answered: number
-  currentUserImage?: string | null
+  currentUserId: string | null
 }
-const LeaderboardUser: FC<IProps> = ({ answered, correctAnswered, id, image, name, currentUserImage }) => {
+const LeaderboardUser: FC<IProps> = ({ answered, correctAnswered, id, image, name, currentUserId }) => {
   return (
     <Link href={`/user/${id}`} className="cursor-pointer">
       <div
         data-testid="leaderboard-item"
         className={`${
-          currentUserImage === image
+          currentUserId === id
             ? 'border-green-500  shadow-green-500/100 text-green-500'
             : 'border-black border-current  shadow-blue-500/100 text-blue-500'
         }  select-none rounded-lg p-4 transition-all duration-500 bg-[#333333] shadow-lg border-2 hover:border-red-500 hover:text-red-500 hover:shadow-red-500/100 w-full`}>

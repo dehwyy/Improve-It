@@ -1,9 +1,12 @@
 import prisma from '@/prisma/client'
 import { NextApiRequest, NextApiResponse } from 'next'
 
+type Answer = { userId: string | 'bot' | null; timeMs: number }
+
 interface IBody {
   answeredCount: number
   userId: string
+  answers: Answer[]
 }
 
 interface IRes {
@@ -14,10 +17,10 @@ interface IRes {
 export default async function handle(req: NextApiRequest, res: NextApiResponse<IRes>) {
   if (req.method === 'POST') {
     try {
-      const { answeredCount, userId } = JSON.parse(req.body) as IBody
+      const { answeredCount, userId, answers } = JSON.parse(req.body) as IBody
       const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: { answered: true },
+        select: { answered: true, correctAnswers: true },
       })
       await prisma.user.update({
         where: {
@@ -25,6 +28,9 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse<I
         },
         data: {
           answered: (user?.answered || 0) + answeredCount,
+          answeredPercentage: Math.floor(
+            (((user?.correctAnswers.length || 0) + answers.map(a => a.userId == userId).length) / ((user?.answered || 0) + answeredCount)) * 100
+          ),
         },
       })
       return res.status(201).json({ message: 'success' })

@@ -1,12 +1,10 @@
 import prisma from '@/prisma/client'
 
-export const selectByCorrectAnswered = async (count: number = 10) => {
+export const selectByPercentage = async (count: number = 10) => {
   const users = await prisma.user.findMany({
     orderBy: [
       {
-        correctAnswers: {
-          _count: 'desc',
-        },
+        answeredPercentage: 'desc',
       },
     ],
     include: {
