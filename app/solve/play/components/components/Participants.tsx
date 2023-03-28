@@ -6,8 +6,8 @@ const Participants = () => {
   const participants = useGameParticipantsStore(state => state.participants)
   return participants ? (
     <div className="mt-[-2.5rem] mb-[2.5rem] flex flex-col gap-y-2">
-      {participants.map(player => (
-        <Participant player={player} />
+      {participants.map((player, i) => (
+        <Participant key={i} player={player} />
       ))}
     </div>
   ) : (
