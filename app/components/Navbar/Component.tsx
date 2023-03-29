@@ -5,6 +5,7 @@ import { shallow } from 'zustand/shallow'
 import { useMediaQuery } from '@mui/material'
 import DefaultNavbar from '@/app/components/Navbar/DefaultNavbar'
 import MobileNavbar from '@/app/components/Navbar/MobileNavbar'
+import { useRouter } from 'next/navigation'
 
 interface IProps {
   userId: string
@@ -21,8 +22,8 @@ const Navbar = ({ userId }: IProps) => {
       }
     }
   }, [])
-  const isPhone = useMediaQuery('(min-width:639px)')
-  return isPhone ? <DefaultNavbar userId={userId} /> : <MobileNavbar userId={userId} />
+  const isNotMobile = useMediaQuery('(min-width:639px)')
+  return isNotMobile ? <DefaultNavbar userId={userId} /> : <MobileNavbar userId={userId} />
 }
 
 export default memo(Navbar)

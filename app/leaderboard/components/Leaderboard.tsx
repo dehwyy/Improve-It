@@ -4,6 +4,7 @@ import LeaderboardSelectItem from '@/app/leaderboard/components/_components/Lead
 import Loader from '@/app/components/UI/Global/Loader'
 import { ILeaderboardUser, LeaderboardKey, LeaderboardType } from '@/types/export'
 import useLeaderboard from '@/app/utils/hooks/LocalHooks/useLeaderboard'
+import { useEffect } from 'react'
 
 interface IProps {
   tables: Record<LeaderboardType, ILeaderboardUser[]>
@@ -14,7 +15,7 @@ const Leaderboard = ({ tables }: IProps) => {
   return (
     <>
       <div className="grid grid-cols-6 my-5 gap-5 lg:flex lg:flex-col">
-        <div className="lg:col-span-6 col-span-4 sm:flex-col flex w-full justify-around bg-[#222222] p-5 rounded-md">
+        <div className="lg:col-span-6 col-span-4 sm:flex-col flex w-full justify-around bg-[#222222] p-2 rounded-md">
           {Object.keys(LeaderboardType).map((key, i) => (
             <LeaderboardSelectItem
               isSelected={LeaderboardType[key as LeaderboardKey] == selectedType}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Mulish } from '@next/font/google'
 import { useUserStore } from '@/app/utils/store/globalStore'
+import LeaderboardUserPlace from '@/app/leaderboard/components/_components/LeaderboardUserPlace'
 const h3Font = Mulish({
   subsets: ['latin', 'cyrillic'],
   weight: '400',
@@ -27,7 +28,9 @@ const LeaderboardUser = ({ answered, correctAnswered, id, place, image, name }: 
         <div className="p-5">
           <div className="flex sm:items-stretch items-center gap-y-5 sm:flex-col w-[100%] justify-between">
             <div className="flex vsm:flex-col gap-y-2 gap-x-5 items-center justify-center">
-              <div className="text-4xl text-center mr-5 sm:mr-0">{place}.</div>
+              <div className="text-4xl text-center mr-5 sm:mr-0">
+                <LeaderboardUserPlace place={place} />
+              </div>
               <div className="w-[70px] h-[70px]">
                 <img className="w-full h-full rounded-md" src={image || '/images/profile_image.jpg'} alt="profile image" />
               </div>

@@ -36,6 +36,7 @@ model PlaySession {
 }
 
 model Player {
+  playDate  DateTime    @default(now())
   id        String      @id @default(cuid())
   sessionId String
   session   PlaySession @relation(fields: [sessionId], references: [id])
@@ -46,6 +47,7 @@ model Player {
 }
 
 model CorrectAnswer {
+  playDate              DateTime    @default(now())
   id                    String      @id @unique() @default(cuid())
   correctAnsweredUserId String?
   correctAnsweredUser   User?       @relation(fields: [correctAnsweredUserId], references: [id])

@@ -27,7 +27,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
   },
-
   themeColor: '#333333',
   openGraph: {
     title: 'Improve it!',
