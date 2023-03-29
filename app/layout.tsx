@@ -3,6 +3,43 @@ import Navbar from '@/app/components/Navbar/Component'
 import Provider from '@/app/components/Providers'
 import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 import { FC } from 'react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Improve it!',
+  description: 'Upgrade your yourself',
+  viewport: { width: 'device-width', initialScale: 1 },
+  generator: 'Next.js',
+  applicationName: 'ImproveIt',
+  referrer: 'origin-when-cross-origin',
+  keywords:
+    'Math, equations, variable, solve, mind, training, genius, improve it, improve, improve-it, solve it, Solve-it!, solve-it, Solve it!, self-improvement, improvement, gigachad, compete, sessions, users, open-source, against bot, bot, math practice, solo, singleplayer, ',
+  authors: [{ name: 'dehwyy', url: 'https://github.com/dehwyy' }],
+  colorScheme: 'dark',
+  creator: 'dehwyy <dehwyy@yandex.ru>',
+  publisher: 'dehwyy',
+  alternates: {},
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: 'Improve it!',
+    description: 'Improve your mental calculator',
+    url: 'https://improve-it.vercel.app',
+    siteName: 'Improve it!',
+    images: [
+      {
+        url: 'https://avatars.githubusercontent.com/u/103949460?v=4',
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: 'en-US',
+    type: 'website',
+  },
+}
 
 interface IProps {
   children: React.ReactNode
@@ -12,7 +49,6 @@ const Layout: (props: IProps) => Promise<JSX.Element> = async ({ children }) => 
   const user = await getUserNotById()
   return (
     <html lang="en">
-      <head />
       <body className="uusm:min-w-[279px] w-full h-full min-h-screen min-w-screen bg-[#333333] overflow-x-hidden">
         <Provider>
           <Navbar userId={user?.id as string} />
