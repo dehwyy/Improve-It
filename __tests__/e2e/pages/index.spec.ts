@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test'
 
 test('heading and guides', async ({ page }) => {
   await page.goto('/')
-  await expect(page).toHaveTitle(/solve it/i)
-  await expect(page.getByRole('heading', { name: /solve it/i })).toBeVisible()
+  await expect(page).toHaveTitle(/improve it/i)
+  await expect(page.getByRole('heading', { name: /improve it/i })).toBeVisible()
   await expect(page.getByTestId('guide_block')).toBeVisible()
 })
 test('buttons w/o "profile" button', async ({ page }) => {
