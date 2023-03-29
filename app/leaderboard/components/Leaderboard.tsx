@@ -10,13 +10,18 @@ interface IProps {
 }
 
 const Leaderboard = ({ tables }: IProps) => {
-  const { users, setSelectedTypeByKey, setInputValue, inputValue } = useLeaderboard({ tables })
+  const { users, setSelectedTypeByKey, setInputValue, inputValue, selectedType } = useLeaderboard({ tables })
   return (
     <>
       <div className="grid grid-cols-6 my-5 gap-5 lg:flex lg:flex-col">
         <div className="lg:col-span-6 col-span-4 sm:flex-col flex w-full justify-around bg-[#222222] p-5 rounded-md">
           {Object.keys(LeaderboardType).map((key, i) => (
-            <LeaderboardSelectItem onClick={() => setSelectedTypeByKey(key as LeaderboardKey)} key={i} text={key} />
+            <LeaderboardSelectItem
+              isSelected={LeaderboardType[key as LeaderboardKey] == selectedType}
+              onClick={() => setSelectedTypeByKey(key as LeaderboardKey)}
+              key={i}
+              text={key}
+            />
           ))}
         </div>
         <div className="lg:col-span-6 col-span-2">

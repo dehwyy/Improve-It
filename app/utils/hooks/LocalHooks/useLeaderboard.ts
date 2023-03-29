@@ -40,6 +40,7 @@ export default function useLeaderboard({ tables }: IArgs) {
     setSelectedType(LeaderboardType[key as LeaderboardKey])
   }, [])
   return {
+    selectedType,
     setSelectedTypeByKey,
     inputValue,
     setInputValue,
