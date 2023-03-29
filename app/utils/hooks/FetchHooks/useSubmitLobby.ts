@@ -18,7 +18,7 @@ export default function useSubmitLobby() {
   const submitLobby = useCallback(async () => {
     startProgressbar()
     await Promise.all([
-      triggerUpdateUserCount({ answeredCount: count, userId: currentUserId }),
+      triggerUpdateUserCount({ answeredCount: count, userId: currentUserId, answers }),
       currentUserId == players![0].id && triggerCreateLobby({ difficulty, mode, count, answers, playerMode, players }),
     ])
     finishProgressbar()
