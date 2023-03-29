@@ -1,55 +1,30 @@
 'use client'
-import { useEffect, useState } from 'react'
 import LeaderboardUser from '@/app/leaderboard/components/LeaderboardUser'
-import { useUserStore } from '@/app/utils/store/globalStore'
 import LeaderboardSelectItem from '@/app/leaderboard/components/_components/LeaderboardSelectItem'
-import useSWR from 'swr'
-import { ApiRoutes } from '@/types/routes'
-import getFetcher from '@/app/utils/global/getFetcher'
 import Loader from '@/app/components/UI/Global/Loader'
+import { ILeaderboardUser, LeaderboardKey, LeaderboardType } from '@/types/export'
+import useLeaderboard from '@/app/utils/hooks/LocalHooks/useLeaderboard'
 
-enum LeaderboardType {
-  'Correctness',
-  'Total answers',
-  'Correctness percentage',
-}
-type leaderboardKey = keyof typeof LeaderboardType
-interface IUser {
-  id: string
-  name: string | null
-  image: string | null
-  correctAnswers: unknown[]
-  answered: number
-}
 interface IProps {
-  userList: IUser[][]
+  tables: Record<LeaderboardType, ILeaderboardUser[]>
 }
 
-const Leaderboard = ({ userList }: IProps) => {
-  const currentUserId = useUserStore(state => state.userId)
-  const [selectedType, setSelectedType] = useState<LeaderboardType>(LeaderboardType.Correctness)
-  const [users, setUsers] = useState<IUser[]>(userList[selectedType])
-  const [inputValue, setInputValue] = useState('')
-  // const { data: usersByName, isLoading } = useSWR(`${ApiRoutes.getUserByName}/${inputValue || 'null'}`, getFetcher<{ users: IUser[] }>())
-  useEffect(() => {
-    setUsers(userList[selectedType])
-  }, [selectedType])
+const Leaderboard = ({ tables }: IProps) => {
+  const { users, setSelectedTypeByKey, setInputValue, inputValue } = useLeaderboard({ tables })
   return (
     <>
       <div className="grid grid-cols-6 my-5 gap-5">
         <div className="col-span-4 flex w-full justify-around bg-[#222222] p-5 rounded-md">
-          {Object.keys(LeaderboardType).map((key, i) =>
-            isNaN(Number(key)) ? (
-              <LeaderboardSelectItem onClick={() => setSelectedType(LeaderboardType[key as leaderboardKey])} key={i} text={key} />
-            ) : (
-              <></>
-            )
-          )}
+          {Object.keys(LeaderboardType).map((key, i) => (
+            <LeaderboardSelectItem onClick={() => setSelectedTypeByKey(key as LeaderboardKey)} key={i} text={key} />
+          ))}
         </div>
         <div className="col-span-2">
           <input
+            value={inputValue}
+            onChange={e => setInputValue(e.target.value)}
             className="w-full h-full bg-transparent outline-0 font-bold text-white text-2xl border-b-2 border-black"
-            placeholder="Enter name..."
+            placeholder="Find user..."
           />
         </div>
       </div>
@@ -58,12 +33,13 @@ const Leaderboard = ({ userList }: IProps) => {
         {users ? (
           users.map(user => (
             <LeaderboardUser
+              place={user.place}
+              key={user.id}
               id={user.id}
               name={user.name as string}
               image={user.image as string}
               correctAnswered={user.correctAnswers.length}
               answered={user.answered}
-              currentUserId={currentUserId}
             />
           ))
         ) : (

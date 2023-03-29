@@ -9,3 +9,6 @@ interface EquationDiffs {
 
 type InputKey = number | '-' | 'Backspace'
 type SessionWinner = string | 'bot' | null
+type OrderKeys = 'correctAnswers' | 'answered' | 'answeredPercentage'
+type OrderSequence = 'desc' | 'asc'
+type OrderBy = Record<Exclude<OrderKeys, 'correctAnswers'>, OrderSequence> | Record<'correctAnswers', Record<'_count', OrderSequence>>

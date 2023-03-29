@@ -1,21 +1,29 @@
-import { selectByCorrectAnswered } from '@/app/utils/prismaQueries/leaderboard/selectByCorrectAnswered'
 import Heading from '@/app/leaderboard/components/Heading'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
 import Leaderboard from '@/app/leaderboard/components/Leaderboard'
-import { selectByAnsweredCount } from '@/app/utils/prismaQueries/leaderboard/selectByAnsweredCount'
-import { selectByPercentage } from '@/app/utils/prismaQueries/leaderboard/selectByPercentage'
+import { selectByTemplate } from '@/app/utils/prismaQueries/leaderboard/selectByTemplate'
+import getOrderBy from '@/app/utils/global/getLeaderboardOrderFunction'
+import { LeaderboardSelectBy } from '@/types/routes'
+import { ILeaderboardUser, LeaderboardType } from '@/types/export'
+
 const Page = async () => {
-  const byCorrectAnswered = selectByCorrectAnswered()
-  const byAnsweredCount = selectByAnsweredCount()
-  const byPercentage = selectByPercentage()
-  const userList = await Promise.all([byCorrectAnswered, byAnsweredCount, byPercentage])
+  const tables = await Promise.all([
+    selectByTemplate({ name: '', order: getOrderBy(LeaderboardSelectBy.correctness) as OrderBy }),
+    selectByTemplate({ name: '', order: getOrderBy(LeaderboardSelectBy.totalCount) as OrderBy }),
+    selectByTemplate({ name: '', order: getOrderBy(LeaderboardSelectBy.percentage) as OrderBy }),
+  ])
+  const Tables = {
+    correctness: tables[0],
+    totalCount: tables[1],
+    percentage: tables[2],
+  } as Record<LeaderboardType, ILeaderboardUser[]>
   return (
     <>
       <TopPageLoader />
       <PageWrapper classes="mx-auto md:w-full">
         <Heading />
-        <div className="flex flex-col gap-y-5 my-5">{userList && <Leaderboard userList={userList} />}</div>
+        <div className="flex flex-col gap-y-5 my-5">{tables && <Leaderboard tables={Tables} />}</div>
       </PageWrapper>
     </>
   )

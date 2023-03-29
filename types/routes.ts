@@ -1,6 +1,12 @@
 export enum ApiRoutes {
   getUserById = '/api/user/byId',
-  getUserByName = '/api/user/byName',
+  getLeaderboard = '/api/leaderboard/get',
   updateUserCount = '/api/update/count',
   submitSession = '/api/create/session',
+}
+
+export enum LeaderboardSelectBy {
+  correctness = 'correctness',
+  totalCount = 'totalCount',
+  percentage = 'percentage',
 }

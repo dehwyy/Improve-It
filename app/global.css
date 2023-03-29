@@ -1,34 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.block-neo-style {
-    box-shadow: 3px 3px 1px #222222;
-    border: 3px solid #222222;
-    @apply rounded-2xl
-}
-.navbar-enter {
-    width: 30rem;
-}
-.navbar-enter-active {
-    width: 100vw;
-    transition: 1.5s;
-}
-.navbar-exit {
-    transition: 1.5s;
-}
-.navbar-exit-active {
-    transition: 1s;
-}
-
-.error-enter {
-    transform: translateY(50px);
-    opacity: 0;
-}
-.error-enter-active {
-    transform: translateY(0);
-    opacity: 1;
-    transition: 1s;
-}
 ::-webkit-scrollbar {
     width: 1vw;
 }

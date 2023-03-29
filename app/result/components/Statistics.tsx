@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import StyledWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import Loader from '@/app/components/UI/Global/Loader'
 import useSubmitLobby from '@/app/utils/hooks/FetchHooks/useSubmitLobby'
-import useCorrectAnswersAfterSession from '@/app/utils/hooks/useCorrectAnswersAfterSession'
+import useCorrectAnswersAfterSession from '@/app/utils/hooks/LocalHooks/useCorrectAnswersAfterSession'
 
 const Statistics = () => {
   const router = useRouter()
