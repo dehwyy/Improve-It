@@ -22,21 +22,18 @@ export enum BotDifficulties {
   Mid = 'Mid',
   Pro = 'Pro',
 }
-type PlayerId = string | 'bot'
 
-export interface Session {
-  difficulty: Difficulties
-  mode: Modes
-  allTimeMs: number
-  count: number
-  day: number
-  month: number
-  year: number
-  time: string
-  playerMode: PlayerModes
-  winner: SessionWinner
-  answers: {
-    isCorrect: boolean
-    timeMs: number
-  }[]
+export enum LeaderboardType {
+  'Correctness' = 'correctness',
+  'Total answers' = 'totalCount',
+  'Correctness percentage' = 'percentage',
+}
+export type LeaderboardKey = keyof typeof LeaderboardType
+
+export interface ILeaderboardUser {
+  id: string
+  name: string | null
+  image: string | null
+  correctAnswers: unknown[]
+  answered: number
 }

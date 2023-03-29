@@ -1,9 +1,8 @@
-import { BotDifficulties, Difficulties, Modes } from '@/types/export'
 import { getBotTime } from '@/app/utils/tools/equations/bot/BotModule'
 import { useEquationSettingsStore, useEquationStore } from '@/app/utils/store/equationStore'
 import { shallow } from 'zustand/shallow'
-import useTimeout from '@/app/utils/hooks/useTimeout'
-import { useCallback, useEffect, useMemo } from 'react'
+import useTimeout from '@/app/utils/hooks/GlobalHooks/useTimeout'
+import { useCallback, useMemo } from 'react'
 import { useGameBotStore } from '@/app/utils/store/gameTypeStore'
 
 export default function useBotTime() {

@@ -6,7 +6,7 @@ import SelectSolveMode from '@/app/solve/edit/_components/SelectSolveMode'
 import SelectSetupSolve from '@/app/solve/edit/_components/SelectSetupSolve'
 import SelectLayout from '@/app/solve/edit/_components/SelectLayout'
 import SolveTransition from '@/app/solve/edit/_components/SolveTransition'
-import useClearEquationStores from '@/app/utils/hooks/useClearEquationStores'
+import useClearEquationStores from '@/app/utils/hooks/EquationHooks/useClearEquationStores'
 
 const Page = () => {
   const [currentStep, setCurrentStep] = useState<number>(0)

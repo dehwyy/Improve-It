@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import UserButton from '@/app/components/Buttons/_components/UserButton'
 import { FC } from 'react'
-import useFieldsByLanguage from '@/app/utils/hooks/useFieldsByLanguage'
+import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import ButtonsLanguages from '@/app/components/Buttons/buttons'
 import { Skeleton } from '@mui/material'
 import StyledWrapper from '@/app/components/UI/Wrappers/StyleWrapper'

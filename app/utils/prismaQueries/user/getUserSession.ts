@@ -1,5 +1,4 @@
 import prisma from '@/prisma/client'
-
 export const getUserSession = async (id: string) => {
   const session = await prisma.user.findUnique({
     where: {

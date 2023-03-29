@@ -5,9 +5,9 @@ import { shallow } from 'zustand/shallow'
 interface IArgs {
   onEnterPress: () => void
   enterDependencies: unknown[]
-  maxInputLength: number
+  correctAnswer: number
 }
-export default function useNumberAndMobileKeyboard({ onEnterPress, enterDependencies, maxInputLength }: IArgs) {
+export default function useNumberAndMobileKeyboard({ onEnterPress, enterDependencies, correctAnswer }: IArgs) {
   const [prevKey, trigger] = useInputStore(state => [state.previousKey, state.trigger], shallow)
   const [inputValue, setInputValue] = useState<string>('')
 
@@ -22,10 +22,14 @@ export default function useNumberAndMobileKeyboard({ onEnterPress, enterDependen
       const newInputValue = e ? e.target.value : (newStringByMobileKeyboard as string)
       // condition №1 (1: if InputChar is Number or equals "-" at the beginning, 2: maxLength balancer, to prevent very big nums
       const conditionIfValidInput =
-        newInputValue.match(/^-?[0-9]*$/) && (Number(newInputValue) || newInputValue == '-') && newInputValue.length <= maxInputLength + 2
+        newInputValue.match(/^-?[0-9]*$/) &&
+        (Number(newInputValue) || newInputValue == '-') &&
+        newInputValue.length <= String(correctAnswer).length + 2
       // OR condition №2 (backspace or inputReset)
       const conditionIfBackspace = inputValue.length > newInputValue.length
-      if (conditionIfValidInput || conditionIfBackspace || newInputValue == '') {
+      console.log('conditionIfZeroIsResult', correctAnswer, newInputValue)
+      const conditionIfZeroIsResult = correctAnswer == 0 && Number(newInputValue) == 0
+      if (conditionIfValidInput || conditionIfBackspace || conditionIfZeroIsResult || newInputValue == '') {
         setInputValue(newInputValue)
       }
     },

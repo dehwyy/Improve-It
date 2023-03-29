@@ -13,9 +13,9 @@ const SignOutIcon: FC<IProps> = ({ userId, idx, isGrowable }) => {
   return userId ? (
     <NavItemWrapper text="Sign out" idx={idx} isGrowable={isGrowable}>
       <a
-        onClick={e => {
+        onClick={async e => {
           e.preventDefault()
-          signOut().then()
+          await signOut().then()
         }}>
         <SignOut fontSize="large" sx={{ cursor: 'pointer' }} />
       </a>

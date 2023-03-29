@@ -66,36 +66,31 @@ function getWinner({ answers }: { answers: Answer[] }) {
 }
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse<unknown>) {
-  try {
-    const { difficulty, mode, count, answers, playerMode, players } = JSON.parse(req.body) as IBody
-    console.log(players)
-    console.log(
-      'PLAYERs',
-      players.map(p => ({ playerId: p.id == 'bot' ? null : p.id }))
-    )
-    const a = await prisma.playSession.create({
-      data: {
-        difficulty,
-        mode: getPrismaModeByEnum(mode),
-        count,
-        playerMode: getPrismaGameTypeByEnum(playerMode),
-        ...getWinner({ answers }),
-        players: {
-          createMany: {
-            data: players.map(p => ({ playerId: p.id == 'bot' ? null : p.id })),
+  if (req.method === 'POST') {
+    try {
+      const { difficulty, mode, count, answers, playerMode, players } = JSON.parse(req.body) as IBody
+      await prisma.playSession.create({
+        data: {
+          difficulty,
+          mode: getPrismaModeByEnum(mode),
+          count,
+          playerMode: getPrismaGameTypeByEnum(playerMode),
+          ...getWinner({ answers }),
+          players: {
+            createMany: {
+              data: players.map(p => ({ playerId: p.id == 'bot' ? null : p.id })),
+            },
+          },
+          correctAnswers: {
+            createMany: {
+              data: answers.map(a => ({ correctAnsweredUserId: a.userId == 'bot' ? null : (a.userId as string), time: a.timeMs })),
+            },
           },
         },
-        correctAnswers: {
-          createMany: {
-            data: answers.map(a => ({ correctAnsweredUserId: a.userId == 'bot' ? null : (a.userId as string), time: a.timeMs })),
-          },
-        },
-      },
-    })
-    console.log(a)
-    return res.status(201).json({ message: a })
-  } catch (e) {
-    console.log(e)
-    return res.status(400).json({ error: e })
+      })
+      return res.status(201).json({ message: 'success' })
+    } catch (e) {
+      return res.status(400).json({ error: e })
+    }
   }
 }

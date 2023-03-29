@@ -1,11 +1,12 @@
 import prisma from '@/prisma/client'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
+
+type Answer = { userId: string | 'bot' | null; timeMs: number }
 
 interface IBody {
   answeredCount: number
-  correctlyAnsweredCount: number
+  userId: string
+  answers: Answer[]
 }
 
 interface IRes {
@@ -16,28 +17,21 @@ interface IRes {
 export default async function handle(req: NextApiRequest, res: NextApiResponse<IRes>) {
   if (req.method === 'POST') {
     try {
-      const { answeredCount, correctlyAnsweredCount } = JSON.parse(req.body) as IBody
-      const data = await getServerSession(req, res, authOptions)
-      if (!data) throw Error()
-      const user = await prisma.user.findFirst({
-        where: {
-          name: data?.user?.name,
-        },
-        select: {
-          answered: true,
-          correctAnswered: true,
-          id: true,
-        },
+      const { answeredCount, userId, answers } = JSON.parse(req.body) as IBody
+      console.log('DATA', req.body)
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { answered: true, correctAnswers: true },
       })
-      if (!user) throw Error()
-
       await prisma.user.update({
-        data: {
-          answered: user.answered + answeredCount,
-          correctAnswered: user.correctAnswered + correctlyAnsweredCount,
-        },
         where: {
-          id: user.id,
+          id: userId,
+        },
+        data: {
+          answered: (user?.answered || 0) + answeredCount,
+          answeredPercentage: Math.floor(
+            (((user?.correctAnswers.length || 0) + answers.map(a => a.userId == userId).length) / ((user?.answered || 0) + answeredCount)) * 100
+          ),
         },
       })
       return res.status(201).json({ message: 'success' })
