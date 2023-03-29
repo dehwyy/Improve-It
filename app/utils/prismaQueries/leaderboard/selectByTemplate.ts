@@ -7,10 +7,12 @@ interface IArgs {
 }
 
 export const selectByTemplate = async ({ name, order, count = 10 }: IArgs) => {
+  console.log(name)
   const users = await prisma.user.findMany({
     where: {
       name: {
-        contains: name,
+        contains: name.trim().split(/\s+/).join(' '),
+        mode: 'insensitive',
       },
     },
     orderBy: [order],
