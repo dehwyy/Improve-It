@@ -26,6 +26,14 @@ interface ISession {
   }
 }
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const user = await getUserById(params.id)
+
+  return {
+    title: user?.name || 'page',
+  }
+}
+
 const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
   const data = await getUserById(params.id)
   const sessions = await getUserSession(params.id)

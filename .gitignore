@@ -14,3 +14,4 @@ next-env.d.ts
 /playwright/.cache/
 tests-examples
 TODO
+supabase

@@ -4,6 +4,11 @@ import GuideWrapper from '@/app/develop/guides/components/GuideWrapper'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import TopPageLoader from '@/app/components/UI/Global/TopPageLoader'
 import InDevelopment from '@/app/components/UI/Global/InDevelopment'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'For developers',
+}
 
 const h13Font = Varela_Round({
   subsets: ['latin'],

@@ -1,10 +1,12 @@
-import type { FC } from 'react'
 import Statistics from '@/app/result/components/Statistics'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
+import { Metadata } from 'next'
 
-interface IProps {}
+export const metadata: Metadata = {
+  title: 'Game results',
+}
 
-const Page: FC<IProps> = ({}) => {
+const Page = () => {
   return (
     <PageWrapper classes="px-1">
       <Statistics />

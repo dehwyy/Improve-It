@@ -6,6 +6,11 @@ import { selectByTemplate } from '@/app/utils/prismaQueries/leaderboard/selectBy
 import getOrderBy from '@/app/utils/global/getLeaderboardOrderFunction'
 import { LeaderboardSelectBy } from '@/types/routes'
 import { ILeaderboardUser, LeaderboardType } from '@/types/export'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Leaderboard',
+}
 
 const Page = async () => {
   const tables = await Promise.all([

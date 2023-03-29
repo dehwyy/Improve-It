@@ -9,7 +9,6 @@ export default function Yandex<P extends Record<string, any> = any>(options: OAu
     token: 'https://oauth.yandex.ru/token',
     userinfo: 'https://login.yandex.ru/info?format=json',
     profile(profile: P) {
-      console.log(profile)
       return {
         id: profile.id,
         name: profile.real_name,

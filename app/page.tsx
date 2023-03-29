@@ -3,8 +3,6 @@ import Guide from '@/app/components/Guides/Guide'
 import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 import Heading from '@/app/components/Heading'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
-import type { Metadata } from 'next'
-export const metadata: Metadata = {}
 
 const Page = async () => {
   const user = await getUserNotById()

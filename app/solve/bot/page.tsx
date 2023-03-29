@@ -1,6 +1,11 @@
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import DifficultyItem from '@/app/solve/bot/_components/DifficultyItem'
 import { BotDifficulties } from '@/types/export'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Selecting bot difficulty...',
+}
 
 const Page = () => {
   return (
