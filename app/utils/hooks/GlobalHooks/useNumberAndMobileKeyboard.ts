@@ -27,7 +27,6 @@ export default function useNumberAndMobileKeyboard({ onEnterPress, enterDependen
         newInputValue.length <= String(correctAnswer).length + 2
       // OR condition №2 (backspace or inputReset)
       const conditionIfBackspace = inputValue.length > newInputValue.length
-      console.log('conditionIfZeroIsResult', correctAnswer, newInputValue)
       const conditionIfZeroIsResult = correctAnswer == 0 && Number(newInputValue) == 0
       if (conditionIfValidInput || conditionIfBackspace || conditionIfZeroIsResult || newInputValue == '') {
         setInputValue(newInputValue)
