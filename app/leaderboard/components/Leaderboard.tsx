@@ -13,22 +13,21 @@ const Leaderboard = ({ tables }: IProps) => {
   const { users, setSelectedTypeByKey, setInputValue, inputValue } = useLeaderboard({ tables })
   return (
     <>
-      <div className="grid grid-cols-6 my-5 gap-5">
-        <div className="col-span-4 flex w-full justify-around bg-[#222222] p-5 rounded-md">
+      <div className="grid grid-cols-6 my-5 gap-5 lg:flex lg:flex-col">
+        <div className="lg:col-span-6 col-span-4 sm:flex-col flex w-full justify-around bg-[#222222] p-5 rounded-md">
           {Object.keys(LeaderboardType).map((key, i) => (
             <LeaderboardSelectItem onClick={() => setSelectedTypeByKey(key as LeaderboardKey)} key={i} text={key} />
           ))}
         </div>
-        <div className="col-span-2">
+        <div className="lg:col-span-6 col-span-2">
           <input
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
-            className="w-full h-full bg-transparent outline-0 font-bold text-white text-2xl border-b-2 border-black"
+            className="w-full h-full sm:h-min sm:p-5 bg-transparent outline-0 font-bold text-white text-2xl border-b-2 border-black"
             placeholder="Find user..."
           />
         </div>
       </div>
-
       <>
         {users ? (
           users.map(user => (

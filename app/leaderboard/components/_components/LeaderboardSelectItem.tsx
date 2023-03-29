@@ -10,8 +10,13 @@ const LeaderboardSelectItem = ({ text, onClick }: IProps) => {
   const isHover = useHover(hoverRef)
   return (
     <>
-      <div ref={hoverRef} onClick={onClick} className="select-none cursor-pointer font-bold text-xl flex items-center justify-center text-center">
-        <span className={`${isHover ? 'text-[1.3rem] text-red-400' : 'text-blue-400'} duration-500 transition-all`}>{text}</span>
+      <div
+        ref={hoverRef}
+        onClick={onClick}
+        className="select-none cursor-pointer font-bold text-xl flex items-center justify-center text-center sm:py-5">
+        <span className={`${isHover ? 'sm:text-[1.9rem] text-[1.3rem] text-red-400' : 'text-blue-400'} duration-500 transition-all sm:text-3xl`}>
+          {text}
+        </span>
       </div>
     </>
   )
