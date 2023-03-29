@@ -13,4 +13,4 @@ I intend to make app to practice math skills like fast-solving equations with di
 - -Playwright
 
 ## For developers:
-### You can find more information on [deployment](https://solve-it-one.vercel.app/develop)
+### You can find more information on [deployment](https://improve-it.vercel.app) (soon)
