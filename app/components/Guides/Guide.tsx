@@ -1,6 +1,6 @@
 'use client'
 import GuidesLanguages from '@/app/components/Guides/guides'
-import { Mulish } from '@next/font/google'
+import { Mulish } from 'next/font/google'
 import Skeleton from '@/app/components/Guides/components/SkeletonTemplate'
 import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import { useEffect, useState } from 'react'

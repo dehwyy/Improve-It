@@ -1,4 +1,4 @@
-import { Varela_Round } from '@next/font/google'
+import { Varela_Round } from 'next/font/google'
 import Image from 'next/image'
 
 const h1Font = Varela_Round({

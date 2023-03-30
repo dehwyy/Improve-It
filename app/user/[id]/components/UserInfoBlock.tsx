@@ -2,7 +2,7 @@ import StatsHeading from '@/app/user/[id]/components/StatsHeading'
 import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
 import Answers from '@/app/components/UI/Global/Stats/Answers'
 import StyleWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
-import { Mulish } from '@next/font/google'
+import { Mulish } from 'next/font/google'
 
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],

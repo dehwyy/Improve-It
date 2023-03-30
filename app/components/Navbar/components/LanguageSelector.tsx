@@ -1,6 +1,6 @@
 import { useUserSettingsStore } from '@/app/utils/store/globalStore'
 import { shallow } from 'zustand/shallow'
-import { Varela_Round } from '@next/font/google'
+import { Varela_Round } from 'next/font/google'
 import { useMediaQuery } from '@mui/material'
 
 const LangItemFont = Varela_Round({

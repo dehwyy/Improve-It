@@ -1,7 +1,7 @@
 import { Step, StepButton, Stepper, useMediaQuery } from '@mui/material'
 import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import solveLanguages from '@/app/solve/edit/_components/solveLang'
-import { Mulish } from '@next/font/google'
+import { Mulish } from 'next/font/google'
 
 const pFont = Mulish({
   subsets: ['latin', 'cyrillic'],

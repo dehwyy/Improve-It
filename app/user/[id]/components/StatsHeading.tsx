@@ -1,7 +1,7 @@
 'use client'
 import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import AnswersLanguages from '@/app/components/UI/Global/Stats/answersLangs'
-import { Mulish } from '@next/font/google'
+import { Mulish } from 'next/font/google'
 
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],
