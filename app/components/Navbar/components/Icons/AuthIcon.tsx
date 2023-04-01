@@ -13,7 +13,7 @@ interface IProps {
 const AuthIcon: FC<IProps> = ({ userId, idx, isGrowable }) => {
   return (
     <NavItemWrapper text={userId ? 'Profile' : 'Authorization'} idx={idx} isGrowable={isGrowable}>
-      <Link href={userId ? `user/${userId}` : ''}>
+      <Link href={userId ? `user/${userId}` : '/'}>
         <PermIdentityIcon
           fontSize="large"
           onClick={() => {
