@@ -1,28 +1,24 @@
-import StatsHeading from '@/app/user/[id]/components/StatsHeading'
+import StatsHeading from '@/app/user/[id]/components/_components/UserInfo/StatsHeading'
 import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
 import Answers from '@/app/components/UI/Global/Stats/Answers'
 import StyleWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
-import { Mulish } from '@next/font/google'
-
-const h2Font = Mulish({
-  subsets: ['latin', 'cyrillic'],
-  weight: '400',
-})
+import Nickname from '@/app/user/[id]/components/_components/UserInfo/Nickname'
 
 interface IProps {
   name: string
+  userId: string
+  currentUserId?: string
   correct?: number
   total?: number
 }
-const UserInfoBlock = ({ name, total = 0, correct = 0 }: IProps) => {
+const UserInfoBlock = ({ name, total = 0, correct = 0, userId, currentUserId }: IProps) => {
   return (
     <StyleWrapper
+      style={{ cursor: 'default' }}
       data-testid="user-info"
       className="shadow-lg font-extrabold border-current shadow-red-500/100 text-red-500 min-w-[200px] flex-auto mr-10 md:mr-0">
-      <div className="p-5 text-center flex w-full flex-col gap-y-5 text-white cursor-default">
-        <div>
-          <h2 className={`${h2Font.className} uusm:text-2xl text-3xl underline underline-offset-4`}>{name}</h2>
-        </div>
+      <div className="p-5 text-center flex w-full flex-col text-white cursor-default">
+        <Nickname name={name} />
         <div>
           <StatsHeading />
           <ProgressBar correctCount={correct} count={total} />

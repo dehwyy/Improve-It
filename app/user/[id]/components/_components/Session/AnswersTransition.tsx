@@ -25,13 +25,13 @@ const AnswersTransition = ({ children, full }: IProps) => {
       </Collapse>
       {isShowButtonVisible && (
         <StyleWrapper
-          className="text-teal-500 shadow-teal-500 border-current shadow-lg mt-[-1.25rem] text-center p-[10px]"
+          className="text-sky-400 shadow-sky-400 border-current shadow-lg mt-[-1.25rem] text-center p-[10px]"
           onClick={() => setState(true)}>
-          Detailed scores
+          Detailed
         </StyleWrapper>
       )}
       {isCloseButtonVisible && (
-        <StyleWrapper className="text-teal-500 shadow-teal-500 border-current shadow-lg" style={{ padding: '10px' }} onClick={() => setState(false)}>
+        <StyleWrapper className="text-sky-400 shadow-sky-400 border-current shadow-lg" style={{ padding: '10px' }} onClick={() => setState(false)}>
           Close
         </StyleWrapper>
       )}

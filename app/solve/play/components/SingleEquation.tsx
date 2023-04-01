@@ -1,6 +1,6 @@
 import { useEquationAnimationStore } from '@/app/utils/store/equationStore'
 import SuccessAnimation from '@/app/solve/play/components/components/SuccessAnimation'
-import { Gothic_A1 } from '@next/font/google'
+import { Gothic_A1 } from 'next/font/google'
 import { useGameTypeStore } from '@/app/utils/store/gameTypeStore'
 import Participants from '@/app/solve/play/components/components/Participants'
 import useEquationKeyboard from '@/app/utils/hooks/EquationHooks/useEquationKeyboard'

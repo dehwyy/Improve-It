@@ -1,4 +1,4 @@
-import { Varela_Round } from '@next/font/google'
+import { Varela_Round } from 'next/font/google'
 import Image from 'next/image'
 
 const h1Font = Varela_Round({
@@ -8,7 +8,7 @@ const h1Font = Varela_Round({
 const Heading = () => {
   return (
     <div className="text-center flex items-center flex-col">
-      <Image src="/images/yes-purple.png" alt="Logo" width="225" height="225" />
+      <Image priority={true} src="/images/yes-purple.png" alt="Logo" width="225" height="225" />
       <h1
         className={`${h1Font.className} text-6xl font-extrabold usm:text-5xl usm:text-[2.9rem] mt-5 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500`}>
         Improve it!

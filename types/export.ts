@@ -1,3 +1,7 @@
+export enum Admin {
+  id = 'clfxeepe10000viaw5hyehvng',
+}
+
 export enum Modes {
   Variable = 'Variable',
   Multiply = 'Multiply',
@@ -33,7 +37,9 @@ export type LeaderboardKey = keyof typeof LeaderboardType
 export interface ILeaderboardUser {
   id: string
   name: string | null
+  nickname: string | null
   image: string | null
+  profilePicture: string | null
   correctAnswers: unknown[]
   answered: number
 }

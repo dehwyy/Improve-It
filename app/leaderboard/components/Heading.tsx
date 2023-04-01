@@ -1,5 +1,5 @@
 'use client'
-import { Mulish } from '@next/font/google'
+import { Mulish } from 'next/font/google'
 import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import LeaderboardLanguages from '@/app/leaderboard/leaderboard'
 

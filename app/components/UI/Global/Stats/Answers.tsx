@@ -1,6 +1,6 @@
 'use client'
 import { FC } from 'react'
-import { Mulish } from '@next/font/google'
+import { Mulish } from 'next/font/google'
 import useFieldsByLanguage from '@/app/utils/hooks/GlobalHooks/useFieldsByLanguage'
 import AnswersLanguages from '@/app/components/UI/Global/Stats/answersLangs'
 const pFont = Mulish({

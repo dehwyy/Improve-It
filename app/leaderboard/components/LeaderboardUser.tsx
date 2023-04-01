@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mulish } from '@next/font/google'
+import { Mulish } from 'next/font/google'
 import { useUserStore } from '@/app/utils/store/globalStore'
 import LeaderboardUserPlace from '@/app/leaderboard/components/_components/LeaderboardUserPlace'
 const h3Font = Mulish({

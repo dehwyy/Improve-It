@@ -1,4 +1,4 @@
-import { Varela_Round } from '@next/font/google'
+import { Varela_Round } from 'next/font/google'
 import Link from 'next/link'
 import GuideWrapper from '@/app/develop/guides/components/GuideWrapper'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
