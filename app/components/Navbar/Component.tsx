@@ -5,7 +5,6 @@ import { shallow } from 'zustand/shallow'
 import { useMediaQuery } from '@mui/material'
 import DefaultNavbar from '@/app/components/Navbar/DefaultNavbar'
 import MobileNavbar from '@/app/components/Navbar/MobileNavbar'
-import { useRouter } from 'next/navigation'
 
 interface IProps {
   userId: string

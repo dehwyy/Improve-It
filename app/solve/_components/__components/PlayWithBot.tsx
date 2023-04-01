@@ -14,7 +14,7 @@ const PlayWithBot = ({ gameType, userId }: IProps) => {
   return (
     <ModeTypeWrapper mode={gameType}>
       <ImagesWrapper>
-        <Image src="/images/giga.png" alt="blueface" width="200" height="200" className="rounded" />
+        <Image priority={true} src="/images/giga.png" alt="blueface" width="200" height="200" className="rounded" />
       </ImagesWrapper>
       <TextWrapper>
         <p className="text-3xl text-center">1 VS 1 against bot (It is as strong as chess bot)</p>
