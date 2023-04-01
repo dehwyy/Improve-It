@@ -5,6 +5,8 @@ import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import { getUserSession } from '@/app/utils/prismaQueries/user/getUserSession'
 import VirtualScrollWrapper from '@/app/user/[id]/components/VirtualScrollWrapper'
 import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
+import NoSession from '@/app/user/[id]/components/NoSession'
+import SessionHeading from '@/app/user/[id]/components/SessionHeading'
 
 interface IProps {
   params: {
@@ -50,7 +52,12 @@ const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
             total={data?.answered}
           />
         </div>
-        {sessions.length && <VirtualScrollWrapper sessions={sessions.reverse() as unknown as ISession[]} userId={data?.id as string} />}
+        <SessionHeading totalSession={sessions.length} />
+        {sessions.length ? (
+          <VirtualScrollWrapper sessions={sessions.reverse() as unknown as ISession[]} userId={data?.id as string} />
+        ) : (
+          <NoSession />
+        )}
       </div>
     </PageWrapper>
   )

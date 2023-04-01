@@ -17,7 +17,7 @@ const SessionInfo = ({ mode, difficulty, answers }: IProps) => {
   }, [answers])
   return (
     <StyleWrapper
-      className="sm:w-full mx-auto text-violet-500 shadow-violet-500 shadow-lg border-current gap-y-5"
+      className="sm:w-full mx-auto text-red-500 shadow-red-500 shadow-lg border-current gap-y-5"
       style={{
         alignItems: 'start',
         justifyContent: 'start',

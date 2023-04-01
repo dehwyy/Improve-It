@@ -23,7 +23,7 @@ interface IProps {
 
 const Component = ({ session, userId }: IProps) => {
   return (
-    <StyleWrapper style={{ cursor: 'default' }} className="text-blue-500 shadow-blue-500 shadow-lg font-extrabold border-current">
+    <StyleWrapper style={{ cursor: 'default' }} className="text-violet-500 shadow-violet-500 shadow-lg font-extrabold border-current">
       <div className="text-white w-full">
         <Header userId={userId} time={new Date(session.playDate)} playerMode={session.playerMode} winner={session.sessionWinnerId} />
         <div className="w-full grid grid-cols-2 lg:flex md:flex-col-reverse lg:gap-x-5 text-xl gap-y-8 py-5">

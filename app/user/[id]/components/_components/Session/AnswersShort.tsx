@@ -14,11 +14,9 @@ const AnswersShort = ({ answers }: IProps) => {
     }, 0)
   }, [answers])
   return (
-    <StyleWrapper
-      className="text-violet-500 shadow-violet-500 border-current shadow-lg"
-      style={{ padding: '10px', cursor: 'default', userSelect: 'text' }}>
+    <StyleWrapper className="text-red-500 shadow-red-500 border-current shadow-lg" style={{ padding: '10px', cursor: 'default', userSelect: 'text' }}>
       <p className=" text-center">
-        Scored <span className="text-green-500">{correctAnswers}</span> out of <span className="text-red-400">{answers.length}</span>
+        Scored <span className="text-green-500">{correctAnswers}</span> out of <span className="text-sky-400">{answers.length}</span>
       </p>
     </StyleWrapper>
   )
