@@ -37,9 +37,9 @@ export type LeaderboardKey = keyof typeof LeaderboardType
 export interface ILeaderboardUser {
   id: string
   name: string | null
-  nickname: string | null
+  nickname?: string | null
   image: string | null
-  profilePicture: string | null
-  correctAnswers: unknown[]
+  profilePicture?: string | null
+  correctAnswers?: unknown[]
   answered: number
 }
