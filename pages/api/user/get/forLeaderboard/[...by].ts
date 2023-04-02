@@ -11,7 +11,7 @@ interface Request extends NextApiRequest {
   }
 }
 
-// url should be like /api/leaderboard/get/{NAME||"_"}/${OrderBy:LeaderboardSelectBy}/{COUNT|10}
+// url should be like /api/user/forLeaderboard/{NAME||"_"}/${OrderBy:LeaderboardSelectBy}/{COUNT|10}
 export default async function handler(req: Request, res: any) {
   try {
     const { by } = req.query

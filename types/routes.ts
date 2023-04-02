@@ -1,10 +1,13 @@
-export enum ApiRoutes {
-  getUserById = '/api/user/byId',
-  getUserByNickname = '/api/user/byNickname',
-  getLeaderboard = '/api/leaderboard/get',
-  updateUserCount = '/api/update/count',
-  updateUserNickname = '/api/update/nickname',
-  submitSession = '/api/create/session',
+export enum ApiRoutesUser {
+  getUserById = '/api/user/get/byId',
+  getUserByNickname = '/api/user/get/byNickname',
+  getUsersLeaderboard = '/api/user/forLeaderboard',
+  updateUserCount = '/api/user/update/updateCount',
+  updateUserNickname = '/api/user/update/updateNickname',
+}
+
+export enum ApiRoutesSession {
+  createSession = '/api/session/create',
 }
 
 export enum LeaderboardSelectBy {
