@@ -26,7 +26,7 @@ interface IProps {
 const AuthMethodWrapper: FC<IProps> = ({ id, name, children, color }) => {
   return (
     <SvgColorizer
-      className={`flex font-extrabold text-${color}-500 shadow-${color}-500/100 justify-center gap-x-5 hover:text-red-500 hover:shadow-red-500/100 select-none cursor-pointer rounded-lg p-4 transition-all shadow-lg border-2 border-current hover:border-current`}
+      className={`flex font-extrabold text-${color}-500 shadow-${color}-500 shadow-${color}-500/100 justify-center gap-x-5 hover:text-red-500 hover:shadow-red-500/100 select-none cursor-pointer rounded-lg p-4 transition-all shadow-lg border-2 border-current hover:border-current`}
       onClick={() => signIn(id)}>
       {children}
       <div>Sign in with {name}</div>

@@ -26,8 +26,8 @@ export default async function SignIn() {
   if (authRedirect) return redirect(authRedirect.destination)
   const { github, vk, google, yandex } = auth.providers as Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>
   return (
-    <div className="w-screen h-screen bg-[#333333] flex items-center justify-center cursor-pointer">
-      <div className="w-96 flex flex-col justify-evenly gap-6 p-5 ">
+    <div className="flex justify-center items-center h-[80vh]  ">
+      <div className="w-96 flex flex-col justify-evenly gap-6">
         <GoogleWrapperForSvg>
           <AuthMethodWrapper color="yellow" id={google.id} name={google.name}>
             <GoogleSVG />
