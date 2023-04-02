@@ -25,8 +25,8 @@ export default function useNickname(name: string) {
   const { trigger: submitNickname } = useSWRMutation(ApiRoutesUser.updateUserNickname, postFetcher)
 
   const isValid = useMemo(() => {
-    return initialName !== debouncedValue && debouncedValue.length > 2 && !isLoading && !data
-  }, [debouncedValue, initialName, currentUserId, path, data, isLoading])
+    return debouncedValue.length > 2 && !isLoading && ((!data && initialName !== debouncedValue) || data === sessionUserId)
+  }, [isLoading])
 
   const setNickname = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value
@@ -39,13 +39,13 @@ export default function useNickname(name: string) {
       setNewNickname(initialName)
     }
   }, [newNickname, initialName])
-  const submitNewNicknameHandler = useCallback(async () => {
+  const submitNewNicknameHandler = useCallback(() => {
     if (initialName !== newNickname && isValid && !isLoading) {
       setEdit(false)
       setInitialName(newNickname)
-      await submitNickname({ userId: currentUserId, newNickname })
+      submitNickname({ userId: currentUserId, newNickname }).then(() => {})
     }
-  }, [newNickname, initialName, isValid, isLoading])
+  }, [isValid])
   const exitEditMode = useCallback(() => {
     setEdit(false)
     setNewNickname(initialName)

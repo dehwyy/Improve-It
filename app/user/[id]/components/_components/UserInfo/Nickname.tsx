@@ -1,8 +1,11 @@
 'use client'
 import { Mulish } from 'next/font/google'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, useMediaQuery } from '@mui/material'
 import useNickname from '@/app/utils/hooks/LocalHooks/useNickname'
+import useMobile from '@/app/utils/hooks/GlobalHooks/useMobile'
+import DefaultButton from '@/app/user/[id]/components/_components/UserInfo/__components/DefaultButton'
+import MobileButton from '@/app/user/[id]/components/_components/UserInfo/__components/MobileButton'
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],
   weight: '400',
@@ -14,10 +17,12 @@ interface IProps {
 
 const Nickname = ({ name }: IProps) => {
   const { onClickAway, isEditable, isEdit, isValid, isAbleToChange, setNickname, newNickname, submitNickname, toggleEdit } = useNickname(name)
+  const isMdAndLower = useMediaQuery('(max-width:767px)')
   return (
     <ClickAwayListener onClickAway={onClickAway} mouseEvent="onMouseDown">
-      <div className="flex flex-col">
-        <h2 className={`${h2Font.className} usm:text-2xl text-3xl underline underline-offset-4 flex usm:flex-col justify-center items-center gap-1`}>
+      <div className={`${isMdAndLower ? 'pb-5' : ''} flex flex-col`}>
+        <h2
+          className={`${h2Font.className} vsm:text-[1.3rem] usm:text-[1rem] lg:text-[1.35rem] text-[1.8rem] underline underline-offset-4 flex usm:flex-col justify-center items-center gap-1`}>
           {!isEdit ? (
             <span className="p-1">{newNickname}</span>
           ) : (
@@ -33,19 +38,11 @@ const Nickname = ({ name }: IProps) => {
             </span>
           )}
         </h2>
-        <div className="w-1/3 sm:w-2/3 usm:w-full mx-auto">
-          <button
-            onClick={submitNickname}
-            className={`${
-              isValid && isEdit
-                ? 'opacity-100 cursor-pointer border-[#777777]'
-                : isEdit
-                ? 'opacity-50  cursor-default border-[#555555]'
-                : 'opacity-0  cursor-default'
-            } mt-2 p-1 rounded border-2 flex items-center justify-center w-full text-[0.8rem]`}>
-            {isAbleToChange ? 'Confirm' : <CircularProgress color="error" style={{ width: '19.5px', height: '19.5px' }} />}
-          </button>
-        </div>
+        {isMdAndLower ? (
+          <MobileButton isValid={isValid} isEdit={isEdit} isAbleToChange={isAbleToChange} submitNickname={submitNickname} />
+        ) : (
+          <DefaultButton isValid={isValid} isEdit={isEdit} isAbleToChange={isAbleToChange} submitNickname={submitNickname} />
+        )}
       </div>
     </ClickAwayListener>
   )
