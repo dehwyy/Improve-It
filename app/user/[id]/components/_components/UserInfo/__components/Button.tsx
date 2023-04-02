@@ -10,9 +10,9 @@ interface IProps {
   submitNickname: () => void
 }
 
-const MobileButton = ({ submitNickname, isEdit, isValid, isAbleToChange }: IProps) => {
-  return createPortal(
-    <div className="fixed bottom-10 left-[1.25rem] right-[1.25rem] z-50">
+const Button = ({ submitNickname, isEdit, isValid, isAbleToChange }: IProps) => {
+  return (
+    <div className="absolute top-[6.5rem] usm:top-[8rem] left-2 right-2 z-50">
       <StyleWrapper
         style={{ padding: '0', borderWidth: '3px' }}
         className={`${
@@ -26,13 +26,12 @@ const MobileButton = ({ submitNickname, isEdit, isValid, isAbleToChange }: IProp
           onClick={submitNickname}
           className={`${
             isValid && isEdit ? 'cursor-pointer text-opacity-100' : 'text-opacity-100 cursor-default'
-          } p-[0.8rem] flex items-center justify-center w-full text-2xl text-gray-100`}>
+          } p-[0.8rem] flex items-center justify-center w-full text-2xl usm:text-xl text-gray-100`}>
           {isAbleToChange ? 'Confirm' : <CircularProgress color="primary" style={{ width: '32px', height: '32px' }} />}
         </button>
       </StyleWrapper>
-    </div>,
-    document.getElementById(ElementsId.mobileButton) as Element
+    </div>
   )
 }
 
-export default MobileButton
+export default Button

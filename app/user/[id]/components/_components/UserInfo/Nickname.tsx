@@ -4,8 +4,7 @@ import ClickAwayListener from '@mui/base/ClickAwayListener'
 import { CircularProgress, useMediaQuery } from '@mui/material'
 import useNickname from '@/app/utils/hooks/LocalHooks/useNickname'
 import useMobile from '@/app/utils/hooks/GlobalHooks/useMobile'
-import DefaultButton from '@/app/user/[id]/components/_components/UserInfo/__components/DefaultButton'
-import MobileButton from '@/app/user/[id]/components/_components/UserInfo/__components/MobileButton'
+import Button from '@/app/user/[id]/components/_components/UserInfo/__components/Button'
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],
   weight: '400',
@@ -17,19 +16,18 @@ interface IProps {
 
 const Nickname = ({ name }: IProps) => {
   const { onClickAway, isEditable, isEdit, isValid, isAbleToChange, setNickname, newNickname, submitNickname, toggleEdit } = useNickname(name)
-  const isMdAndLower = useMediaQuery('(max-width:767px)')
   return (
     <ClickAwayListener onClickAway={onClickAway} mouseEvent="onMouseDown">
-      <div className={`${isMdAndLower ? 'pb-5' : ''} flex flex-col`}>
+      <div className={`flex flex-col pb-5`}>
         <h2
-          className={`${h2Font.className} vsm:text-[1.3rem] usm:text-[1rem] lg:text-[1.35rem] text-[1.8rem] underline underline-offset-4 flex usm:flex-col justify-center items-center gap-1`}>
+          className={`${h2Font.className} usm:text-[2rem] text-3xl underline underline-offset-4 flex usm:flex-col usm:gap-y-3 justify-center items-center gap-x-1`}>
           {!isEdit ? (
             <span className="p-1">{newNickname}</span>
           ) : (
             <input
               value={newNickname}
               onChange={setNickname}
-              className={`${h2Font.className} usm:text-[1rem] text-3xl max-w-[110%] usm:max-w-[140%] p-1 usm:p-0.5 outline-0 rounded-md`}
+              className={`${h2Font.className} usm:text-[2rem] text-3xl max-w-[110%] usm:max-w-[140%] p-1 outline-0 rounded-md`}
             />
           )}
           {isEditable && (
@@ -38,11 +36,7 @@ const Nickname = ({ name }: IProps) => {
             </span>
           )}
         </h2>
-        {isMdAndLower ? (
-          <MobileButton isValid={isValid} isEdit={isEdit} isAbleToChange={isAbleToChange} submitNickname={submitNickname} />
-        ) : (
-          <DefaultButton isValid={isValid} isEdit={isEdit} isAbleToChange={isAbleToChange} submitNickname={submitNickname} />
-        )}
+        <Button isValid={isValid} isEdit={isEdit} isAbleToChange={isAbleToChange} submitNickname={submitNickname} />
       </div>
     </ClickAwayListener>
   )
