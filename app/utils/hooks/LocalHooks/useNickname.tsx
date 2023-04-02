@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useUserStore } from '@/app/utils/store/globalStore'
 import { useDebounce } from 'usehooks-ts'
 import useSWR from 'swr'
-import { ApiRoutes } from '@/types/routes'
+import { ApiRoutesUser } from '@/types/routes'
 import getFetcher from '@/app/utils/global/getFetcher'
 import useSWRMutation from 'swr/mutation'
 import postFetcher from '@/app/utils/global/postFetcher'
@@ -21,8 +21,8 @@ export default function useNickname(name: string) {
   const [initialName, setInitialName] = useState(name)
   const debouncedValue = useDebounce(newNickname, 500)
 
-  const { data, isLoading } = useSWR(`${ApiRoutes.getUserByNickname}/${debouncedValue}`, getFetcher<string>())
-  const { trigger: submitNickname } = useSWRMutation(ApiRoutes.updateUserNickname, postFetcher)
+  const { data, isLoading } = useSWR(`${ApiRoutesUser.getUserByNickname}/${debouncedValue}`, getFetcher<string>())
+  const { trigger: submitNickname } = useSWRMutation(ApiRoutesUser.updateUserNickname, postFetcher)
 
   const isValid = useMemo(() => {
     return initialName !== debouncedValue && debouncedValue.length > 2 && !isLoading && !data

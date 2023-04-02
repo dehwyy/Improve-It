@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { ApiRoutes } from '@/types/routes'
+import { ApiRoutesUser } from '@/types/routes'
 import { useRouter } from 'next/navigation'
 import { Skeleton } from '@mui/material'
 import getFetcher from '@/app/utils/global/getFetcher'
@@ -19,7 +19,7 @@ interface UserInfo {
 
 const Participant = ({ player }: IProps) => {
   const router = useRouter()
-  let { data, isLoading, error } = useSWR(`${ApiRoutes.getUserById}/${player.id}`, getFetcher<UserInfo>())
+  let { data, isLoading, error } = useSWR(`${ApiRoutesUser.getUserById}/${player.id}`, getFetcher<UserInfo>())
   if (isLoading) return <Skeleton height={50} />
   if (error || !data?.user) return <></>
   const { id, name, image } = data.user
