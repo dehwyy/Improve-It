@@ -12,7 +12,7 @@ interface IProps {
 
 const Button = ({ submitNickname, isEdit, isValid, isAbleToChange }: IProps) => {
   return (
-    <div className="absolute top-[6.5rem] usm:top-[8rem] left-2 right-2 z-50">
+    <div className="absolute top-[6.5rem] usm:top-[40%] left-2 right-2 z-50">
       <StyleWrapper
         style={{ padding: '0', borderWidth: '3px' }}
         className={`${
