@@ -23,7 +23,7 @@ interface IProps {
 const SingleEquation = ({ correctAnswer, equation }: IProps) => {
   const selectedGameType = useGameTypeStore(state => state.gameType)
   const isAnimation = useEquationAnimationStore(state => state.isAnimation)
-  const { inputValue, setInputValue, keyupHandler, isMobile } = useEquationKeyboard({ correctAnswer })
+  const { inputValue, setInputValue, keyupHandler, isMobile, enterHasBeenPressed } = useEquationKeyboard({ correctAnswer })
   const { isDone } = useBotTime()
   const { currentUserId, answeredUserId } = useLobby({ inputValue, setInputValue, correctAnswer, botIsDone: isDone })
   return !isAnimation ? (
@@ -42,7 +42,7 @@ const SingleEquation = ({ correctAnswer, equation }: IProps) => {
       </div>
     </>
   ) : (
-    <SuccessAnimation isSuccess={currentUserId == answeredUserId} />
+    <SuccessAnimation isSuccess={selectedGameType === 'Solo' ? !enterHasBeenPressed : currentUserId == answeredUserId} />
   )
 }
 

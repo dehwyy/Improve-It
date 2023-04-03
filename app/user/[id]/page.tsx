@@ -48,7 +48,7 @@ const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
             currentUserId={currentUser?.id}
             userId={data?.id as string}
             name={data?.nickname || (data?.name as string)}
-            correct={data?.correctAnswers.length}
+            correct={data?.correctAnsweredCount}
             total={data?.answered}
           />
         </div>

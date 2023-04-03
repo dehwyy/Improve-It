@@ -30,14 +30,16 @@ export default function useLeaderboard({ tables }: IArgs) {
   const setSelectedTypeByKey = useCallback((key: LeaderboardKey) => setSelectedType(LeaderboardType[key as LeaderboardKey]), [])
   const [users, setUsers] = useState<IUser[]>(addUserPlace(tables[selectedType]))
 
-  const { data: fetchedUsers } = useSWR(
+  const { data: fetchedUsers, isLoading } = useSWR(
     `${ApiRoutesUser.getUsersLeaderboard}/${debouncedInputValue || '_'}/${LeaderboardSelectBy[selectedType]}/${5}`,
     getFetcher<{ users: ILeaderboardUser[] }>()
   )
-  useEffect(() => setUsers(users => addUserPlace(users)), [JSON.stringify(users)])
+  useEffect(() => {
+    ;(isLoading ? startProgressbar : finishProgressbar)()
+  }, [isLoading])
   useEffect(() => {
     if (fetchedUsers) {
-      setUsers(fetchedUsers.users)
+      setUsers(addUserPlace(fetchedUsers.users))
     }
   }, [fetchedUsers])
 
