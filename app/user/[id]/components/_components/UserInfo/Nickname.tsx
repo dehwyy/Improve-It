@@ -1,10 +1,9 @@
 'use client'
 import { Mulish } from 'next/font/google'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
-import { CircularProgress, useMediaQuery } from '@mui/material'
 import useNickname from '@/app/utils/hooks/LocalHooks/useNickname'
-import useMobile from '@/app/utils/hooks/GlobalHooks/useMobile'
 import Button from '@/app/user/[id]/components/_components/UserInfo/__components/Button'
+import { Input } from '@mui/material'
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],
   weight: '400',
@@ -22,12 +21,15 @@ const Nickname = ({ name }: IProps) => {
         <h2
           className={`${h2Font.className} usm:text-[2rem] text-3xl underline underline-offset-4 flex usm:flex-col usm:gap-y-3 justify-center items-center gap-x-1`}>
           {!isEdit ? (
-            <span className="p-1">{newNickname}</span>
+            <span className="p-1 break-all text-left">{newNickname}</span>
           ) : (
-            <input
+            <Input
+              multiline
+              color="error"
               value={newNickname}
               onChange={setNickname}
-              className={`${h2Font.className} usm:text-[2rem] text-3xl max-w-[110%] usm:max-w-[140%] p-1 outline-0 rounded-md`}
+              sx={{ textAlign: 'right' }}
+              className={`${h2Font.className} !usm:text-[2rem] !text-3xl !min-w-[107%] !p-1 !outline-0 !text-white !rounded-md `}
             />
           )}
           {isEditable && (

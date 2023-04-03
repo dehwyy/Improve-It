@@ -3,6 +3,7 @@ import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
 import Answers from '@/app/components/UI/Global/Stats/Answers'
 import StyleWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import Nickname from '@/app/user/[id]/components/_components/UserInfo/Nickname'
+import { Teleport } from '@/types/teleport'
 
 interface IProps {
   name: string
@@ -26,6 +27,7 @@ const UserInfoBlock = ({ name, total = 0, correct = 0, userId, currentUserId }: 
             <Answers count={total} correctCount={correct} />
           </div>
         </div>
+        <div id={Teleport.ConfirmProfileInformation} />
       </div>
     </StyleWrapper>
   )
