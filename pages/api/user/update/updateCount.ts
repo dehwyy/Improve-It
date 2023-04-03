@@ -18,19 +18,20 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse<I
   if (req.method === 'POST') {
     try {
       const { answeredCount, userId, answers } = JSON.parse(req.body) as IBody
-      console.log('DATA', req.body)
+      const correctAnsweredCount = answers.reduce((p, current) => p + (current.userId == userId ? 1 : 0), 0)
       const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: { answered: true, correctAnswers: true },
+        select: { answered: true, correctAnsweredCount: true },
       })
       await prisma.user.update({
         where: {
           id: userId,
         },
         data: {
-          answered: (user?.answered || 0) + answeredCount,
+          answered: user!.answered + answeredCount,
+          correctAnsweredCount: user!.correctAnsweredCount + correctAnsweredCount,
           answeredPercentage: Math.floor(
-            (((user?.correctAnswers.length || 0) + answers.map(a => a.userId == userId).length) / ((user?.answered || 0) + answeredCount)) * 100
+            ((user!.correctAnsweredCount + answers.map(a => a.userId == userId).length) / (user!.answered + answeredCount)) * 100
           ),
         },
       })

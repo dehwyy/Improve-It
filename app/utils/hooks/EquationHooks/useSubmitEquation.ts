@@ -14,7 +14,6 @@ export default function useSubmitEquation({ setInputValue, inputValue }: IArgs) 
 
   const submitEquation = useCallback(
     ({ userId }: { userId: string | 'bot' | null }) => {
-      console.log(userId)
       if (answers && answers[page]?.userId) return null
       setAnswerState({ userId, startTimeMs: startTime, idx: page })
       setTimeout(() => {
