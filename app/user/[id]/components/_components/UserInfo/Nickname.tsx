@@ -11,15 +11,24 @@ const h2Font = Mulish({
 
 interface IProps {
   name: string
+  previousNames: string[]
 }
 
-const Nickname = ({ name }: IProps) => {
-  const { onClickAway, isEditable, isEdit, isValid, isAbleToChange, setNickname, newNickname, submitNickname, toggleEdit } = useNickname(name)
+const Nickname = ({ name, previousNames }: IProps) => {
+  const { onClickAway, isEditable, isEdit, isValid, isAbleToChange, setNickname, newNickname, submitNickname, toggleEdit } = useNickname(
+    name,
+    previousNames
+  )
   return (
     <ClickAwayListener onClickAway={onClickAway} mouseEvent="onMouseDown">
-      <div className={`flex flex-col pb-5`}>
+      <div className="pb-5">
         <h2
           className={`${h2Font.className} usm:text-[2rem] text-3xl underline underline-offset-4 flex usm:flex-col usm:gap-y-3 justify-center items-center gap-x-1`}>
+          {isEditable && (
+            <span onClick={toggleEdit} className="cursor-pointer">
+              <EditIcon />
+            </span>
+          )}
           {!isEdit ? (
             <span className="p-1 break-all text-left">{newNickname}</span>
           ) : (
@@ -28,14 +37,8 @@ const Nickname = ({ name }: IProps) => {
               color="error"
               value={newNickname}
               onChange={setNickname}
-              sx={{ textAlign: 'right' }}
-              className={`${h2Font.className} !usm:text-[2rem] !text-3xl !min-w-[107%] !p-1 !outline-0 !text-white !rounded-md `}
+              className={`${h2Font.className} !usm:text-[2rem] !text-3xl !p-1 !outline-0 !text-white !rounded-md　!cursor-pointer`}
             />
-          )}
-          {isEditable && (
-            <span onClick={toggleEdit} className="cursor-pointer">
-              <EditIcon />
-            </span>
           )}
         </h2>
         <Button isValid={isValid} isEdit={isEdit} isAbleToChange={isAbleToChange} submitNickname={submitNickname} />

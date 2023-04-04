@@ -1,5 +1,5 @@
 import { usePathname } from 'next/navigation'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { useUserStore } from '@/app/utils/store/globalStore'
 import { useDebounce } from 'usehooks-ts'
 import useSWR from 'swr'
@@ -9,7 +9,7 @@ import useSWRMutation from 'swr/mutation'
 import postFetcher from '@/app/utils/global/postFetcher'
 import { Admin } from '@/types/export'
 
-export default function useNickname(name: string) {
+export default function useNickname(name: string, previousNames: string[]) {
   const sessionUserId = useUserStore(state => state.userId)
   const path = usePathname()
   const currentUserId = useMemo(() => {
@@ -25,7 +25,7 @@ export default function useNickname(name: string) {
   const { trigger: submitNickname } = useSWRMutation(ApiRoutesUser.updateUserNickname, postFetcher)
 
   const isValid = useMemo(() => {
-    return debouncedValue.length > 2 && !isLoading && !data && initialName !== debouncedValue
+    return (debouncedValue.length > 2 && !isLoading && (!data || data == currentUserId)) || previousNames.includes(debouncedValue)
   }, [isLoading])
 
   const setNickname = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,12 +50,11 @@ export default function useNickname(name: string) {
     setEdit(false)
     setNewNickname(initialName)
   }, [initialName])
-
   return {
     onClickAway: exitEditMode,
     isEditable: currentUserId === sessionUserId || sessionUserId === Admin.id,
     isEdit,
-    isValid: debouncedValue.length > 2 && !isLoading && !data && initialName !== debouncedValue,
+    isValid: (debouncedValue.length > 2 && !isLoading && (!data || data == currentUserId)) || previousNames.includes(debouncedValue),
     isAbleToChange: debouncedValue === newNickname && !isLoading,
     newNickname,
     setNickname,
