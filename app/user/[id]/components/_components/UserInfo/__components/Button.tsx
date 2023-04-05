@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const Button = ({ submitNickname, isEdit, isValid, isAbleToChange }: IProps) => {
-  if (!document.getElementById(Teleport.ConfirmProfileInformation)) return <></>
+  if (!document || !document.getElementById(Teleport.ConfirmProfileInformation)) return <></>
   return createPortal(
     <div className="h-16 mt-5">
       <div
