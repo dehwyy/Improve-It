@@ -1,8 +1,9 @@
 'use client'
 import { Mulish } from 'next/font/google'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
-import { CircularProgress } from '@mui/material'
 import useNickname from '@/app/utils/hooks/LocalHooks/useNickname'
+import Button from '@/app/user/[id]/components/_components/UserInfo/__components/Button'
+import { Input } from '@mui/material'
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],
   weight: '400',
@@ -10,42 +11,37 @@ const h2Font = Mulish({
 
 interface IProps {
   name: string
+  previousNames: string[]
 }
 
-const Nickname = ({ name }: IProps) => {
-  const { onClickAway, isEditable, isEdit, isValid, isAbleToChange, setNickname, newNickname, submitNickname, toggleEdit } = useNickname(name)
+const Nickname = ({ name, previousNames }: IProps) => {
+  const { onClickAway, isEditable, isEdit, isValid, isAbleToChange, setNickname, newNickname, submitNickname, toggleEdit } = useNickname(
+    name,
+    previousNames
+  )
   return (
     <ClickAwayListener onClickAway={onClickAway} mouseEvent="onMouseDown">
-      <div className="flex flex-col">
-        <h2 className={`${h2Font.className} usm:text-2xl text-3xl underline underline-offset-4 flex usm:flex-col justify-center items-center gap-1`}>
-          {!isEdit ? (
-            <span className="p-1">{newNickname}</span>
-          ) : (
-            <input
-              value={newNickname}
-              onChange={setNickname}
-              className={`${h2Font.className} usm:text-[1rem] text-3xl max-w-[110%] usm:max-w-[140%] p-1 usm:p-0.5 outline-0 rounded-md`}
-            />
-          )}
+      <div className="pb-5">
+        <h2
+          className={`${h2Font.className} usm:text-[2rem] text-3xl underline underline-offset-4 flex usm:flex-col usm:gap-y-3 justify-center items-center gap-x-1`}>
           {isEditable && (
             <span onClick={toggleEdit} className="cursor-pointer">
               <EditIcon />
             </span>
           )}
+          {!isEdit ? (
+            <span className="p-1 break-all text-left">{newNickname}</span>
+          ) : (
+            <Input
+              multiline
+              color="error"
+              value={newNickname}
+              onChange={setNickname}
+              className={`${h2Font.className} !usm:text-[2rem] !text-3xl !p-1 !outline-0 !text-white !rounded-md　!cursor-pointer`}
+            />
+          )}
         </h2>
-        <div className="w-1/3 sm:w-2/3 usm:w-full mx-auto">
-          <button
-            onClick={submitNickname}
-            className={`${
-              isValid && isEdit
-                ? 'opacity-100 cursor-pointer border-[#777777]'
-                : isEdit
-                ? 'opacity-50  cursor-default border-[#555555]'
-                : 'opacity-0  cursor-default'
-            } mt-2 p-1 rounded border-2 flex items-center justify-center w-full text-[0.8rem]`}>
-            {isAbleToChange ? 'Confirm' : <CircularProgress color="error" style={{ width: '19.5px', height: '19.5px' }} />}
-          </button>
-        </div>
+        <Button isValid={isValid} isEdit={isEdit} isAbleToChange={isAbleToChange} submitNickname={submitNickname} />
       </div>
     </ClickAwayListener>
   )

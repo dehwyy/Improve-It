@@ -25,7 +25,8 @@ const AnswersTransition = ({ children, full }: IProps) => {
       </Collapse>
       {isShowButtonVisible && (
         <StyleWrapper
-          className="text-sky-400 shadow-sky-400 border-current shadow-lg mt-[-1.25rem] text-center p-[10px]"
+          style={{ padding: '10px' }}
+          className="text-sky-400 shadow-sky-400 border-current shadow-lg mt-[-1.25rem] text-center"
           onClick={() => setState(true)}>
           Detailed
         </StyleWrapper>

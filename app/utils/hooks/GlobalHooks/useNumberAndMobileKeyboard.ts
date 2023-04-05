@@ -24,7 +24,8 @@ export default function useNumberAndMobileKeyboard({ onEnterPress, enterDependen
       const conditionIfValidInput =
         newInputValue.match(/^-?[0-9]*$/) &&
         (Number(newInputValue) || newInputValue == '-') &&
-        newInputValue.length <= String(correctAnswer).length + 2
+        newInputValue.length <= String(correctAnswer).length + 2 &&
+        !newInputValue.match(new RegExp(`^${correctAnswer}[0-9]+$`))
       // OR condition №2 (backspace or inputReset)
       const conditionIfBackspace = inputValue.length > newInputValue.length
       const conditionIfZeroIsResult = correctAnswer == 0 && Number(newInputValue) == 0
