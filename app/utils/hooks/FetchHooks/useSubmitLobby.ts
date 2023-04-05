@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { done as finishProgressbar, start as startProgressbar } from 'nprogress'
 import useSWRMutation from 'swr/mutation'
-import { ApiRoutes } from '@/types/routes'
+import { ApiRoutesSession, ApiRoutesUser } from '@/types/routes'
 import { useEquationSettingsStore, useEquationStore } from '@/app/utils/store/equationStore'
 import { useGameParticipantsStore, useGameTypeStore } from '@/app/utils/store/gameTypeStore'
 import { useUserStore } from '@/app/utils/store/globalStore'
@@ -13,8 +13,8 @@ export default function useSubmitLobby() {
   const players = useGameParticipantsStore(state => state.participants)
   const playerMode = useGameTypeStore(state => state.gameType)
   const [mode, difficulty, count] = useEquationSettingsStore(state => [state.mode, state.difficulty, state.count])
-  const { trigger: triggerCreateLobby } = useSWRMutation(ApiRoutes.submitSession, postFetcher)
-  const { trigger: triggerUpdateUserCount } = useSWRMutation(ApiRoutes.updateUserCount, postFetcher)
+  const { trigger: triggerCreateLobby } = useSWRMutation(ApiRoutesSession.createSession, postFetcher)
+  const { trigger: triggerUpdateUserCount } = useSWRMutation(ApiRoutesUser.updateUserCount, postFetcher)
   const submitLobby = useCallback(async () => {
     startProgressbar()
     await Promise.all([

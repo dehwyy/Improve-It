@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useDebounce } from 'usehooks-ts'
 import useSWR from 'swr'
-import { ApiRoutes, LeaderboardSelectBy } from '@/types/routes'
+import { ApiRoutesUser, LeaderboardSelectBy } from '@/types/routes'
 import getFetcher from '@/app/utils/global/getFetcher'
 import { done as finishProgressbar, start as startProgressbar } from 'nprogress'
 import { ILeaderboardUser, LeaderboardKey, LeaderboardType } from '@/types/export'
@@ -30,14 +30,16 @@ export default function useLeaderboard({ tables }: IArgs) {
   const setSelectedTypeByKey = useCallback((key: LeaderboardKey) => setSelectedType(LeaderboardType[key as LeaderboardKey]), [])
   const [users, setUsers] = useState<IUser[]>(addUserPlace(tables[selectedType]))
 
-  const { data: fetchedUsers } = useSWR(
-    `${ApiRoutes.getLeaderboard}/${debouncedInputValue || '_'}/${LeaderboardSelectBy[selectedType]}/${5}`,
+  const { data: fetchedUsers, isLoading } = useSWR(
+    `${ApiRoutesUser.getUsersLeaderboard}/${debouncedInputValue || '_'}/${LeaderboardSelectBy[selectedType]}/${5}`,
     getFetcher<{ users: ILeaderboardUser[] }>()
   )
-  useEffect(() => setUsers(users => addUserPlace(users)), [JSON.stringify(users)])
+  useEffect(() => {
+    ;(isLoading ? startProgressbar : finishProgressbar)()
+  }, [isLoading])
   useEffect(() => {
     if (fetchedUsers) {
-      setUsers(fetchedUsers.users)
+      setUsers(addUserPlace(fetchedUsers.users))
     }
   }, [fetchedUsers])
 

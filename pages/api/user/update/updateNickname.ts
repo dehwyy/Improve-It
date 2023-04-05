@@ -15,6 +15,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
       data: {
         nickname: newNickname,
+        allNicknames: {
+          set: newNickname,
+        },
       },
     })
     return res.status(201).json({ message: 'success' })
