@@ -26,7 +26,7 @@ export default function useNickname(name: string, previousNames: string[]) {
 
   const isValid = useMemo(() => {
     return (debouncedValue.length > 2 && !isLoading && (!data || data == currentUserId)) || previousNames.includes(debouncedValue)
-  }, [isLoading])
+  }, [isLoading, debouncedValue])
 
   const setNickname = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value
@@ -54,7 +54,7 @@ export default function useNickname(name: string, previousNames: string[]) {
     onClickAway: exitEditMode,
     isEditable: currentUserId === sessionUserId || sessionUserId === Admin.id,
     isEdit,
-    isValid: (debouncedValue.length > 2 && !isLoading && (!data || data == currentUserId)) || previousNames.includes(debouncedValue),
+    isValid,
     isAbleToChange: debouncedValue === newNickname && !isLoading,
     newNickname,
     setNickname,
