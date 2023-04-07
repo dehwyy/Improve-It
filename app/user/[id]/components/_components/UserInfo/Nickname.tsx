@@ -2,7 +2,6 @@
 import { Mulish } from 'next/font/google'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
 import useNickname from '@/app/utils/hooks/LocalHooks/useNickname'
-import Button from '@/app/user/[id]/components/_components/UserInfo/__components/Button'
 import { Input } from '@mui/material'
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],
@@ -15,10 +14,7 @@ interface IProps {
 }
 
 const Nickname = ({ name, previousNames }: IProps) => {
-  const { onClickAway, isEditable, isEdit, isValid, isAbleToChange, setNickname, newNickname, submitNickname, toggleEdit } = useNickname(
-    name,
-    previousNames
-  )
+  const { onClickAway, isEditable, isEdit, setNickname, newNickname, toggleEdit } = useNickname(name, previousNames)
   return (
     <ClickAwayListener onClickAway={onClickAway} mouseEvent="onMouseDown">
       <div className="pb-5">
@@ -41,7 +37,6 @@ const Nickname = ({ name, previousNames }: IProps) => {
             />
           )}
         </h2>
-        <Button isValid={isValid} isEdit={isEdit} isAbleToChange={isAbleToChange} submitNickname={submitNickname} />
       </div>
     </ClickAwayListener>
   )

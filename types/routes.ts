@@ -3,7 +3,7 @@ export enum ApiRoutesUser {
   getUserByNickname = '/api/user/get/byNickname',
   getUsersLeaderboard = '/api/user/get/forLeaderboard',
   updateUserCount = '/api/user/update/updateCount',
-  updateUserNickname = '/api/user/update/updateNickname',
+  updateUserInfo = '/api/user/update/updateUserInfo',
 }
 
 export enum ApiRoutesSession {
