@@ -6,69 +6,37 @@ import useSWR from 'swr'
 import { ApiRoutesUser } from '@/types/routes'
 import getFetcher from '@/app/utils/global/getFetcher'
 import { Admin } from '@/types/export'
-import { useEditUserInfoStore } from '@/app/utils/store/editUserInfoStore'
+import { useUserEditorStore } from '@/app/utils/store/editUserInfoStore'
 import { shallow } from 'zustand/shallow'
+import useCurrentPageUserId from '@/app/utils/hooks/UserEditorHooks/useCurrentPageUserId'
 
 export default function useNickname(name: string, previousNames: string[]) {
-  const [isEdit, setEdit, setValid, isEditable, setEditable, setNickname, nickname, submittedNickname] = useEditUserInfoStore(
-    state => [
-      state.isEdit,
-      state.setEdit,
-      state.setValid,
-      state.isEditable,
-      state.setEditable,
-      state.setNickname,
-      state.nickname,
-      state.submittedNickname,
-    ],
+  const [setLoading, setValidFields, fieldsValues, setFieldsValues, setInitialValues] = useUserEditorStore(
+    state => [state.setLoading, state.setValidFields, state.fieldsValues, state.setFieldsValues, state.setInitialValues],
     shallow
   )
-  const sessionUserId = useUserStore(state => state.userId)
-  const path = usePathname()
-  const currentUserId = useMemo(() => {
-    return path?.split('/').at(-1)
-  }, [path])
-  const [newNickname, setNewNickname] = useState(name)
-  const debouncedValue = useDebounce(newNickname, 500)
-  const { data, isLoading } = useSWR(`${ApiRoutesUser.getUserByNickname}/${nickname}`, getFetcher<string>())
-
+  const currentUserId = useCurrentPageUserId()
   useEffect(() => {
-    setValid((nickname.length > 2 && !isLoading && (!data || data == currentUserId)) || previousNames.includes(nickname), 'nickname')
-  }, [isLoading, nickname])
-
+    setInitialValues(name, 'nickname')
+  }, [])
+  const debouncedValue = useDebounce(fieldsValues.nickname, 500)
+  const { data, isLoading } = useSWR(`${ApiRoutesUser.getUserByNickname}/${debouncedValue}`, getFetcher<string>())
   useEffect(() => {
-    setEditable(currentUserId === sessionUserId || sessionUserId === Admin.id)
-  }, [sessionUserId])
-
-  useEffect(() => {
-    setNickname(debouncedValue)
-  }, [debouncedValue])
-
-  useEffect(() => {
-    submittedNickname.length && setNewNickname(submittedNickname)
-  }, [submittedNickname])
+    if (!isLoading && debouncedValue === fieldsValues.nickname) {
+      const condition = (debouncedValue.length > 2 && !isLoading && (!data || data == currentUserId)) || previousNames.includes(debouncedValue)
+      setValidFields(condition, 'nickname')
+      setLoading(false)
+    }
+  }, [isLoading, debouncedValue])
 
   const validateAndSetNickname = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value
     if (name.length > 14) return
-    setNewNickname(name)
+    setFieldsValues(name, 'nickname')
   }, [])
 
-  const changeEditState = useCallback(() => {
-    setEdit(!isEdit)
-    setNewNickname(submittedNickname || name)
-  }, [submittedNickname, isEdit])
-
-  const exitEditMode = useCallback(() => {
-    setEdit(false)
-    setNewNickname(submittedNickname || name)
-  }, [submittedNickname])
   return {
-    onClickAway: exitEditMode,
-    isEditable,
-    isEdit,
-    newNickname,
+    nickname: fieldsValues.nickname,
     setNickname: validateAndSetNickname,
-    toggleEdit: changeEditState,
   }
 }

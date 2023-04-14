@@ -4,6 +4,7 @@ import Answers from '@/app/components/UI/Global/Stats/Answers'
 import StyleWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
 import Nickname from '@/app/user/[id]/components/_components/UserInfo/Nickname'
 import Button from '@/app/user/[id]/components/_components/UserInfo/__components/Button'
+import { Teleport } from '@/types/teleport'
 
 interface IProps {
   name: string
@@ -26,7 +27,7 @@ const UserInfoBlock = ({ name, previousNames, total = 0, correct = 0 }: IProps) 
             <Answers count={total} correctCount={correct} />
           </div>
         </div>
-        <Button />
+        <div id={Teleport.SubmitButton} />
       </div>
     </StyleWrapper>
   )

@@ -3,6 +3,9 @@ import { Mulish } from 'next/font/google'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
 import useNickname from '@/app/utils/hooks/LocalHooks/useNickname'
 import { Input } from '@mui/material'
+import { useUserEditorStore } from '@/app/utils/store/editUserInfoStore'
+import { shallow } from 'zustand/shallow'
+import Button from '@/app/user/[id]/components/_components/UserInfo/__components/Button'
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],
   weight: '400',
@@ -14,28 +17,33 @@ interface IProps {
 }
 
 const Nickname = ({ name, previousNames }: IProps) => {
-  const { onClickAway, isEditable, isEdit, setNickname, newNickname, toggleEdit } = useNickname(name, previousNames)
+  const { setNickname, nickname } = useNickname(name, previousNames)
+  const [onClickAwayHandler, isEditMode, hasAccessToEdit, toggleEdit] = useUserEditorStore(
+    state => [state.clickAwayHandler, state.isEditMode, state.hasAccessToEdit, state.toggleEditMode],
+    shallow
+  )
   return (
-    <ClickAwayListener onClickAway={onClickAway} mouseEvent="onMouseDown">
+    <ClickAwayListener onClickAway={onClickAwayHandler} touchEvent="onTouchStart" mouseEvent="onMouseDown">
       <div className="pb-5">
         <h2
           className={`${h2Font.className} usm:text-[2rem] text-3xl underline underline-offset-4 flex usm:flex-col usm:gap-y-3 justify-center items-center gap-x-1`}>
-          {isEditable && (
+          {hasAccessToEdit && (
             <span onClick={toggleEdit} className="cursor-pointer">
               <EditIcon />
             </span>
           )}
-          {!isEdit ? (
-            <span className="p-1 break-all text-left">{newNickname}</span>
+          {!isEditMode ? (
+            <span className="p-1 break-all text-left">{nickname}</span>
           ) : (
             <Input
               multiline
               color="error"
-              value={newNickname}
+              value={nickname}
               onChange={setNickname}
               className={`${h2Font.className} !usm:text-[2rem] !text-3xl !p-1 !outline-0 !text-white !rounded-md　!cursor-pointer`}
             />
           )}
+          <Button />
         </h2>
       </div>
     </ClickAwayListener>
