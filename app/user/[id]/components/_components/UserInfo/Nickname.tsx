@@ -25,17 +25,17 @@ const Nickname = ({ name, previousNames }: IProps) => {
   return (
     <ClickAwayListener onClickAway={onClickAwayHandler} touchEvent="onTouchStart" mouseEvent="onMouseDown">
       <div className="pb-5">
-        <h2
-          className={`${h2Font.className} usm:text-[2rem] text-3xl underline underline-offset-4 flex usm:flex-col usm:gap-y-3 justify-center items-center gap-x-1`}>
+        <h2 className={`${h2Font.className} usm:text-[2rem] text-3xl flex usm:flex-col usm:gap-y-3 justify-center items-center gap-x-1`}>
           {hasAccessToEdit && (
             <span onClick={toggleEdit} className="cursor-pointer">
               <EditIcon />
             </span>
           )}
           {!isEditMode ? (
-            <span className="p-1 break-all text-left">{nickname}</span>
+            <span className={`${h2Font.className} p-1 text-left usm:text-[1.9rem] text-3xl underline underline-offset-4`}>{nickname}</span>
           ) : (
             <Input
+              autoFocus
               multiline
               color="error"
               value={nickname}
