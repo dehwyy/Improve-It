@@ -46,8 +46,8 @@ const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
         <div className="flex gap-x-16 gap-y-8 min-h-[200px] md:flex-col">
           <UserImage image={data?.image} name={data?.name} />
           <UserInfoBlock
-            previousNames={previousNames}
             name={data?.nickname || (data?.name as string)}
+            pageUserId={params.id}
             correct={data?.correctAnsweredCount}
             total={data?.answered}
           />
