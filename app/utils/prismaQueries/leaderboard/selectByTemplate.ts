@@ -23,9 +23,7 @@ export const selectByTemplate = async ({ name, order, count = 10 }: IArgs) => {
           },
         },
         {
-          allNicknames: {
-            hasSome: name,
-          },
+          allNicknames: { hasSome: name },
         },
       ],
     },
