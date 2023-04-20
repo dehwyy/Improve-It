@@ -4,6 +4,8 @@ import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import Nickname from '@/app/user/[id]/edit/fields/Nickname'
 import InitialValuesSetter from '@/app/user/[id]/edit/_components/InitialValuesSetter'
 import { useMemo } from 'react'
+import { UserChangeableValues } from '@/app/utils/store/editUserInfoStore'
+import Description from '@/app/user/[id]/edit/fields/Description'
 interface IProps {
   params: {
     id: string
@@ -13,7 +15,10 @@ interface IProps {
 const Page = async ({ params }: IProps) => {
   const user = await getUserById(params.id)
   if (!user) return <></>
-  const nickname = user.nickname || (user.name as string)
+  const { nickname, description } = {
+    nickname: user.nickname || user.name,
+    description: user.description,
+  } as UserChangeableValues<string>
   return (
     <PageWrapper classes="gap-y-5 max-w-[600px] mx-auto">
       <div>
@@ -27,16 +32,10 @@ const Page = async ({ params }: IProps) => {
       <div>
         <div className="bg-[#222222] rounded-xl px-4 py-4 sm:px-0 flex flex-col">
           <span className="text-gray-300 text-center">Short Information</span>
-          <textarea
-            placeholder="Share something about yourself"
-            rows={3}
-            maxLength={65}
-            style={{ resize: 'none' }}
-            className="!outline-0 mt-4 w-4/5 sm:w-[98%] p-2 rounded-xl mx-auto"
-          />
+          <Description />
         </div>
       </div>
-      <InitialValuesSetter nickname={nickname} />
+      <InitialValuesSetter nickname={nickname} description={description} />
     </PageWrapper>
   )
 }

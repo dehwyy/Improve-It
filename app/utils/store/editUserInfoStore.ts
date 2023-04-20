@@ -2,18 +2,16 @@ import { create } from 'zustand'
 import produce from 'immer'
 import { ApiRoutesUser } from '@/types/routes'
 
-interface UserChangeableValues<T> {
+export interface UserChangeableValues<T> {
   nickname: T
+  description: T
 }
 
 interface IEditUserInfoStore {
   // --- global edit mode ---
   isLoading: boolean
   setLoading: (state: boolean) => void
-  // ---
-  isValidFields: UserChangeableValues<boolean>
-  setValidFields: (state: boolean, key: keyof UserChangeableValues<boolean>) => void
-  // ---
+  getIsValidFields: (data: { key: keyof UserChangeableValues<string>; anyValue: unknown }) => boolean
   // ---     end      ---
   // --------------------
   // --- initial data ---
@@ -26,28 +24,27 @@ interface IEditUserInfoStore {
   setFieldsValues: (state: string, key: keyof UserChangeableValues<boolean>) => void
   // ---     end      ---
   // ---  functions   ---
-  submitFields: (data: { id: string; key: keyof UserChangeableValues<string> }) => void
+  submitFields: (data: { id: string; key: keyof UserChangeableValues<string>; anyValue: unknown }) => void
   // ---     end      ---
 }
-
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
   isLoading: false,
   setLoading: state => set({ isLoading: state }),
   // ----------------------------------------------
   // ----------------------------------------------
-  isValidFields: {
-    nickname: true,
+  getIsValidFields: ({ key, anyValue }) => {
+    const validFields = {
+      nickname: !anyValue && get().fieldsValues.nickname.length > 3,
+      description: true,
+    } as UserChangeableValues<boolean>
+    return validFields[key]
   },
-  setValidFields: (state, key) =>
-    set(
-      produce<IEditUserInfoStore>(store => {
-        store.isValidFields[key] = state
-      })
-    ),
   // ----------------------------------------------
   // ----------------------------------------------
   initialValues: {
     nickname: '',
+    description: '',
   },
   setInitialValues: (state, key) =>
     set(
@@ -60,6 +57,7 @@ export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
   // ----------------------------------------------
   fieldsValues: {
     nickname: '',
+    description: '',
   },
   setFieldsValues: (state, key) =>
     set(
@@ -70,8 +68,8 @@ export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
     ),
   // ----------------------------------------------
   // ----------------------------------------------
-  submitFields: ({ id, key }) => {
-    if (!~Object.values(get().isValidFields).findIndex(item => item == false)) {
+  submitFields: ({ id, key, anyValue }) => {
+    if (get().getIsValidFields({ anyValue, key })) {
       fetch(ApiRoutesUser.updateUserInfo, {
         method: 'POST',
         body: JSON.stringify({
