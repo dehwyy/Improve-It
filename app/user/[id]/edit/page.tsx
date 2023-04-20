@@ -17,7 +17,7 @@ interface IProps {
 
 async function validateHasAccessToEdit(id: string) {
   const sessionUserId = await getUserNotById()
-  if (sessionUserId!.id != Admin.id || sessionUserId!.id != id) {
+  if (!(sessionUserId!.id == Admin.id || sessionUserId!.id == id)) {
     redirect(`/user/${id}`)
   }
 }
