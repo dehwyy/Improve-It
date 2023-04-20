@@ -11,11 +11,12 @@ interface IProps {
 const Wrapper = styled.div`
   @media (min-width: 639px) and (hover: hover) {
     & > div:first-of-type {
-      margin-top: 50px;
       opacity: 0;
       visibility: hidden;
       transition: 0.4s ease;
       white-space: nowrap;
+      background: #333333;
+      border-radius: 0.5rem;
     }
     &:hover > div:first-of-type {
       opacity: 1 !important;
@@ -35,8 +36,8 @@ const Wrapper = styled.div`
 
 const NavItemWrapper: React.FC<IProps> = ({ children, text, isGrowable = true, idx = -1 }) => {
   return (
-    <Wrapper className="relative">
-      <div className="opacity-0 invisible pt-[15px] absolute font-extrabold right-1/2 translate-x-1/2 text-white">{text}</div>
+    <Wrapper className="relative text-gray-300">
+      <div className="opacity-0 invisible py-1 px-3 absolute font-extrabold right-1/2 translate-x-1/2 text-white top-12">{text}</div>
       <Grow in={isGrowable} style={{ transformOrigin: '0 0 0' }} {...(isGrowable ? { timeout: (idx + 1) * 400 } : {})}>
         {children}
       </Grow>
