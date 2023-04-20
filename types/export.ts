@@ -40,6 +40,6 @@ export interface ILeaderboardUser {
   nickname?: string | null
   image: string | null
   profilePicture?: string | null
-  correctAnswers?: unknown[]
+  correctAnsweredCount: number
   answered: number
 }

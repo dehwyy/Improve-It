@@ -28,9 +28,6 @@ export const selectByTemplate = async ({ name, order, count = 10 }: IArgs) => {
       ],
     },
     orderBy: [order],
-    include: {
-      correctAnswers: true,
-    },
     take: count,
   })
   return users
