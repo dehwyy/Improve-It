@@ -29,7 +29,7 @@ const MobileNavbar = ({ userId }: IProps) => {
             />
           </div>
           <Slide in={isExpanded} direction="left" unmountOnExit mountOnEnter>
-            <div className="bg-[#333333] border-l-2 border-gray-300 fixed bottom-0 top-0 pt-20 z-40 pr-3 pl-2">
+            <div className="bg-[#333333] border-l-2 border-gray-300 fixed bottom-0 top-0 pt-20 z-40 pr-4 pl-2">
               <Icons userId={userId} isGrowable={isExpanded} />
             </div>
           </Slide>
