@@ -38,8 +38,8 @@ const UserInfoBlock = ({ pageUserId, name, total = 0, correct = 0 }: IProps) => 
             <Answers count={total} correctCount={correct} />
           </div>
         </div>
-        <Link href={`/user/${pageUserId}/edit`} className="mt-5 py-2 border-2 border-gray-300 shadow-gray-300 shadow-md rounded-md w-1/3 mx-auto">
-          <p className="text-xl text-gray-300 ">Edit</p>
+        <Link href={`/user/${pageUserId}/edit`} className="mt-12 py-2 bg-[#444444] rounded-xl sm:w-full w-1/3 mx-auto">
+          <p className="text-xl text-gray-300 font-medium">Edit</p>
         </Link>
       </div>
     </StyleWrapper>
