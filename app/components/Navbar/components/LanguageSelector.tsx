@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const LanguageSelector: React.FC<IProps> = ({ isWindowVisible }) => {
-  const [languages, setLanguage] = useUserSettingsStore(state => [state.allLanguages, state.changeLang], shallow)
+  const [languages, setLanguage, currentLanguage] = useUserSettingsStore(state => [state.allLanguages, state.changeLang, state.lang], shallow)
   const isPhone = useMediaQuery('(max-width:639px)')
   return (
     <div
@@ -26,7 +26,9 @@ const LanguageSelector: React.FC<IProps> = ({ isWindowVisible }) => {
         <div
           key={i}
           onClick={() => setLanguage(lang)}
-          className={`${LangItemFont.className} cursor-pointer transition-all bg-violet-600 hover:bg-blue-500 p-5 text-2xl text-center`}>
+          className={`${LangItemFont.className} ${
+            currentLanguage == lang ? 'bg-blue-500 text-white' : 'bg-[#333333]'
+          } cursor-pointer transition-all hover:bg-blue-500 hover:text-white p-5 text-2xl text-center`}>
           {lang.toUpperCase()}
         </div>
       ))}

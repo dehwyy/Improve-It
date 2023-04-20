@@ -20,19 +20,16 @@ const MobileNavbar = ({ userId }: IProps) => {
     <>
       <TopPageLoader />
       <ClickAwayListener onClickAway={() => setExpanded(false)}>
-        <nav
-          className={`${
-            isExpanded ? 'text-black ' : 'text-violet-500'
-          } transition-all text-[3rem] flex flex-col items-center z-50 fixed right-0 top-0`}>
+        <nav className={`text-blue-500 transition-all text-[3rem] flex flex-col items-center z-50 fixed right-0 top-0`}>
           <div className="p-[1rem] pb-0 z-50 ">
             <MenuIcon
               onClick={() => setExpanded(p => !p)}
               fontSize="large"
-              className={`transition-all text-[3rem] ${!isExpanded && 'bg-[#333333]'} rounded mr-3`}
+              className={`transition-all text-[3rem] ${!isExpanded && 'bg-[#333333]'} rounded`}
             />
           </div>
           <Slide in={isExpanded} direction="left" unmountOnExit mountOnEnter>
-            <div className="bg-gradient-to-r from-violet-500 to-violet-700 fixed bottom-0 top-0 pt-20 z-40 pr-3">
+            <div className="bg-[#333333] border-l-2 border-gray-300 fixed bottom-0 top-0 pt-20 z-40 pr-4 pl-2">
               <Icons userId={userId} isGrowable={isExpanded} />
             </div>
           </Slide>
