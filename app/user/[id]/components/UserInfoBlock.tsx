@@ -2,9 +2,9 @@ import StatsHeading from '@/app/user/[id]/components/_components/UserInfo/StatsH
 import ProgressBar from '@/app/components/UI/Global/Stats/ProgressBar'
 import Answers from '@/app/components/UI/Global/Stats/Answers'
 import StyleWrapper from '@/app/components/UI/Wrappers/StyleWrapper'
-import Link from 'next/link'
 import { Mulish } from 'next/font/google'
 import Nickname from '@/app/user/[id]/components/_components/UserInfo/Nickname'
+import LinkToEditPage from '@/app/user/[id]/components/LinkToEditPage'
 
 const h2Font = Mulish({
   subsets: ['latin', 'cyrillic'],
@@ -38,9 +38,7 @@ const UserInfoBlock = ({ pageUserId, name, total = 0, correct = 0 }: IProps) => 
             <Answers count={total} correctCount={correct} />
           </div>
         </div>
-        <Link href={`/user/${pageUserId}/edit`} className="mt-12 py-2 bg-[#444444] rounded-xl sm:w-full w-1/3 mx-auto">
-          <p className="text-xl text-gray-300 font-medium">Edit</p>
-        </Link>
+        <LinkToEditPage pageUserId={pageUserId} />
       </div>
     </StyleWrapper>
   )

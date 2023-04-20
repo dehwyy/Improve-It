@@ -3,16 +3,27 @@ import Capitalized from '@/app/utils/tools/functions/Capitalize'
 import PageWrapper from '@/app/components/UI/Wrappers/PageWrapper'
 import Nickname from '@/app/user/[id]/edit/fields/Nickname'
 import InitialValuesSetter from '@/app/user/[id]/edit/_components/InitialValuesSetter'
-import { useMemo } from 'react'
 import { UserChangeableValues } from '@/app/utils/store/editUserInfoStore'
 import Description from '@/app/user/[id]/edit/fields/Description'
+import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
+import { Admin } from '@/types/export'
+import { redirect } from 'next/navigation'
+
 interface IProps {
   params: {
     id: string
   }
 }
 
+async function validateHasAccessToEdit(id: string) {
+  const sessionUserId = await getUserNotById()
+  if (sessionUserId!.id != Admin.id || sessionUserId!.id != id) {
+    redirect(`/user/${id}`)
+  }
+}
+
 const Page = async ({ params }: IProps) => {
+  await validateHasAccessToEdit(params.id)
   const user = await getUserById(params.id)
   if (!user) return <></>
   const { nickname, description } = {
