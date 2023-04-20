@@ -15,13 +15,10 @@ const Singleplayer = ({ gameType, userId }: IProps) => {
   return (
     <ModeTypeWrapper mode={gameType}>
       <ImagesWrapper>
-        <Image priority={true} src="/images/man.png" alt="blueface" width="200" height="200" className="rounded" />
+        <Image priority={true} src="/images/man.png" alt="singlePlayer" width="200" height="200" className="rounded object-contain h-[200px]" />
       </ImagesWrapper>
-      <TextWrapper>
-        <p className="text-3xl text-center">Solo practice mode.</p>
-        <p className="opacity-70 text-center mt-3">Want to improve your mental calculation? Become stronger at math? This mode is for you.</p>
-      </TextWrapper>
-      <TextUrl userId={userId} hasBot={false} gameType={gameType} url="/solve/edit" />
+      <TextWrapper name={'SOLO'} description={`Unlimited time. Various difficulties, modes. Allow to skip equalities by pressing "Enter"`} />
+      <TextUrl userId={userId} hasBot={false} url="/solve/edit" />
     </ModeTypeWrapper>
   )
 }
