@@ -15,7 +15,7 @@ const Singleplayer = ({ gameType, userId }: IProps) => {
   return (
     <ModeTypeWrapper mode={gameType}>
       <ImagesWrapper>
-        <Image priority={true} src="/images/31.png" alt="blueface" width="200" height="200" className="rounded" />
+        <Image priority={true} src="/images/man.png" alt="blueface" width="200" height="200" className="rounded" />
       </ImagesWrapper>
       <TextWrapper>
         <p className="text-3xl text-center">Solo practice mode.</p>
