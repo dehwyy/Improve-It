@@ -17,7 +17,7 @@ const Singleplayer = ({ gameType, userId }: IProps) => {
       <ImagesWrapper>
         <Image priority={true} src="/images/man.png" alt="singlePlayer" width="200" height="200" className="rounded object-contain h-[200px]" />
       </ImagesWrapper>
-      <TextWrapper name={'SOLO'} description={`Unlimited time. Various difficulties, modes. Allow to skip equalities by pressing "Enter"`} />
+      <TextWrapper name={'SOLO'} description={`Unlimited time. Various difficulties, modes. Allow to skip equalities by pressing "Enter".`} />
       <TextUrl userId={userId} hasBot={false} url="/solve/edit" />
     </ModeTypeWrapper>
   )

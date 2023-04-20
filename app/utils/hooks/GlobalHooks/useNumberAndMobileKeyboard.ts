@@ -1,6 +1,7 @@
 import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState } from 'react'
 import { useInputStore } from '@/app/utils/store/inputStore'
 import { shallow } from 'zustand/shallow'
+import useMobile from '@/app/utils/hooks/GlobalHooks/useMobile'
 
 interface IArgs {
   onEnterPress: () => void
@@ -10,7 +11,7 @@ interface IArgs {
 export default function useNumberAndMobileKeyboard({ onEnterPress, enterDependencies, correctAnswer }: IArgs) {
   const [prevKey, trigger] = useInputStore(state => [state.previousKey, state.trigger], shallow)
   const [inputValue, setInputValue] = useState<string>('')
-
+  const { isMobile } = useMobile()
   useEffect(() => {
     if (prevKey == 'Backspace') setInputValue(p => p.slice(0, p.length - 1))
     else if (prevKey == '-' && !inputValue) setInputValue(p => '-')
@@ -36,7 +37,7 @@ export default function useNumberAndMobileKeyboard({ onEnterPress, enterDependen
     [inputValue, prevKey]
   )
   const keyupHandler = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && isMobile) {
       onEnterPress()
     }
   }, enterDependencies)
