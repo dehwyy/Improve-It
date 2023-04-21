@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const Nickname = ({ name }: IProps) => {
-  const { value, setValue, isShowingLoader, isNotShowingText, isValidMainField, submit } = useEditField({
+  const { value, setValue, isShowingLoader, isNotShowingTextWithValidation, isValidMainField, submit } = useEditField({
     apiRoute: ApiRoutesUser.getUserByNickname,
     key: 'nickname',
   })
@@ -19,13 +19,13 @@ const Nickname = ({ name }: IProps) => {
         <input value={value} onChange={setValue} maxLength={20} className="w-full text-bold text-2xl p-2 outline-0" />
       </span>
       <span className={`${isValidMainField ? 'text-blue-500' : 'text-red-800'} flex transition-all`}>
-        <span className="text-2xl text-center w-full relative">
+        <span className="text-2xl text-center w-full relative pt-1">
           {isShowingLoader && (
             <span className="absolute translate-x-1/2 right-1/2">
               <CircularProgress color="secondary" style={{ height: '40px', width: '40px' }} />
             </span>
           )}
-          <span className={`${isNotShowingText ? 'opacity-0' : 'opacity-100'} transition-all`}>
+          <span className={`${isNotShowingTextWithValidation ? 'opacity-0' : 'opacity-100'} transition-all`}>
             <span onClick={submit} className={`${isValidMainField ? 'cursor-pointer' : 'cursor-default'} p-1 select-none`}>
               Save
             </span>

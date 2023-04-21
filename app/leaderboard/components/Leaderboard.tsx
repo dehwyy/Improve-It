@@ -44,7 +44,7 @@ const Leaderboard = ({ tables }: IProps) => {
               key={user.id}
               id={user.id}
               name={user.nickname || (user.name as string)}
-              image={user.image as string}
+              image={user.profilePicture || (user.image as string)}
               correctAnswered={user.correctAnsweredCount}
               answered={user.answered}
             />

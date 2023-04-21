@@ -20,22 +20,33 @@ export default function useEditField({ key, apiRoute }: IArgs) {
   )
   const debouncedValue = useDebounce(fieldsValues[key], 500)
   const { data, isLoading } = useSWR(`${apiRoute}/${debouncedValue}`, getFetcher<string>())
-  const { isValidMainField, isNotShowingText, isShowingLoader } = useMemo(
+  const isNotShowingText = useMemo(() => {
+    return fieldsValues[key] == initialValues[key]
+  }, [fieldsValues[key], initialValues[key]])
+  const { isValidMainField, isNotShowingTextWithValidation, isShowingLoader } = useMemo(
     () => ({
       isValidMainField: getIsValidFields({ anyValue: data, key }),
       isShowingLoader: (debouncedValue != fieldsValues[key] || isLoading) && !(fieldsValues[key] == initialValues[key]),
-      isNotShowingText: debouncedValue != fieldsValues[key] || fieldsValues[key] == initialValues[key] || isLoading,
+      isNotShowingTextWithValidation: debouncedValue != fieldsValues[key] || fieldsValues[key] == initialValues[key] || isLoading,
     }),
-    [data, debouncedValue, fieldsValues[key], isLoading, initialValues]
+    [data, debouncedValue, fieldsValues[key], initialValues[key], isLoading]
   )
-  const setFieldValue = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setFieldsValues(e.target.value, key), [])
-  const submit = useCallback(() => submitField({ id, key: key, anyValue: data }), [])
+  const setFieldValue = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string) => setFieldsValues(typeof e === 'string' ? e : e.target.value, key),
+    []
+  )
+  const submit = useCallback(() => {
+    if (!(isNotShowingTextWithValidation || isNotShowingText)) {
+      submitField({ id, key: key, anyValue: data })
+    }
+  }, [isNotShowingTextWithValidation])
   return {
     value: fieldsValues[key],
     setValue: setFieldValue,
     isValidMainField,
-    isNotShowingText,
+    isNotShowingTextWithValidation,
     isShowingLoader,
+    isNotShowingText: fieldsValues[key] == initialValues[key],
     submit,
   }
 }
