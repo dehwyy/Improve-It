@@ -4,6 +4,7 @@ import Providers from '@/app/components/Providers'
 import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 import { FC } from 'react'
 import { Metadata } from 'next'
+import Teleports from '@/app/components/Teleports'
 
 export const metadata: Metadata = {
   title: 'Improve it!',
@@ -55,8 +56,10 @@ const Layout: (props: IProps) => Promise<JSX.Element> = async ({ children }) => 
     <html lang="en">
       <body className="uusm:min-w-[279px] w-full h-full min-h-screen min-w-screen bg-[#333333] overflow-x-hidden">
         <Providers>
-          <Navbar userId={user?.id as string} />
-          <ContentWrapper>{children}</ContentWrapper>
+          <Teleports>
+            <Navbar userId={user?.id as string} />
+            <ContentWrapper>{children}</ContentWrapper>
+          </Teleports>
         </Providers>
       </body>
     </html>

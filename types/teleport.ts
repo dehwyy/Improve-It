@@ -1,3 +1,3 @@
 export enum Teleport {
-  ConfirmProfileInformation = 'ConfirmProfileInformation',
+  EditUrlModal = 'EditUrlModal',
 }

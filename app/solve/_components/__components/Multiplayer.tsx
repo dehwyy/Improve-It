@@ -15,13 +15,10 @@ const Multiplayer = ({ gameType, userId }: IProps) => {
   return (
     <ModeTypeWrapper mode={gameType}>
       <ImagesWrapper>
-        <Image src="/images/chad.png" alt="blueface" width="200" height="200" className="rounded" />
+        <Image src="/images/man2.png" alt="multiplayer" width="200" height="200" className="rounded object-contain h-[200px]" />
       </ImagesWrapper>
-      <TextWrapper>
-        <p className="text-3xl text-center">Multiplayer for 2+ player. The fastest player wins.</p>
-        <p className="opacity-70 text-center mt-3">Wanna chill with friends or prove your superiority? This mode was made to these</p>
-      </TextWrapper>
-      <TextUrl hasBot={false} gameType={gameType} url="/solve/multi" userId={userId} />
+      <TextWrapper name="Multiplayer" description="Compete against players..." />
+      <TextUrl hasBot={false} url="/solve/multi" userId={userId} />
       <InDevelopment />
     </ModeTypeWrapper>
   )

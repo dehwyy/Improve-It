@@ -24,7 +24,7 @@ const Page = ({ page, correctUser }: { page: number; correctUser: string | null 
     <div
       className={`${
         page < currentPage
-          ? currentUserId == correctUser
+          ? currentUserId === correctUser
             ? 'bg-green-500 '
             : 'bg-red-500'
           : page == currentPage

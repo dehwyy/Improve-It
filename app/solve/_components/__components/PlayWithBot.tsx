@@ -14,14 +14,11 @@ const PlayWithBot = ({ gameType, userId }: IProps) => {
   return (
     <ModeTypeWrapper mode={gameType}>
       <ImagesWrapper>
-        <Image priority={true} src="/images/giga.png" alt="blueface" width="200" height="200" className="rounded" />
+        <Image priority={true} src="/images/robo.png" alt="againstBot" width="200" height="200" className="rounded object-contain h-[200px]" />
       </ImagesWrapper>
-      <TextWrapper>
-        <p className="text-3xl text-center">1 VS 1 against bot (It is as strong as chess bot)</p>
-        <p className="opacity-70 text-center mt-3">Want to compete against 200+iq players. Here it is. Bot with 300iq. Try to bit it!</p>
-      </TextWrapper>
+      <TextWrapper name="Against BOT" description="Compete who's faster: You or Bot." />
       <ErrorMustSignIn userId={userId}>
-        <TextUrl hasBot={true} gameType={gameType} url={userId && '/solve/bot'} userId={userId} />
+        <TextUrl hasBot={true} url={userId && '/solve/bot'} userId={userId} />
       </ErrorMustSignIn>
     </ModeTypeWrapper>
   )
