@@ -1,3 +1,3 @@
 export enum Teleport {
-  SubmitButton = 'SubmitButton',
+  EditUrlModal = 'EditUrlModal',
 }

@@ -5,6 +5,7 @@ import { ApiRoutesUser } from '@/types/routes'
 export interface UserChangeableValues<T> {
   nickname: T
   description: T
+  img: T
 }
 
 interface IEditUserInfoStore {
@@ -34,10 +35,11 @@ export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
   // ----------------------------------------------
   // ----------------------------------------------
   getIsValidFields: ({ key, anyValue }) => {
-    const validFields = {
+    const validFields: UserChangeableValues<boolean> = {
       nickname: !anyValue && get().fieldsValues.nickname.length > 3,
       description: true,
-    } as UserChangeableValues<boolean>
+      img: true,
+    }
     return validFields[key]
   },
   // ----------------------------------------------
@@ -45,6 +47,7 @@ export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
   initialValues: {
     nickname: '',
     description: '',
+    img: '',
   },
   setInitialValues: (state, key) =>
     set(
@@ -58,6 +61,7 @@ export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
   fieldsValues: {
     nickname: '',
     description: '',
+    img: '',
   },
   setFieldsValues: (state, key) =>
     set(

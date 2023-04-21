@@ -8,6 +8,7 @@ import Description from '@/app/user/[id]/edit/fields/Description'
 import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 import { Admin } from '@/types/export'
 import { redirect } from 'next/navigation'
+import ProfileImage from '@/app/user/[id]/edit/fields/ProfileImage'
 
 interface IProps {
   params: {
@@ -26,9 +27,10 @@ const Page = async ({ params }: IProps) => {
   await validateHasAccessToEdit(params.id)
   const user = await getUserById(params.id)
   if (!user) return <></>
-  const { nickname, description } = {
+  const { nickname, description, img } = {
     nickname: user.nickname || user.name,
     description: user.description,
+    img: user.profilePicture || user.image,
   } as UserChangeableValues<string>
   return (
     <PageWrapper classes="gap-y-5 max-w-[600px] mx-auto">
@@ -36,7 +38,7 @@ const Page = async ({ params }: IProps) => {
         <div className="bg-[#222222] rounded-t-xl p-4 font-[500]">{Capitalized(user.nickname || (user.name as string))}'s profile</div>
         <div className="border-[#222222] border-r-4 border-l-4 h-[100px] w-full bg-[#444444]"></div>
         <div className="flex flex-col items-center p-2 bg-[#222222] rounded-b-xl">
-          <img className="rounded-full relative top-[-20px]" src={user.image as string} height="100px" width="100px" alt="image" />
+          <ProfileImage img={img} />
           <Nickname name={nickname} />
         </div>
       </div>
@@ -46,7 +48,7 @@ const Page = async ({ params }: IProps) => {
           <Description />
         </div>
       </div>
-      <InitialValuesSetter nickname={nickname} description={description} />
+      <InitialValuesSetter nickname={nickname} description={description} img={img} />
     </PageWrapper>
   )
 }
