@@ -13,9 +13,9 @@ const DifficultyItem = ({ difficulty, icon }: IProps) => {
     <Link href="/solve/edit">
       <StyleWrapper
         onClick={() => setBotDifficulty(difficulty)}
-        className="hover:scale-105 hover:text-red-500 hover:shadow-red-500 usm:p-[12px] text-center text-fuchsia-500 shadow-fuchsia-500 shadow-lg border-current">
-        <p>
-          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-purple-500 to-red-500">{difficulty}</span>
+        className="hover:scale-105 hover:text-red-500 hover:shadow-red-500 usm:p-[12px] text-center text-blue-600 shadow-blue-600 shadow-lg border-current">
+        <p className="text-3xl text-blue-500 transition-all">
+          <span className="font-bold">{difficulty}</span>
           {icon}
         </p>
       </StyleWrapper>
