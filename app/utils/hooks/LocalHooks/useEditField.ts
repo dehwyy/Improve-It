@@ -36,7 +36,8 @@ export default function useEditField({ key, apiRoute }: IArgs) {
     []
   )
   const submit = useCallback(() => {
-    if (!(isNotShowingTextWithValidation || isNotShowingText)) {
+    // check if validatingOrLoading OR don't have lazy validation
+    if (!(isNotShowingTextWithValidation || isNotShowingText) || !apiRoute) {
       submitField({ id, key: key, anyValue: data })
     }
   }, [isNotShowingTextWithValidation])

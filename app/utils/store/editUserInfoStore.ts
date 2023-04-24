@@ -6,6 +6,7 @@ export interface UserChangeableValues<T> {
   nickname: T
   description: T
   img: T
+  backgroundImg: T
 }
 
 interface IEditUserInfoStore {
@@ -39,6 +40,7 @@ export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
       nickname: !anyValue && get().fieldsValues.nickname.length > 3,
       description: true,
       img: true,
+      backgroundImg: true,
     }
     return validFields[key]
   },
@@ -48,6 +50,7 @@ export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
     nickname: '',
     description: '',
     img: '',
+    backgroundImg: '',
   },
   setInitialValues: (state, key) =>
     set(
@@ -62,6 +65,7 @@ export const useUserEditorStore = create<IEditUserInfoStore>((set, get) => ({
     nickname: '',
     description: '',
     img: '',
+    backgroundImg: '',
   },
   setFieldsValues: (state, key) =>
     set(
