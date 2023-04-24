@@ -28,7 +28,7 @@ const Participant = ({ player }: IProps) => {
   return (
     <LinkWrapper id={id}>
       <div className={`${id && 'cursor-pointer'} w-[300px] flex gap-2 items-center mx-auto pl-[2rem] usm:w-full`}>
-        <img className="rounded-md w-[40px] max-h-[40px] object-cover object-top" src={profilePicture || image} alt={name} width="40" height="40" />
+        <img className="rounded-md w-[40px] h-[40px] object-cover object-top" src={profilePicture || image} alt={name} width="40" height="40" />
         <p className="hover:text-red-500 font-bold transition-all duration-300">{name}</p>
       </div>
     </LinkWrapper>

@@ -19,7 +19,7 @@ const ProfileImage = ({ img }: IProps) => {
         <span className="hover:cursor-pointer flex relative w-[100px] h-[100px] mx-auto">
           <Camera callback={() => setWindowsState('ProfileImage', true)} />
           <img
-            className="rounded-full absolute max-h-[100px] max-w-[100px] object-cover object-top"
+            className="rounded-full absolute h-[100px] max-w-[100px] object-cover object-top"
             src={imageFromStore || img}
             height="100px"
             width="100px"
