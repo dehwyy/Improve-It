@@ -27,10 +27,11 @@ const Page = async ({ params }: IProps) => {
   await validateHasAccessToEdit(params.id)
   const user = await getUserById(params.id)
   if (!user) return <></>
-  const { nickname, description, img } = {
+  const { nickname, description, img, backgroundImg } = {
     nickname: user.nickname || user.name,
     description: user.description,
     img: user.profilePicture || user.image,
+    backgroundImg: user.profileBackground || '',
   } as UserChangeableValues<string>
   return (
     <PageWrapper classes="gap-y-5 max-w-[600px] mx-auto">
@@ -48,7 +49,7 @@ const Page = async ({ params }: IProps) => {
           <Description />
         </div>
       </div>
-      <InitialValuesSetter nickname={nickname} description={description} img={img} />
+      <InitialValuesSetter nickname={nickname} description={description} img={img} backgroundImg={backgroundImg} />
     </PageWrapper>
   )
 }
