@@ -13,11 +13,12 @@ const KeyboardNumber = ({ n, isReactNode = false }: IProps) => {
     setKey(key)
   }, [])
   return (
-    <StyledWrapper
-      className="active:text-red-500 active:shadow-red-500/100 text-violet-500 shadow-violet-500/100 shadow-md border-current sm:p-2 transition-all duration-300 bg-gradient-to-tr from-transparent via-transparent active:to-red-500 to-violet-800"
+    <div
+      style={{ border: '3px solid' }}
+      className="text-[#222222] shadow-[#222222] shadow-md border-current sm:p-2 transition-all duration-300 bg-gradient-to-tr from-transparent via-transparent active:to-red-500 to-blue-800 active:text-red-500 active:shadow-red-500 "
       onClick={clickHandler}>
-      <span className="text-white font-extrabold text-2xl">{n}</span>
-    </StyledWrapper>
+      <span className="text-white font-extrabold text-2xl flex justify-center">{n}</span>
+    </div>
   )
 }
 

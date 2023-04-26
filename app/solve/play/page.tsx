@@ -11,7 +11,7 @@ const Page = () => {
   const { equation, correctAnswer, isInvalid } = useEquationGenerator()
   if (isInvalid) return <Redirect />
   return equation ? (
-    <div className="pt-10 sm:pt-0 w-[80%] sm:w-[92%] vsm:w-full mx-auto text-center text-white relative">
+    <div className="pt-10 sm:pt-5 w-[80%] sm:w-[92%] vsm:w-full mx-auto text-center text-white relative">
       <SingleEquation equation={equation} correctAnswer={correctAnswer as number} />
       <MobileKeyboard isAnimation={isAnimation} />
     </div>
