@@ -27,7 +27,7 @@ const ProfileImage = ({ img }: IProps) => {
           />
         </span>
       </span>
-      <ModalForUrl windowKey={'ProfileImage'} stateKey={'img'} />
+      <ModalForUrl windowKey={'ProfileImage'} stateKey={'img'} initialValueFromComponent={imageFromStore || img} />
     </>
   )
 }

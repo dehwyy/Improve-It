@@ -8,25 +8,21 @@ export type PossibleUserChangeableImages = keyof Pick<UserChangeableValues<strin
 interface IProps {
   windowKey: ModalWindows
   stateKey: PossibleUserChangeableImages
+  initialValueFromComponent: string | null | undefined
 }
 
-export default function useModalWindow({ windowKey, stateKey }: IProps) {
+export default function useModalWindow({ windowKey, stateKey, initialValueFromComponent }: IProps) {
   const setWindowsState = useModalWindowsStore(state => state.setOpenWindow)
   const [valueFromBuffer, setValueFromBuffer] = useState<string | null>(null)
   const { value, setValue, submit } = useEditField({ key: stateKey })
-  const [initialValue, setInitialValue] = useState('')
-  useEffect(() => {
-    if (!initialValue) {
-      setInitialValue(value)
-    }
-  }, [value])
+  const [initialValue, setInitialValue] = useState(initialValueFromComponent)
   useEffect(() => {
     // if there's a value in the buffer, set it to the value in the buffer
     navigator.clipboard.readText().then(text => {
       setValueFromBuffer(text)
     })
   }, [])
-  const isValidImg = useCallback((img: string) => img.includes('.png') || img.includes('.jpg' || img.includes('.jpeg')), [])
+  const isValidImg = useCallback((img: string) => img.includes('.png') || img.includes('.jpg') || img.includes('.jpeg'), [])
   const setDataFromBuffer = useCallback(() => {
     navigator.clipboard.readText().then(text => {
       setValueFromBuffer(text)
@@ -37,7 +33,7 @@ export default function useModalWindow({ windowKey, stateKey }: IProps) {
   }, [])
   const closeWindow = useCallback(() => {
     // Discard the value and Close window
-    setValue(initialValue)
+    setValue(initialValue || '')
     setWindowsState(windowKey, false)
   }, [initialValue])
   const submitHandler = () => {

@@ -7,12 +7,14 @@ import { ModalWindows, useModalWindowsStore } from '@/app/utils/store/modalWindo
 interface IProps {
   windowKey: ModalWindows
   stateKey: PossibleUserChangeableImages
+  initialValueFromComponent: string | undefined | null
 }
 
-const ModalForUrl = ({ windowKey, stateKey }: IProps) => {
+const ModalForUrl = ({ windowKey, stateKey, initialValueFromComponent }: IProps) => {
   const { value, setValue, closeWindow, submitHandler, isAbleToSubmit, setDataFromBuffer, valueFromBuffer } = useModalWindow({
     windowKey,
     stateKey,
+    initialValueFromComponent,
   })
   const isOpen = useModalWindowsStore(state => state.isOpenWindow)
   return createPortal(
