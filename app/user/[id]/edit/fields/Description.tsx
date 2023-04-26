@@ -10,7 +10,7 @@ const Description = () => {
         onChange={setValue}
         placeholder="Share something about yourself"
         rows={3}
-        maxLength={65}
+        maxLength={120}
         style={{ resize: 'none' }}
         className="!outline-0 mt-4 w-4/5 sm:w-[98%] p-2 rounded-xl mx-auto"
       />

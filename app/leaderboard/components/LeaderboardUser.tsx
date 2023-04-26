@@ -32,11 +32,7 @@ const LeaderboardUser = ({ answered, correctAnswered, id, place, image, name }: 
                 <LeaderboardUserPlace place={place} />
               </div>
               <div className="w-[70px] h-[70px]">
-                <img
-                  className="w-full max-h-full object-cover object-top rounded-md"
-                  src={image || '/images/profile_image.jpg'}
-                  alt="profile image"
-                />
+                <img className="w-full h-full object-cover object-top rounded-md" src={image || '/images/profile_image.jpg'} alt="profile image" />
               </div>
               <h3 className={`${h3Font.className} text-3xl text-center`}>{name}</h3>
             </div>

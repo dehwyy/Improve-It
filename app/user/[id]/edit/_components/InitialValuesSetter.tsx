@@ -5,7 +5,7 @@ import { shallow } from 'zustand/shallow'
 
 interface IProps extends UserChangeableValues<string> {}
 
-const InitialValuesSetter = ({ nickname, description, img }: IProps) => {
+const InitialValuesSetter = ({ nickname, description, img, backgroundImg }: IProps) => {
   const [setInitialValues, initialValues] = useUserEditorStore(state => [state.setInitialValues, state.initialValues], shallow)
   const setInitialValueProperty = useCallback(<T extends string>(key: keyof UserChangeableValues<string>, property: T) => {
     return initialValues[key] ? setInitialValues(initialValues[key], key) : setInitialValues(property, key)
@@ -15,6 +15,7 @@ const InitialValuesSetter = ({ nickname, description, img }: IProps) => {
     setInitialValueProperty('nickname', nickname)
     setInitialValueProperty('description', description)
     setInitialValueProperty('img', img)
+    setInitialValueProperty('backgroundImg', backgroundImg)
   }, [])
   return <></>
 }
