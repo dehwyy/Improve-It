@@ -14,7 +14,7 @@ const UserImage = ({ name, image, backgroundImage }: IProps) => {
       <img
         className={`${
           backgroundImage && 'absolute top-0'
-        } border-2 border-blue-500 bg-blue-500 shadow-blue-500 shadow-md rounded-full uusm:w-[200px] uusm:h-[200px] h-[250px] w-[250px] object-cover object-top`}
+        } border-4 border-[#444444] shadow-[#444444] bg-[#444444] shadow-md rounded-full uusm:w-[200px] uusm:h-[200px] h-[250px] w-[250px] object-cover object-top`}
         src={img || image || '/images/profile_image.jpg'}
         alt={name || 'Profile picture'}
       />

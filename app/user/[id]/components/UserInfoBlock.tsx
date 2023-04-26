@@ -23,7 +23,7 @@ interface IProps {
 }
 const UserInfoBlock = ({ pageUserId, name, description, children, backgroundImage, total = 0, correct = 0 }: IProps) => {
   return (
-    <div className="relative px-5 py-5 lg:px-2 shadow-lg font-extrabold border-2 border-blue-500 shadow-blue-500 min-w-[200px] grid lg:grid-cols-1 grid-cols-4 place-items-center w-full">
+    <div className="relative px-5 py-5 lg:px-2 shadow-lg font-extrabold border-4 border-[#444444] shadow-[#444444] rounded-xl min-w-[200px] grid lg:grid-cols-1 grid-cols-4 place-items-center w-full">
       <div className={`${backgroundImage && 'absolute left-8 top-[-8rem] lg:static lg:mt-[-5rem] sm:mt-[-3rem] usm:mt-[-2rem]'} `}>{children}</div>
       <div className={`${backgroundImage ? 'col-span-4' : 'col-span-3'} w-[90%] lg:col-span-1`}>
         <div className="p-5 sm:p-1 text-center flex w-full flex-col text-white cursor-default">

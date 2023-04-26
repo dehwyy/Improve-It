@@ -62,11 +62,7 @@ const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
           </UserInfoBlock>
         </div>
         <SessionHeading totalSession={sessions.length} />
-        {sessions.length ? (
-          <VirtualScrollWrapper sessions={sessions.reverse() as unknown as ISession[]} userId={data?.id as string} />
-        ) : (
-          <NoSession />
-        )}
+        {sessions.length ? <VirtualScrollWrapper sessions={sessions as unknown as ISession[]} userId={data?.id as string} /> : <NoSession />}
       </div>
     </PageWrapper>
   )
