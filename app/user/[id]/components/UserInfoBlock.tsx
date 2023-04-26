@@ -32,7 +32,7 @@ const UserInfoBlock = ({ pageUserId, name, description, children, backgroundImag
               <p className={`${h2Font.className} w-full p-1 text-center sm:text-[1.5rem] text-4xl underline underline-offset-4`}>
                 <Nickname name={name} />
               </p>
-              <p className={`w-full ${description && 'pt-3'} text-lg`}>
+              <p className={`mx-auto w-3/5 lg:w-full ${description && 'pt-3'} text-lg`}>
                 <Description description={description} />
               </p>
             </h2>
