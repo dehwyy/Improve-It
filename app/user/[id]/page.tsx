@@ -8,6 +8,8 @@ import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 import NoSession from '@/app/user/[id]/components/NoSession'
 import SessionHeading from '@/app/user/[id]/components/SessionHeading'
 import { getUserNicknames } from '@/app/utils/prismaQueries/user/getUserNicknames'
+import UserBackgroundImage from '@/app/user/[id]/components/UserBackgroundImage'
+import { useMemo } from 'react'
 
 interface IProps {
   params: {
@@ -40,18 +42,24 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
 const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
   const [data, sessions, previousNames] = await Promise.all([getUserById(params.id), getUserSession(params.id), getUserNicknames(params.id)])
+  const { name, profileImageOrDefaultImg } = {
+    name: data?.nickname || data?.name,
+    profileImageOrDefaultImg: data?.profilePicture || data?.image,
+  } as { name: string; profileImageOrDefaultImg: string }
   return (
     <PageWrapper classes="py-10 mx-2 mt-5">
       <div className="pl-10 md:pl-0 flex flex-col gap-y-10">
-        <div className="flex gap-x-16 gap-y-8 min-h-[200px] md:flex-col">
-          <UserImage image={data?.profilePicture || data?.image} name={data?.name} />
+        <div className="flex flex-col min-h-[200px] md:flex-col">
+          <UserBackgroundImage image={data?.profileBackground} name={name} />
           <UserInfoBlock
-            name={data?.nickname || (data?.name as string)}
+            name={name}
             description={data?.description}
             pageUserId={params.id}
+            backgroundImage={data?.profileBackground}
             correct={data?.correctAnsweredCount}
-            total={data?.answered}
-          />
+            total={data?.answered}>
+            <UserImage backgroundImage={data?.profileBackground} image={profileImageOrDefaultImg} name={data?.name} />
+          </UserInfoBlock>
         </div>
         <SessionHeading totalSession={sessions.length} />
         {sessions.length ? (

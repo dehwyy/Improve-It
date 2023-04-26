@@ -17,7 +17,7 @@ const ProfileBackground = ({ img }: IProps) => {
   const image = useMemo(() => imageFromStore || img, [imageFromStore, img])
   return (
     <>
-      <div className="select-none border-[#222222] border-r-4 border-l-4 h-[350px] lg:h-[300px] md:h-[250px] sm:h-[200px] w-full bg-[#444444] relative">
+      <div className="select-none border-[#222222] border-r-4 border-l-4 h-[350px] lg:h-[300px] md:h-[250px] sm:h-[150px] w-full bg-[#444444] relative">
         <div
           onClick={() => setWindowsState('ProfileBackgroundImage', true)}
           className="z-20 cursor-pointer absolute right-0 top-0 px-4 pb-3 pt-1 mt-2 mr-2 rounded-2xl text-lg bg-[#00000080]">
