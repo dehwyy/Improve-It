@@ -6,13 +6,13 @@ const ModifyingModesEnum = () => {
   return (
     <>
       <p>
-        Navigate to root of the project (not app dir) and find folder <Folder>'types'</Folder>
+        Navigate to root of the project (not app dir) and find folder <Folder>&apos;types&apos;</Folder>
       </p>
       <p>
-        Go to <File>export.ts</File> and modify enum <TypescriptThing>"Modes"</TypescriptThing>:
+        Go to <File>export.ts</File> and modify enum <TypescriptThing>&apos;Modes&apos;</TypescriptThing>:
       </p>
       <p>Add field, that will be key (will be used in routing), and appropriate title</p>
-      <p>(example: devide = 'Division')</p>
+      <p>(example: devide = &apos;Division&apos;)</p>
     </>
   )
 }

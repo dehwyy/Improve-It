@@ -30,7 +30,8 @@ function getBotDifficulty(diff: Difficulties, selectedBot: IBotKind) {
   }
 }
 
-export function getBotTime(mode: Modes, diff: Difficulties, botDifficulty: BotDifficulties): () => number {
+export function getBotTime(mode: Modes | null, diff: Difficulties | null, botDifficulty: BotDifficulties | null): () => number {
+  if (!mode || !diff || !botDifficulty) return () => 0
   const Bot = new BotFactory(getBotByMode(mode, botDifficulty))
   return () => getBotDifficulty(diff, Bot)
 }

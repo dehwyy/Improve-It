@@ -9,14 +9,14 @@ export default function useBotTime() {
   const page = useEquationStore(state => state.page)
   const botDifficulty = useGameBotStore(state => state.difficulty)
   const [mode, difficulty, count] = useEquationSettingsStore(state => [state.mode, state.difficulty, state.count], shallow)
-  if (!mode || !difficulty || !count || !botDifficulty) return {}
-  const getTime = useCallback(getBotTime(mode, difficulty, botDifficulty), [])
+  const condition = mode && difficulty && count && botDifficulty
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getTimeFn = useCallback(getBotTime(mode, difficulty, botDifficulty), [])
   const time = useMemo(() => {
-    const t = getTime()
+    // getting random time
+    const t = getTimeFn()
     return t * 1000
-  }, [page])
+  }, [page, getTimeFn])
   const { isDone } = useTimeout({ time })
-  return {
-    isDone,
-  }
+  return condition ? { isDone } : {}
 }

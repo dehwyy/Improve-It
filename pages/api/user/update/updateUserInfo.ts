@@ -12,7 +12,6 @@ interface IBody extends Partial<UserChangeableValues<string>> {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { userId, nickname, description, img, backgroundImg } = JSON.parse(req.body) as IBody
-    console.log(img, userId)
     nickname && (await updateNickname(userId, nickname))
     description && (await updateDescription(userId, description))
     img && (await updateProfileImage(userId, img))

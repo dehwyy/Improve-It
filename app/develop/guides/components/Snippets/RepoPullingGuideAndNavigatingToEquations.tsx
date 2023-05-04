@@ -13,13 +13,13 @@ const RepoPullingGuideAndNavigatingToEquations = () => {
         , dev branch.
       </p>
       <p className="opacity-60">
-        * I should notice you that authorization wouldn't work cuz I wouldn't have any <File>.env</File> variables.
+        * I should notice you that authorization wouldn&apos;t work cuz I wouldn&apos;t have any <File>.env</File> variables.
       </p>
       <p>
         Navigate to <Path>app/utils/equations</Path>
       </p>
       <p>
-        You will see 2 dirs: <Folder>'helpers'</Folder> and <Folder>'kinds'</Folder>
+        You will see 2 dirs: <Folder>&apos;helpers&apos;</Folder> and <Folder>&apos;kinds&apos;</Folder>
       </p>
     </>
   )
