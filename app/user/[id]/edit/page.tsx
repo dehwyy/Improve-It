@@ -37,7 +37,7 @@ const Page = async ({ params }: IProps) => {
   return (
     <PageWrapper classes="gap-y-5 max-w-[800px] mx-auto">
       <div>
-        <div className="bg-[#222222] rounded-t-xl p-4 font-[500]">{Capitalized(user.nickname || (user.name as string))}'s profile</div>
+        <div className="bg-[#222222] rounded-t-xl p-4 font-[500]">{Capitalized(user.nickname || (user.name as string))}&apos;s profile</div>
         <ProfileBackground img={backgroundImg} />
         <div className="flex flex-col items-center p-2 bg-[#222222] rounded-b-xl">
           <ProfileImage img={img} />

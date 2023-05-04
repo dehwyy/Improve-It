@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useModalWindowsStore } from '@/app/utils/store/modalWindowsStore'
 import EditIcon from '@mui/icons-material/Edit'
 import { useMemo } from 'react'
+import Image from 'next/image'
 
 const ModalForUrl = dynamic(() => import('@/app/user/[id]/edit/fields/_components/ModalForUrl'), { ssr: false })
 
@@ -24,7 +25,9 @@ const ProfileBackground = ({ img }: IProps) => {
           <span className="relative top-1 right-1">Change background</span>
           <EditIcon />
         </div>
-        {image && <img className="absolute object-cover object-center h-full w-full" src={image} alt="background_image" />}
+        {image && (
+          <Image quality={100} fill={true} className="absolute object-cover object-center h-full w-full" src={image} alt="background_image" />
+        )}
       </div>
       <ModalForUrl windowKey={'ProfileBackgroundImage'} stateKey={'backgroundImg'} initialValueFromComponent={image} />
     </>

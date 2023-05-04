@@ -42,7 +42,9 @@ const SingleEquation = ({ correctAnswer, equation }: IProps) => {
       </div>
     </>
   ) : (
-    <SuccessAnimation isSuccess={selectedGameType === 'Solo' ? !enterHasBeenPressed : currentUserId == answeredUserId} />
+    <div className="pt-12 ">
+      <SuccessAnimation isSuccess={selectedGameType === 'Solo' ? !enterHasBeenPressed : currentUserId == answeredUserId} />
+    </div>
   )
 }
 

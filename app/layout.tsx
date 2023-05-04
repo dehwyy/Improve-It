@@ -5,6 +5,7 @@ import { getUserNotById } from '@/app/utils/prismaQueries/user/getUserNotById'
 import { FC } from 'react'
 import { Metadata } from 'next'
 import Teleports from '@/app/components/Teleports'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Improve it!',
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     index: true,
   },
   themeColor: '#333333',
+  metadataBase: new URL(import.meta.url),
   openGraph: {
     title: 'Improve it!',
     description: 'Improve your mental calculator',
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     siteName: 'Improve it!',
     images: [
       {
-        url: 'https://avatars.githubusercontent.com/u/103949460?v=4',
+        url: '/metadata/opengraph-image.png',
         width: 800,
         height: 600,
       },
@@ -57,7 +59,9 @@ const Layout: (props: IProps) => Promise<JSX.Element> = async ({ children }) => 
       <body className="uusm:min-w-[279px] w-full h-full min-h-screen min-w-screen bg-[#333333] overflow-x-hidden">
         <Providers>
           <Teleports>
-            <Navbar userId={user?.id as string} />
+            <Suspense fallback={<></>}>
+              <Navbar userId={user?.id as string} />
+            </Suspense>
             <ContentWrapper>{children}</ContentWrapper>
           </Teleports>
         </Providers>

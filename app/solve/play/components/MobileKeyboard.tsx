@@ -17,7 +17,7 @@ const MobileKeyboard = ({ isAnimation }: IProps) => {
   const gameType = useGameTypeStore(state => state.gameType)
   return !isAnimation ? (
     <div className="hidden sm:block">
-      <div className="grid grid-cols-3 place-content-center gap-y-5 gap-x-3 w-[80%] mx-auto">
+      <div className="grid grid-cols-3 place-content-center w-[80%] mx-auto">
         {nums.map((n, i) => (
           <KeyboardNumber key={i} n={n} />
         ))}

@@ -13,12 +13,12 @@ const ModifyingEquationModule = () => {
         Create new variable, that will be function that return new <span className="underline decoration-2">EquationKind</span> with injected deps
       </p>
       <p>
-        Modify <Function>"getEquationKindFromMode"</Function> function by adding new conditional:
+        Modify <Function>&apos;getEquationKindFromMode&apos;</Function> function by adding new conditional:
       </p>
-      `else if (mode === "key of new field of modified enum") {'{'}
+      `else if (mode === &apos;key of new field of modified enum&apos;) {'{'}
       <br />
       <p>
-        &nbsp;&nbsp;&nbsp;&nbsp; return <Variable>"variable that you just created"</Variable>
+        &nbsp;&nbsp;&nbsp;&nbsp; return <Variable>&apos;variable that you just created&apos;</Variable>
       </p>
       {'}'}` &nbsp;I guess ts autocomplete will help you
     </>

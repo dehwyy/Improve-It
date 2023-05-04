@@ -23,7 +23,7 @@ const Page = () => {
           <h1 className={`${h13Font.className} text-center text-7xl usm:text-5xl text-white vsm:text-[2.85rem] uusm:text-4xl`}>For developers</h1>
           <div className="flex-auto flex flex-col gap-y-5 mt-5 text-white text-2xl">
             <p>
-              Work on this website is still continuing, I'll be glad of any help. SolveDir is extensible, so you can create your own{' '}
+              Work on this website is still continuing, I&apos;ll be glad of any help. SolveDir is extensible, so you can create your own{' '}
               {'<EquationKind>'}
               (used to call it like so). This is a short{' '}
               <Link href="/develop/guides/createKind" className="text-blue-400">

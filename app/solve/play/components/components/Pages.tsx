@@ -7,9 +7,7 @@ const Wrapper = styled.div<{ count?: number }>`
 const Pages = () => {
   const answers = useEquationStore(state => state.answers)
   return (
-    <Wrapper
-      count={answers?.length}
-      className="mx-auto justify-center grid place-items-center pb-12 gap-1 usm:mt-[-3.5rem] usm:grid-cols-7 usm:pr-16">
+    <Wrapper count={answers?.length} className="mx-auto justify-center grid place-items-center pb-12 gap-1">
       {answers?.map((ans, i) => (
         <Page key={i} page={i} correctUser={ans.userId} />
       ))}
@@ -28,7 +26,7 @@ const Page = ({ page, correctUser }: { page: number; correctUser: string | null 
             ? 'bg-green-500 '
             : 'bg-red-500'
           : page == currentPage
-          ? 'bg-violet-500 animate-pulse'
+          ? 'bg-blue-500 animate-pulse'
           : 'bg-gray-500'
       } border-2  border-[#222222] hover:animate-pulse rounded-full w-[24px] h-[24px]`}
     />
