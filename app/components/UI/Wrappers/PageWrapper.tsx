@@ -1,22 +1,19 @@
 'use client'
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 interface IProps {
   children: React.ReactNode
   classes?: string
 }
 
 const PageWrapper = ({ children, classes }: IProps) => {
+  const [isMounted, setIsMounted] = useState(false)
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
   return (
-    <motion.div
-      initial="pageInitial"
-      animate="pageAnimation"
-      transition={{ ease: 'easeOut', duration: 0.7 }}
-      variants={{
-        pageInitial: { opacity: 0, translateY: '5px' },
-        pageAnimation: { opacity: 1, translateY: '0px' },
-      }}>
+    <div className={`${isMounted ? 'top-0 opacity-100' : 'top-5 opacity-0'} relative transition-all duration-1000`}>
       <div className={`${classes} flex-col flex`}>{children}</div>
-    </motion.div>
+    </div>
   )
 }
 

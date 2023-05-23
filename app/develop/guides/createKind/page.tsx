@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import GuideWrapper from '@/app/develop/guides/components/GuideWrapper'
 import RepoPullingGuideAndNavigatingToEquations from '@/app/develop/guides/components/Snippets/RepoPullingGuideAndNavigatingToEquations'
 import ModifyingModesEnum from '@/app/develop/guides/createKind/components/ModifyingModesEnum'

@@ -15,6 +15,7 @@ const UserImage = ({ name, image, backgroundImage }: IProps) => {
       <Image
         fill={true}
         quality={100}
+        priority
         className={`${
           backgroundImage && 'absolute top-0'
         } border-4 border-[#444444] shadow-[#444444] bg-[#444444] shadow-md rounded-full uusm:w-[200px] uusm:h-[200px] h-[250px] w-[250px] object-cover object-top`}
