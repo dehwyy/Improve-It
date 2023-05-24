@@ -71,7 +71,7 @@ const Layout: (props: IProps) => Promise<JSX.Element> = async ({ children }) => 
 }
 
 const ContentWrapper: FC<IProps> = ({ children }) => {
-  return <main className="w-[1100px] max-w-full mx-auto pt-[100px] min-h-screen h-full p-5 sm:p-0.5 ">{children}</main>
+  return <main className="w-[1100px] max-w-full mx-auto pt-[100px] min-h-screen h-full p-5 ">{children}</main>
 }
 
 export default Layout
