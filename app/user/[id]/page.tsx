@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 }
 
 const Page: (data: IProps) => Promise<JSX.Element> = async ({ params }) => {
-  const [data, sessions, previousNames] = await Promise.all([getUserById(params.id), getUserSession(params.id), getUserNicknames(params.id)])
+  const [data, sessions] = await Promise.all([getUserById(params.id), getUserSession(params.id)])
   const { name, profileImageOrDefaultImg } = {
     name: data?.nickname || data?.name,
     profileImageOrDefaultImg: data?.profilePicture || data?.image,
