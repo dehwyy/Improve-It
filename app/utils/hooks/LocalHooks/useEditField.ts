@@ -6,6 +6,7 @@ import useSWR from 'swr'
 import { ApiRoutesUser } from '@/types/routes'
 import getFetcher from '@/app/utils/global/getFetcher'
 import { useCallback, useMemo } from 'react'
+import useCurrentPageUserIdOnEditPage from '@/app/utils/hooks/UserEditorHooks/useCurrentPageUserId'
 
 interface IArgs {
   key: keyof UserChangeableValues<string>
@@ -13,7 +14,7 @@ interface IArgs {
 }
 
 export default function useEditField({ key, apiRoute }: IArgs) {
-  const id = useUserStore(state => state.userId) as string
+  const id = useCurrentPageUserIdOnEditPage() as string
   const [submitField, fieldsValues, setFieldsValues, initialValues, getIsValidFields] = useUserEditorStore(
     state => [state.submitFields, state.fieldsValues, state.setFieldsValues, state.initialValues, state.getIsValidFields],
     shallow
